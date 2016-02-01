@@ -39,8 +39,8 @@ public class Agenda implements Serializable {
 
 	public Agenda(Date data, Date hora, Character tipoConsulta, Integer ano, Integer mes) {
 		super();
-		this.data = data;
-		this.hora = hora;
+		this.data = util.DateTimeFormat.formatDataParaBR(data);
+		this.hora = util.DateTimeFormat.formatDataParaBR(hora);
 		this.tipoConsulta = tipoConsulta;
 		this.ano = ano;
 		this.mes = mes;
@@ -59,7 +59,7 @@ public class Agenda implements Serializable {
 	}
 
 	public void setData(Date data) {
-		this.data = data;
+		this.data = util.DateTimeFormat.formatDataParaBR(data);
 	}
 
 	public Date getHora() {
@@ -67,7 +67,7 @@ public class Agenda implements Serializable {
 	}
 
 	public void setHora(Date hora) {
-		this.hora = hora;
+		this.hora = util.DateTimeFormat.formatDataParaBR(hora);
 	}
 
 	public Character getTipoConsulta() {
