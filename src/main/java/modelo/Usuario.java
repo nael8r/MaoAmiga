@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.jasypt.util.password.BasicPasswordEncryptor;
+
 @Entity(name="usuario")
 public class Usuario implements Serializable {
 
@@ -18,6 +20,8 @@ public class Usuario implements Serializable {
 	private String senha;
 	@Column(nullable=false)
 	private Character tipo;
+	@Transient
+	private BasicPasswordEncryptor bpe;
 	
 	public Usuario() {
 		
@@ -25,9 +29,10 @@ public class Usuario implements Serializable {
 
 	public Usuario(String nome, String login, String senha, Character tipo) {
 		super();
+		bpe = new BasicPasswordEncryptor();
 		this.nome = nome;
 		this.login = login;
-		this.senha = senha;
+		this.senha = bpe.encryptPassword(senha);
 		this.tipo = tipo;
 	}
 
@@ -60,7 +65,7 @@ public class Usuario implements Serializable {
 	}
 
 	public void setSenha(String senha) {
-		this.senha = senha;
+		this.senha = bpe.encryptPassword(senha);
 	}
 
 	public Character getTipo() {

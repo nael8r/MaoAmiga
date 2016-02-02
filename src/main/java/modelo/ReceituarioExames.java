@@ -14,8 +14,8 @@ public class ReceituarioExames implements Serializable {
 	@Column(nullable=false)
 	private String exames;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="cod_prontuario")
-	private Prontuario prontuario;
+	@JoinColumn(name="cod_consulta")
+	private Consulta consulta;
 	
 	public ReceituarioExames() {
 	}
@@ -41,12 +41,12 @@ public class ReceituarioExames implements Serializable {
 		this.exames = exames;
 	}
 
-	public Prontuario getProntuario() {
-		return prontuario;
+	public Consulta getConsulta() {
+		return consulta;
 	}
 
-	public void setProntuario(Prontuario prontuario) {
-		this.prontuario = prontuario;
+	public void setProntuario(Consulta consulta) {
+		this.consulta = consulta;
 	}
 
 	@Override

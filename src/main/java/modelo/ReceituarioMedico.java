@@ -13,8 +13,8 @@ public class ReceituarioMedico implements Serializable {
 	@Column(nullable=false)
 	private String medicamentos;
 	@ManyToOne(optional=false)
-	@JoinColumn(name="cod_prontuario")
-	private Prontuario prontuario;
+	@JoinColumn(name="cod_consulta")
+	private Consulta consulta;
 	@ManyToOne(optional=false)
 	@JoinColumn(name="cod_produtos")
 	private Produtos produtos;
@@ -43,12 +43,12 @@ public class ReceituarioMedico implements Serializable {
 		this.medicamentos = medicamentos;
 	}
 
-	public Prontuario getProntuario() {
-		return prontuario;
+	public Consulta getConsulta() {
+		return consulta;
 	}
 
-	public void setProntuario(Prontuario prontuario) {
-		this.prontuario = prontuario;
+	public void setConsulta(Consulta consulta) {
+		this.consulta = consulta;
 	}
 
 	public Produtos getProdutos() {

@@ -24,7 +24,7 @@ public class Paciente implements Serializable {
 	@OneToMany(mappedBy="paciente",
 			cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER)
-	private List<Agenda> agendas;
+	private List<Consulta> consultas;
 	
 	public Paciente() {
 	}
@@ -76,12 +76,12 @@ public class Paciente implements Serializable {
 		this.esperas = esperas;
 	}
 
-	public List<Agenda> getAgendas() {
-		return agendas;
+	public List<Consulta> getConstultas() {
+		return consultas;
 	}
 
-	public void setAgendas(List<Agenda> agendas) {
-		this.agendas = agendas;
+	public void setAgendas(List<Consulta> consultas) {
+		this.consultas = consultas;
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class Paciente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Paciente [nome=" + nome + ", esperas=" + esperas + ", agendas=" + agendas + "]";
+		return "Paciente [nome=" + nome + ", esperas=" + esperas + ", consultas=" + consultas + "]";
 	}
 
 }
