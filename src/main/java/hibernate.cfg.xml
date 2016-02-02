@@ -30,10 +30,8 @@
 		<mapping class="modelo.Usuario"/>
 		<mapping class="modelo.Espera"/>
 		<mapping class="modelo.Paciente"/>
-		<mapping class="modelo.Agenda"/>
 		<mapping class="modelo.Medico"/>
-		<mapping class="modelo.PreConsulta"/>
-		<mapping class="modelo.Prontuario"/>
+		<mapping class="modelo.Consulta"/>
 		<mapping class="modelo.ReceituarioMedico"/>
 		<mapping class="modelo.Produtos"/>
 		<mapping class="modelo.ReceituarioExames"/>
