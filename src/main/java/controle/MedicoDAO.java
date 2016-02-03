@@ -9,45 +9,46 @@ import org.hibernate.Session;
 
 import modelo.Consulta;
 import modelo.Medico;
+import modelo.Paciente;
 import modelo.ReceituarioMedico;
 import modelo.Usuario;
 
 public class MedicoDAO {
-	private Session session;
+	private Session sessao;
 	
 	public MedicoDAO() {
 	}
 
 	public MedicoDAO(Session session) {
 		super();
-		this.session = session;
+		this.sessao = session;
 	}
 	
 	public Serializable salvar(Medico medico)
 	{
-		return session.save(medico);
+		return sessao.save(medico);
 	}
 	
 	public void atualizar(Medico medico)
 	{
-		session.update(medico);
+		sessao.update(medico);
 	}
 	
 	public void excluir(Medico medico)
 	{
-		session.delete(medico);
+		sessao.delete(medico);
 	}
 	
 	public List<Medico> getMedicos()
 	{
-		Query consulta = session.createQuery("from medico");
+		Query consulta = sessao.createQuery("from medico");
 		
 		return consulta.list();
 	}
 	
 	public List<Medico> getMedicos(Integer limite)
 	{
-		Query consulta = session.createQuery("from medico");
+		Query consulta = sessao.createQuery("from medico");
 		
 		consulta.setMaxResults(limite);
 		
@@ -56,7 +57,7 @@ public class MedicoDAO {
 	
 	public Medico getMedico(Integer codigo)
 	{
-		Query consulta = session.createQuery("from medico where codigo = :cod_param");
+		Query consulta = sessao.createQuery("from medico where codigo = :cod_param");
 		consulta.setInteger("cod_param", codigo);
 		
 		return (Medico) consulta.uniqueResult();
@@ -78,5 +79,25 @@ public class MedicoDAO {
 		}
 		
 		return null;
+	}
+	
+	public List<Paciente> getPacientes(Integer codigo)
+	{
+		Query consulta = sessao.createQuery("from consulta where cod_medico = :cod_param");
+		consulta.setInteger("cod_param", codigo);
+		
+		List<Consulta> consultas = consulta.list();
+		List<Paciente> pacientes = new ArrayList<Paciente>();
+		
+		for(Consulta cons : consultas)
+		{
+			pacientes.add(cons.getPaciente());
+		}
+		
+		if(pacientes.isEmpty())
+			return null;
+		
+		return pacientes;
+		
 	}
 }
