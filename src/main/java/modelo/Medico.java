@@ -90,7 +90,7 @@ public class Medico implements Serializable {
 		return consultas;
 	}
 
-	public void setAgendas(List<Consulta> consultas) {
+	public void setConsultas(List<Consulta> consultas) {
 		this.consultas = consultas;
 	}
 

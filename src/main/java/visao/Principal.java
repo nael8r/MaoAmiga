@@ -16,7 +16,7 @@ public class Principal {
 	
 	
 	public static void main(String[] args) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		//Session session = HibernateUtil.getSessionFactory().openSession();
 //		
 //		UsuarioDAO dao = new UsuarioDAO(session);
 //		
@@ -27,7 +27,9 @@ public class Principal {
 //		u.toString();
 //		
 //		transaction.commit();
-		session.close();
+		//session.close();
+		
+		
 		
 		System.out.println(util.DateTimeFormat.formatDataParaBR(new Date()));
 		System.out.println(new Date());

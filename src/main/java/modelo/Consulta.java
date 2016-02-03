@@ -74,7 +74,6 @@ public class Consulta implements Serializable {
 	private List<ReceituarioExames> receituariosExames;
 	
 	public Consulta() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Consulta(Integer codigo, Date data, Date hora, Character tipoConsulta, Float peso, Float altura,
