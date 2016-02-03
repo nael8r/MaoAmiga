@@ -29,6 +29,16 @@
 	<artifactId>jasypt-hibernate4</artifactId>
 	<version>1.9.2</version>
 </dependency>
+    <dependency>
+    	<groupId>com.github.dandelion</groupId>
+    	<artifactId>datatables-jsp</artifactId>
+    	<version>1.1.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>de.sven-jacobs</groupId>
+    	<artifactId>loremipsum</artifactId>
+    	<version>1.0</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>MaoAmiga</finalName>
