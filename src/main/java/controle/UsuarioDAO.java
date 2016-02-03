@@ -13,32 +13,32 @@ import modelo.Usuario;
 
 public class UsuarioDAO {
 	
-	private Session session;
+	private Session sessao;
 
 	public UsuarioDAO(Session session) {
-		this.session = session;
+		this.sessao = session;
 	}
 	
 	public Serializable salvar(Usuario usuario){
 		
 		if(validaNomeLogin(usuario.getLogin()))
-			return this.session.save(usuario);
+			return this.sessao.save(usuario);
 		else
 			return -1;
 	}
 	
 	public void excluir(Usuario usuario){
-		this.session.delete(usuario);
+		this.sessao.delete(usuario);
 	}
 	
 	public void atualizar(Usuario usuario){
-		this.session.update(usuario);
+		this.sessao.update(usuario);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Usuario> getUsuarios()
 	{
-		Query consulta = session.createQuery("from usuario");
+		Query consulta = sessao.createQuery("from usuario");
 		
 		return consulta.list();
 	}
@@ -46,7 +46,7 @@ public class UsuarioDAO {
 	@SuppressWarnings("unchecked")
 	public List<Usuario> getUsuarios(Integer limite)
 	{
-		Query consulta = session.createQuery("from usuario");
+		Query consulta = sessao.createQuery("from usuario");
 		consulta.setMaxResults(limite);
 		
 		return consulta.list();
@@ -54,7 +54,7 @@ public class UsuarioDAO {
 	
 	public Usuario getUsuario(Integer codigo)
 	{
-		Query consulta = session.createQuery("from usuario where codigo = :cod_param");
+		Query consulta = sessao.createQuery("from usuario where codigo = :cod_param");
 		consulta.setInteger("cod_param", codigo);
 		
 		return (Usuario) consulta.uniqueResult();
@@ -63,7 +63,7 @@ public class UsuarioDAO {
 	@SuppressWarnings("unchecked")
 	public List<String> getUsuLogins()
 	{
-		Query consulta = session.createQuery("select u.login from usuario u");
+		Query consulta = sessao.createQuery("select u.login from usuario u");
 		
 		return consulta.list();
 	}
@@ -84,7 +84,7 @@ public class UsuarioDAO {
 		
 		String hql = "select u from usuario u where u.login = :login_param";
 		
-		Query consulta = session.createQuery(hql);
+		Query consulta = sessao.createQuery(hql);
 		consulta.setString("login_param", login);
 		
 		Usuario u = (Usuario) consulta.uniqueResult();
