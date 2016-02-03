@@ -72,13 +72,14 @@ public class MedicoDAO {
 	{
 		List<Consulta> consultas = getConsultas(codigo);
 		List<ReceituarioMedico> receituarios = new ArrayList<ReceituarioMedico>();
+		ConsultaDAO csDAO = new ConsultaDAO(sessao);
 		
 		for(Consulta consulta : consultas)
 		{
-			// TODO fazer ReceituarioMedicoDAO
+			receituarios.addAll(csDAO.getReceituariosMedicos(consulta.getCodigo()));
 		}
 		
-		return null;
+		return receituarios;
 	}
 	
 	public List<Paciente> getPacientes(Integer codigo)
