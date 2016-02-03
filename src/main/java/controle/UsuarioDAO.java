@@ -43,6 +43,15 @@ public class UsuarioDAO {
 		return consulta.list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> getUsuarios(Integer limite)
+	{
+		Query consulta = session.createQuery("from usuario");
+		consulta.setMaxResults(limite);
+		
+		return consulta.list();
+	}
+	
 	public Usuario getUsuario(Integer codigo)
 	{
 		Query consulta = session.createQuery("from usuario where codigo = :cod_param");
