@@ -89,7 +89,8 @@ public class UsuarioDAO {
 		
 		Usuario u = (Usuario) consulta.uniqueResult();
 		
-		if(new BasicPasswordEncryptor().checkPassword(senha, u.getSenha()))
+		//if(new BasicPasswordEncryptor().checkPassword(senha, u.getSenha()))
+		if(u != null && senha.equals(u.getSenha()))
 			return u;
 		else
 			return null;
