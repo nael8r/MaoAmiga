@@ -123,48 +123,53 @@
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
-					<h5 class="white-text">
-						<b>AssociaÃ§Ã£o MÃ£o Amiga</b>
-					</h5>
+					<h5 class="white-text"><b>Associação Mão Amiga</b></h5>
 					<p class="grey-text text-lighten-4">
-						AssociaÃ§Ã£o no combate ao cÃ¢ncer em Formiga.<br /> Rua Lassance
-						Cunha, 39 - Centro - Formiga MG. <br /> Telefone: (37) 3322-3291.
+						Associação no combate ao câncer em Formiga.<br />
+						Rua Lassance Cunha, 39 - Centro - Formiga MG. <br/>
+						Telefone: (37) 3322-3291.
 					</p>
 				</div>
-				<div class="col l3 s12">
-					<h5 class="center  white-text">AmbulatÃ³rio</h5>
-					<ul>
-						<li><a href="agendarConsulta.html"
-							class="collection-item white-text"> <i class="material-icons">send</i>
-								Agendar Consultas
-						</a></li>
-						<li><a href="listaEspera.html"
-							class="collection-item white-text"> <i class="material-icons">send</i>
-								Lista de Espera
-						</a></li>
-						<li><a href="agendaConsultas.html"
-							class="collection-item white-text"> <i class="material-icons">send</i>
-								Agenda de Consultas
-						</a></li>
-					</ul>
-				</div>
-				<div class="col l3 s12">
-					<h5 class="center  white-text">ConsultÃ³rio MÃ©dico</h5>
-					<ul>
-						<li><a href="listaPacientes.html"
-							class="collection-item white-text"> <i class="material-icons">send</i>Lista
-								de Pacientes
-						</a></li>
-						<li><a href="prontuarioMedico.html"
-							class="collection-item white-text"> <i class="material-icons">send</i>ProntuÃ¡rio
-								MÃ©dico
-						</a></li>
-						<li><a href="consultarMedicamentos.html"
-							class="collection-item white-text"> <i class="material-icons">send</i>Consultar
-								Medicamentos
-						</a></li>
-					</ul>
-				</div>
+				
+				<c:choose>
+				 	<c:when test="${sessionScope.usuarioAutenticado.tipo == 'm'.charAt(0)}">	
+						<div class="col l3 s12">
+							<h5 class="center  white-text">Ambulatório</h5>
+							<ul>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i> Agendar Consultas </a> </li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i> Lista de Espera</a></li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i> Agenda de Consultas</a></li>
+							</ul>
+						</div>
+						<div class="col l3 s12">
+							<h5 class="center  white-text">Consultório Médico</h5>
+							<ul>
+								<li><a href="listaPacientes" class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
+								<li><a href="prontuarioMedico" class="collection-item white-text"> <i class="material-icons">send</i>Prontuário Médico</a> </li>
+								<li><a href="consultarMedicamentos" class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
+							</ul>
+						</div>
+				 	</c:when>
+				 	
+				 	<c:otherwise>
+						<div class="col l3 s12">
+							<h5 class="center  white-text">Ambulatório</h5>
+							<ul>
+								<li><a href="agendarConsulta" class="collection-item white-text"> <i class="material-icons">send</i> Agendar Consultas </a> </li>
+								<li><a href="listaEspera" class="collection-item white-text"> <i class="material-icons">send</i> Lista de Espera</a></li>
+								<li><a href="agendaConsultas" class="collection-item white-text"> <i class="material-icons">send</i> Agenda de Consultas</a></li>
+							</ul>
+						</div>
+						<div class="col l3 s12">
+							<h5 class="center  white-text">Consultório Médico</h5>
+							<ul>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Prontuá¡rio Médico</a> </li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
+							</ul>
+						</div>
+				 	</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div class="footer-copyright">
