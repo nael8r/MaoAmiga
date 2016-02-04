@@ -65,7 +65,7 @@ public class MedicoDAO {
 	
 	public List<Consulta> getConsultas(Integer codigo)
 	{
-		return getMedico(codigo).getConstultas();
+		return getMedico(codigo).getConsultas();
 	}
 	
 	public List<ReceituarioMedico> getReceituarios(Integer codigo)

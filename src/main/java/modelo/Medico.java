@@ -86,7 +86,7 @@ public class Medico implements Serializable {
 		this.especialidade = especialidade;
 	}
 
-	public List<Consulta> getConstultas() {
+	public List<Consulta> getConsultas() {
 		return consultas;
 	}
 
