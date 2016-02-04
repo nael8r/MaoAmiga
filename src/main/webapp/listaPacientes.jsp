@@ -1,23 +1,11 @@
-<%@page import="modelo.Paciente"%>
-<%@page import="controle.MedicoDAO"%>
-<%@page import="controle.PacienteDAO"%>
-<%@page import="org.hibernate.Session"%>
-<%@page import="conexao.HibernateUtil"%>
-<%@page import="modelo.Usuario"%>
-<%@page import="java.util.List"%>
-<%@page import="controle.UsuarioDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="datatables"
-	uri="http://github.com/dandelion/datatables"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <%
-	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
-	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
-	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
+	// TODO substituir o uso do datatables pelo c:foreach
 %>
 
 <head>
@@ -58,7 +46,7 @@
 			<h5>Pacientes:</h5>
 			<br>
 
-			<!--  table class="bordered hoverable">
+			<table class="bordered hoverable">
 					<thead>
 						<tr>
 							<td><b>CÃ³digo</b></td>
@@ -83,18 +71,7 @@
 							<td>X</td>
 						</tr>
 					</tbody>
-				</table -->
-
-
-
-			<datatables:table id="UsuariosTabela" data="${pacientes}">
-				<datatables:column title="Nome" property="nome" />
-				<datatables:column title="CPF" property="cpf" />
-				<datatables:column title="RG" property="rg" />
-			</datatables:table>
-
-			<% mdcDAO.getSessao().close(); 
-			session.removeAttribute("mdcDAO");%>
+				</table>
 
 
 			<br> <br>

@@ -89,4 +89,14 @@ public class PacienteDAO {
 		return medicos;
 	}
 
+	public Session getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Session sessao) {
+		this.sessao = sessao;
+	}
+	
+	
+
 }

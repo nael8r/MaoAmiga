@@ -10,6 +10,7 @@ import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.jasypt.util.text.BasicTextEncryptor;
 
 import conexao.HibernateUtil;
+import controle.PacienteDAO;
 import controle.UsuarioDAO;
 import io.github.benas.jpopulator.api.Populator;
 import io.github.benas.jpopulator.impl.PopulatorBuilder;
@@ -26,15 +27,11 @@ public class Principal {
 		Populator pop = new PopulatorBuilder().build();
 		
 		List<Medico> medicos = new ArrayList<Medico>();
-		List<Paciente> pacientes = new ArrayList<Paciente>();
 		
-		Medico medico = (Medico)pop.populateBean(Medico.class);
-//		
 		Transaction transaction = session.beginTransaction();
-		session.save(medico);
 		transaction.commit();
 		
-		
+		List<Paciente> pacientes = new PacienteDAO(session).getPacientes();
 		
 		session.close();
 //
