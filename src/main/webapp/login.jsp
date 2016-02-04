@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +73,8 @@
 						Telefone: (37) 3322-3291.
 					</p>
 				</div>
+				<!--
+	
 				<div class="col l3 s12">
 					<h5 class="center  white-text">Ambulatório</h5>
 					<ul>
@@ -86,6 +91,7 @@
 						<li><a href="consultarMedicamentos.html" class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
 					</ul>
 				</div>
+				-->
 			</div>
 		</div>
 		<div class="footer-copyright">

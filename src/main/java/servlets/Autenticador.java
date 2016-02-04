@@ -34,7 +34,7 @@ public class Autenticador extends HttpServlet {
 			
 			sessao.setAttribute("usuarioAutenticado", usuario);
 			
-			req.getRequestDispatcher("WEB-INF/index.jsp").forward(req, resp);
+			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {
 			
 			resp.setContentType("text/html");

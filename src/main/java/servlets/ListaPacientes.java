@@ -34,6 +34,6 @@ public class ListaPacientes extends HttpServlet {
 		
 		Usuario usuarioAutenticado = (Usuario)req.getSession().getAttribute("usuarioAutenticado");
 		
-		req.getRequestDispatcher("WEB-INF/listaPacientes.jsp").forward(req, resp);
+		req.getRequestDispatcher("listaPacientes.jsp").forward(req, resp);
 	}
 }
