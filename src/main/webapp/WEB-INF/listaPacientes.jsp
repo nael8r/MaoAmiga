@@ -1,3 +1,6 @@
+<%@page import="modelo.Paciente"%>
+<%@page import="controle.MedicoDAO"%>
+<%@page import="controle.PacienteDAO"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="modelo.Usuario"%>
@@ -7,9 +10,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="datatables"
 	uri="http://github.com/dandelion/datatables"%>
-	<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
+
+<%
+	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
+	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
+	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
+%>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
@@ -45,17 +55,7 @@
 
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-			<h5>
-
-				Pacientes:<%
-				Session sessao = HibernateUtil.getSessionFactory().openSession();
-				UsuarioDAO dao = new UsuarioDAO(sessao);
-			%>
-			<c:set var="dao_" value="${dao}" scope="request"}/>
-			<c:out value="${requestEscope.dao_}"/>
-			<%= dao.getUsuarios().get(0).getNome() %>
-			<% sessao.close(); %>
-			</h5>
+			<h5>Pacientes:</h5>
 			<br>
 
 			<!--  table class="bordered hoverable">
@@ -85,7 +85,18 @@
 					</tbody>
 				</table -->
 
-			
+
+
+			<datatables:table id="UsuariosTabela" data="${pacientes}">
+				<datatables:column title="Nome" property="nome" />
+				<datatables:column title="CPF" property="cpf" />
+				<datatables:column title="RG" property="rg" />
+			</datatables:table>
+
+			<% mdcDAO.getSessao().close(); 
+			session.removeAttribute("mdcDAO");%>
+
+
 			<br> <br>
 
 			<div class="right">
