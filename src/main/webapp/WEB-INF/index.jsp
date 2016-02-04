@@ -56,7 +56,7 @@
 								<h5 class="center">Consultório Médico</h5>
 		
 								<ul class="collection with-header">
-									<li class="collection-item"><a href="listaPacientes.html" class="collection-item"> <i class="material-icons left">send</i>Lista de Pacientes</a> </li>
+									<li class="collection-item"><a href="listaPacientes" class="collection-item"> <i class="material-icons left">send</i>Lista de Pacientes</a> </li>
 									<li class="collection-item"><a href="prontuarioMedico.html" class="collection-item"> <i class="material-icons left">send</i>Prontuário Médico</a> </li>
 									<li class="collection-item"><a href="consultarMedicamentos.html" class="collection-item"> <i class="material-icons left">send</i>Consultar Medicamentos</a> </li>
 								</ul>

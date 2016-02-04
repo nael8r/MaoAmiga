@@ -43,14 +43,14 @@ public class UsuarioDAO {
 		return consulta.list();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Usuario> getUsuarios(Integer limite)
-	{
-		Query consulta = sessao.createQuery("from usuario");
-		consulta.setMaxResults(limite);
-		
-		return consulta.list();
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<Usuario> getUsuarios(Integer limite)
+//	{
+//		Query consulta = sessao.createQuery("from usuario");
+//		consulta.setMaxResults(limite);
+//		
+//		return consulta.list();
+//	}
 	
 	public Usuario getUsuario(Integer codigo)
 	{

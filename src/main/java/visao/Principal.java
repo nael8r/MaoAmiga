@@ -16,9 +16,9 @@ public class Principal {
 	
 	
 	public static void main(String[] args) {
-		//Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = HibernateUtil.getSessionFactory().openSession();
 //		
-//		UsuarioDAO dao = new UsuarioDAO(session);
+		UsuarioDAO dao = new UsuarioDAO(session);
 //		
 //		Transaction transaction = session.beginTransaction();
 //		
@@ -27,7 +27,8 @@ public class Principal {
 //		u.toString();
 //		
 //		transaction.commit();
-		//session.close();
+		dao.getUsuarios();
+		session.close();
 		
 		
 		

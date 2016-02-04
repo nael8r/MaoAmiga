@@ -21,14 +21,14 @@
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
 	
-	<filter>
+	<!-- filter>
 		<filter-name>registerDaoFiltro</filter-name>
 		<filter-class>filtros.RegisterDaoFiltro</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>registerDaoFiltro</filter-name>
 		<url-pattern>/index.jsp</url-pattern>
-	</filter-mapping>
+	</filter-mapping -->
 
 	<!-- Dandelion servlet definition and mapping -->
 	<servlet>
