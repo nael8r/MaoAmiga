@@ -96,4 +96,14 @@ public class UsuarioDAO {
 			return null;
 	}
 
+	public Session getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Session sessao) {
+		this.sessao = sessao;
+	}
+	
+	
+
 }

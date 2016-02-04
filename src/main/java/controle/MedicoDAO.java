@@ -101,4 +101,14 @@ public class MedicoDAO {
 		return pacientes;
 		
 	}
+
+	public Session getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Session sessao) {
+		this.sessao = sessao;
+	}
+	
+	
 }
