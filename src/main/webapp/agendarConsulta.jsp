@@ -33,34 +33,15 @@
 
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-			<h2 class="center">Formulário Agenda Cadastro</h2>
+			<h2 class="center">Formulário Agenda de Consulta</h2>
 
 			<form action="#">
 				<div class="row">
-					<div class="input-field col s12 m6">
-						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="codigo">
-						<label for="codigo">Código</label>
-					</div>
-
-					<div class="input-field col s12 m6">
-						<i class="material-icons prefix">account_circle</i>
-						<input type="date" class="datepicker">
-					</div>
-
-				</div>	
-
-				<div class="row">
-					<div class="input-field col s12 m9">
+					<div class="input-field col s12">
 						<i class="material-icons prefix">account_circle</i>
 						<input type="text" id="paciente">
 						<label for="paciente">Paciente</label>
 					</div>
-					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
-						<i class="material-icons right">search</i>
-					</button>
-
 				</div>	
 
 				<div class="row">

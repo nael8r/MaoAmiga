@@ -58,8 +58,8 @@
 								<ul class="collection with-header">
 									<li class="collection-item"><a href="listaPacientes" class="collection-item"> <i class="material-icons left">send</i>Lista de Pacientes</a> </li>
 									<li class="collection-item"><a href="prontuarioMedico.jsp" class="collection-item"> <i class="material-icons left">send</i>Prontuário Médico</a> </li>
-									<li class="collection-item"><a href="consultarMedicamentos.jsp" class="collection-item"> <i class="material-icons left">send</i>Consultar Medicamentos</a> </li>
-								</ul>
+									<li class="collection-item"><a href="consultarMedicamentos.jsp?cod=&nome=" class="collection-item"> <i class="material-icons left">send</i>Consultar Medicamentos</a> </li>
+								</ul>	
 							</div>
 						</div>
 				 	</c:when>
@@ -71,7 +71,7 @@
 								<h5 class="center">Ambulatório</h5>
 	
 								<ul class="collection with-header">
-									<li class="collection-item"><a href="agendarConsulta.jsp" class="collection-item"> <i class="material-icons left">send</i> Agendar Consultas </a> </li>
+									<li class="collection-item"><a href="agendarConsulta?acao=procurarPaciente" class="collection-item"> <i class="material-icons left">send</i> Agendar Consultas </a> </li>
 									<li class="collection-item"><a href="listaEspera.jsp" class="collection-item"> <i class="material-icons left">send</i> Lista de Espera</a></li>
 									<li class="collection-item"><a href="agendaConsultas.jsp" class="collection-item"> <i class="material-icons left">send</i> Agenda de Consultas</a></li>
 								</ul>

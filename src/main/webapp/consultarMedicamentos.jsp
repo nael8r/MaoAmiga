@@ -1,8 +1,31 @@
+<%@page import="modelo.Produtos"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="controle.ProdutosDAO"%>
+<%@page import="conexao.HibernateUtil"%>
+<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	
+	if (request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
+	
+		// Instancia os objetos para operação de cadastramento
+		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		
+		//Produtos produto = new Produtos();
+		ProdutosDAO produtosDAO = new ProdutosDAO(sessao);
+		
+		// Define cada um na sessão para uso posteriori
+		session.setAttribute("produtoDAO", produtosDAO);
+		session.setAttribute("sessao", sessao);
+		
+		List<Produtos> produtos = produtosDAO.getProdutos();
+	}
+%>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -74,25 +97,18 @@
 					<thead>
 						<tr>
 							<td><b>Código</b></td>
-							<td><b>Medicamentos</b></td>
+							<td><b>Nome do Medicamento</b></td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-						</tr>
+						<c:forEach items="${produtos}" var="produto" >
+							<tr>
+								<td>${produto.codigo }</td>
+								<td>${produto.nome }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-
 
 							<br><br>
 

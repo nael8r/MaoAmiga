@@ -84,8 +84,30 @@
 						</tr>
 					</tbody>
 				</table -->
+				
+			<table class="bordered hoverable">
+				<thead>
+					<tr>
+						<td><b>Código</b></td>
+						<td><b>Nome</b></td>
+						<td><b>CPF</b></td>
+						<td><b>RG</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${pacientes}" var="paciente" >
+						<tr>
+							<td>${paciente.codigo }</td>
+							<td>${paciente.nome }</td>
+							<td>${paciente.cpf }</td>
+							<td>${paciente.rg }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 
-
+	<!-- 
+	
 
 			<datatables:table id="UsuariosTabela" data="${pacientes}">
 				<datatables:column title="Nome" property="nome" />
@@ -93,9 +115,13 @@
 				<datatables:column title="RG" property="rg" />
 			</datatables:table>
 
+			<%--
+			
 			<% mdcDAO.getSessao().close(); 
 			session.removeAttribute("mdcDAO");%>
-
+	
+			--%>
+	 -->
 
 			<br> <br>
 
