@@ -17,102 +17,12 @@
 
 
 <%
-	List<Consulta> ontem = new ArrayList<Consulta>();
-	List<Consulta> hoje = new ArrayList<Consulta>();
-	List<Consulta> amanha = new ArrayList<Consulta>();
-
-	// Instancia os objetos para operação de cadastramento
-	Session sessao = HibernateUtil.getSessionFactory().openSession();
-
-	if (!request.getParameter("data").isEmpty()) {
-
-		Calendar dt = Calendar.getInstance();
-		Calendar diaAnterior = Calendar.getInstance();
-		Calendar diaPosterior = Calendar.getInstance();
-		int dia, mes, ano;
-		int tamStringData;
-
-		// Retoma a consulta para alteração
-		ConsultaDAO consultaDao = new ConsultaDAO(sessao);
-
-		String data = request.getParameter("data");
-
-		// data - recebe o dia ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		String diaString = null;
-
-		if (data.charAt(1) == ' ') {
-
-			diaString = data.substring(0, 1);
-
-			data = "x".concat(data);
-
-		} else {
-			diaString = data.substring(0, 2);
-		}
-
-		dia = Integer.parseInt(diaString);
-
-		// ano - recebe o ano ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		tamStringData = data.length();
-
-		ano = Integer.parseInt(data.substring(tamStringData - 4, tamStringData));
-
-		// Mes - recebe o Mes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		data = data.substring(3, 6);
-
-		if (data.equals("Jan")) {
-			mes = 1;
-		} else if (data.equals("Feb")) {
-			mes = 2;
-		} else if (data.equals("Mar")) {
-			mes = 3;
-		} else if (data.equals("Apr")) {
-			mes = 4;
-		} else if (data.equals("May")) {
-			mes = 5;
-		} else if (data.equals("Jun")) {
-			mes = 6;
-		} else if (data.equals("Jul")) {
-			mes = 7;
-		} else if (data.equals("Aug")) {
-			mes = 8;
-		} else if (data.equals("Sep")) {
-			mes = 9;
-		} else if (data.equals("Oct")) {
-			mes = 10;
-		} else if (data.equals("Nov")) {
-			mes = 11;
-		} else if (data.equals("Dez")) {
-			mes = 12;
-		} else
-			mes = 1;
-
-		dt.set(ano, mes, dia);
-
-		diaAnterior.setTimeInMillis(dt.getTimeInMillis() - 24 * 60 * 60 * 1000);
-		diaPosterior.setTimeInMillis(dt.getTimeInMillis() + 24 * 60 * 60 * 1000);
-
-		ontem = consultaDao.getConsultas(diaAnterior.getTime());
-		hoje = consultaDao.getConsultas(dt.getTime());
-		amanha = consultaDao.getConsultas(diaPosterior.getTime());
-
-	} else {
-
-		//Pacientes paciente = new Pacientes();
-		ConsultaDAO cDAO = new ConsultaDAO(sessao);
-
-		// Define cada um na sessão para uso posteriori
-		session.setAttribute("cDAO", cDAO);
-		session.setAttribute("sessao", sessao);
-	}
-	PacienteDAO pDAO = new PacienteDAO(sessao);
-	MedicoDAO mDAO = new MedicoDAO(sessao);
-
-	pageContext.setAttribute("pDAO", pDAO);
-	pageContext.setAttribute("mDAO", mDAO);
-	pageContext.setAttribute("ontem", ontem);
-	pageContext.setAttribute("hoje", hoje);
-	pageContext.setAttribute("amanha", amanha);
+pageContext.setAttribute("ontem", request.getAttribute("ontem"));
+pageContext.setAttribute("hoje", request.getAttribute("hoje"));
+pageContext.setAttribute("amanha", request.getAttribute("amanha"));
+request.removeAttribute("ontem");
+request.removeAttribute("hoje");
+request.removeAttribute("amanha");
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -151,7 +61,7 @@
 		<div class="container">
 			<h2 class="center">Formulário de Procura</h2>
 
-			<form action="agendaConsultas.jsp">
+			<form action="agendaConsultasServlet">
 				<div class="row">
 
 					<div class="input-field col s12 m9">
