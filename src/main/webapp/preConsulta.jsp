@@ -1,8 +1,13 @@
+<%@page import="modelo.Consulta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	Consulta consulta = (Consulta)session.getAttribute("consulta");
+	pageContext.setAttribute("consulta", consulta);
+%>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -37,16 +42,22 @@
 
 			<form action="#">
 				<div class="row">
-					<div class="input-field col s12 m6">
+					<div class="input-field col s12 m2">
 						<i class="material-icons prefix">account_circle</i>
-						<input disabled value="000" id="codigo" type="text" class="validate">
+						<input disabled value="${consulta.codigo }" id="codigo" type="text" class="validate">
 						<label for="codigo">Código</label>
 					</div>
 
-					<div class="input-field col s12 m6">
+					<div class="input-field col s12 m5">
 						<i class="material-icons prefix">account_circle</i>
-						<input disabled value="Asdf" id="paciente" type="text" class="validate">
+						<input disabled value="${consulta.paciente.nome }" id="paciente" type="text" class="validate">
 						<label for="paciente">Paciente</label>
+					</div>
+
+					<div class="input-field col s12 m5">
+						<i class="material-icons prefix">account_circle</i>
+						<input disabled value="${consulta.medico.nome }" id="medico" type="text" class="validate">
+						<label for="medico">Médico</label>
 					</div>
 				</div>	
 
