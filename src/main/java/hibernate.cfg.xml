@@ -13,6 +13,9 @@
 		<property name="connection.password">root</property>
 		<property name="current_session_context_class">thread</property>		
 		<property name="hibernate.hbm2ddl.auto">update</property> 
+		<property name="hibernate.connection.CharSet">utf8</property>
+        <property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.connection.useUnicode">true</property>
 		
 		<!-- Usando as configurações do C3PO para pool de conexões -->
 		<property name="c3po.min_size">5</property>
