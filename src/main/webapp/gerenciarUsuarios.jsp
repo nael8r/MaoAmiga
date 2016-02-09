@@ -63,7 +63,7 @@
 				<div class="row">
 					<div class="input-field col s12 m9">
 						<i class="material-icons prefix">account_circle</i> <input
-							type="text" id="nome"> <label for="nome">Nome
+							type="text" id="nome" name="nome"> <label for="nome">Nome
 							Usuário</label>
 					</div>
 
@@ -80,7 +80,7 @@
 				<div class="row">
 					<div class="input-field col s12 m9">
 						<i class="material-icons prefix">account_circle</i> <input
-							type="text" id="codigo"> <label for="codigo">Código</label>
+							type="text" id="codigo" name="cod"> <label for="codigo">Código</label>
 					</div>
 
 					<button class="btn waves-effect waves-light m3" type="submit"
@@ -124,20 +124,18 @@
 				<br>
 
 				<div class="right">
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action" form="cadastraUsuario.jsp">
+					<a class="btn waves-effect waves-light" href="cadastraUsuario.jsp">
 						Criar novo usuário <i class="material-icons">person_add</i>
-					</button>
+					</a>
 				
 					<button class="btn waves-effect waves-light" type="submit"
 						name="action">
 						Ok <i class="material-icons right">send</i>
 					</button>
 
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action">
+					<a class="btn waves-effect waves-light" href="index.jsp">
 						Voltar <i class="material-icons right">cancel</i>
-					</button>
+					</a>
 
 				</div>
 			</form>

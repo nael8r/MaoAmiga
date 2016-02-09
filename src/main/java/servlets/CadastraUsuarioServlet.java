@@ -32,7 +32,7 @@ public class CadastraUsuarioServlet extends HttpServlet {
 		if(!usuDAO.validaNomeLogin(usuario.getLogin()))
 		{
 			usuDAO.getSessao().close();
-			req.getRequestDispatcher("mensagensErroServlet?mensagem=Nem todos os campos foram preenchidos&"
+			req.getRequestDispatcher("mensagensErroServlet?mensagem=Nome de login já utilizado&"
 					+ "direcao=cadastraUsuario.jsp");
 			
 		}

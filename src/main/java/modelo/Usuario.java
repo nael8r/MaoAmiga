@@ -33,7 +33,8 @@ public class Usuario implements Serializable {
 		bpe = new BasicPasswordEncryptor();
 		this.nome = nome;
 		this.login = login;
-		this.senha = bpe.encryptPassword(senha);
+		//this.senha = bpe.encryptPassword(senha);
+		this.senha = senha;
 		this.tipo = tipo;
 	}
 

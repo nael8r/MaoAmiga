@@ -22,38 +22,36 @@ public class ConsultarUsuariosServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		UsuarioDAO usuDAO = new UsuarioDAO(HibernateUtil.getSessionFactory().openSession());
-		
-		if (!req.getParameter("cod").isEmpty() && req.getParameter("nome").isEmpty()) {
-			
+
+		if (req.getParameter("cod") != null && !req.getParameter("cod").isEmpty()) {
+
 			Integer codigo = Integer.parseInt(req.getParameter("cod"));
-			
+
 			Usuario usuario = usuDAO.getUsuario(codigo);
-			
+
 			if (usuario != null)
 				usuarios.add(usuario);
-		}
-		else if (req.getParameter("cod").isEmpty() && !req.getParameter("nome").isEmpty()) {
-			
+		} else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
+
 			Usuario usuario = usuDAO.getUsuario(req.getParameter("nome"));
 
 			if (usuario != null)
 				usuarios.add(usuario);
-			
-		}
-		else {
-			
+
+		} else {
+
 			usuarios = usuDAO.getUsuarios();
 		}
-		
+
 		usuDAO.getSessao().close();
-		
+
 		req.getSession().setAttribute("usuarios", usuarios);
-		
+
 		req.getRequestDispatcher("gerenciarUsuarios.jsp").forward(req, resp);
 	}
 
