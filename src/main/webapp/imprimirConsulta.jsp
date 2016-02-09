@@ -3,6 +3,10 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+<%
+	pageContext.setAttribute("consulta", request.getAttribute("consulta"));
+%>
+
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
@@ -18,33 +22,48 @@
 
 	<table>
 		<tr>
-			<td><b>Código:</b></td>
-			<td>0000</td>
+			<td><b>Código Número:</b></td>
+			<td>${consulta.codigo }</td>
 		</tr>
 
 		<tr>
-			<td><b>Paciente:</b></td>
-			<td>Asdf</td>
+			<td><b>Nome Paciente:</b></td>
+			<td>${consulta.paciente.nome }</td>
 		</tr>
 
 		<tr>
-			<td><b>Data:</b></td>
-			<td>00/00/0000</td>
+			<td><b>Data da Consulta:</b></td>
+			<td>${consulta.data }</td>
 		</tr>
 		
 		<tr>
-			<td><b>Horário:</b></td>
-			<td>00:00</td>
+			<td><b>Horário da Consulta:</b></td>
+			<td>${consulta.hora }</td>
 		</tr>
 		
 		<tr>
-			<td><b>Médico:</b></td>
-			<td>Asdf</td>
+			<td><b>Médico Responsável:</b></td>
+			<td>${consulta.medico.nome }</td>
 		</tr>
 		
-		<tr>
-			<td><b>Tipo:</b></td>
-			<td>Entrega de Exames</td>
+		<tr>		
+			<td><b>Tipo da Consulta:</b></td>
+			<td>
+				<c:choose>
+				    <c:when test="${consulta.tipoConsulta eq '1' }">
+				    	Consulta em Geral
+				    </c:when>
+				    <c:when test="${consulta.tipoConsulta eq '2'}">
+				    	Curativo
+				    </c:when>
+				    <c:when test="${consulta.tipoConsulta eq '3'}">
+				    	Entrega de Examos
+				    </c:when>
+				    <c:otherwise>
+				    	Não especificado pela secretária
+				    </c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 		
 	</table>

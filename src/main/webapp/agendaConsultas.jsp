@@ -17,12 +17,12 @@
 
 
 <%
-pageContext.setAttribute("ontem", request.getAttribute("ontem"));
-pageContext.setAttribute("hoje", request.getAttribute("hoje"));
-pageContext.setAttribute("amanha", request.getAttribute("amanha"));
-request.removeAttribute("ontem");
-request.removeAttribute("hoje");
-request.removeAttribute("amanha");
+	pageContext.setAttribute("ontem", request.getAttribute("ontem"));
+	pageContext.setAttribute("hoje", request.getAttribute("hoje"));
+	pageContext.setAttribute("amanha", request.getAttribute("amanha"));
+	request.removeAttribute("ontem");
+	request.removeAttribute("hoje");
+	request.removeAttribute("amanha");
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -97,8 +97,8 @@ request.removeAttribute("amanha");
 								<c:forEach items="${ontem}" var="onte">
 									<tr>
 										<td><input class="with-gap" type="radio" name="cod"
-											id="${onte.codigo }" value="${onte.codigo }" /> 
-											<label for="${onte.codigo }">${onte.codigo }</label></td>
+											id="${onte.codigo }" value="${onte.codigo }" /> <label
+											for="${onte.codigo }">${onte.codigo }</label></td>
 										<td>${onte.paciente.nome}</td>
 										<td>${onte.medico.nome }</td>
 									</tr>
@@ -166,6 +166,11 @@ request.removeAttribute("amanha");
 					</button>
 
 					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="imprimir">
+						Imprimir <i class="material-icons right">print</i>
+					</button>
+
+					<button class="btn waves-effect waves-light" type="submit"
 						name="acao" value="excluir">
 						Excluir <i class="material-icons right">delete</i>
 					</button>
@@ -174,7 +179,6 @@ request.removeAttribute("amanha");
 						name="acao" value="cancelar">
 						Cancelar <i class="material-icons right">cancel</i>
 					</button>
-
 				</div>
 			</form>
 		</div>

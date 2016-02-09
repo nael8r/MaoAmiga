@@ -44,7 +44,7 @@ public class Autenticador extends HttpServlet {
 			
 			session.clear();
 			
-			//req.getRequestDispatcher("mensagemErroServlet?mensagem=ERRO! - Dados de login inválidos!&direcao=login.jsp").forward(req, resp);
+			req.getRequestDispatcher("snippets?mensagem=ERRO! - Dados de login inválidos!&direcao=login.jsp").forward(req, resp);
 		}
 			
 	}

@@ -70,11 +70,6 @@
 				<div class="right">
 					<button class="btn waves-effect waves-light" type="submit">Enviar
 						<i class="material-icons right">send</i>
-					</button>
-
-					<a href="imprimirConsulta.html" class="btn waves-effect waves-light">Imprimir
-						<i class="material-icons right">print</i>
-					</a>
 
 					<a href="index.jsp" class="btn waves-effect waves-light">Cancelar
 						<i class="material-icons right">cancel</i>

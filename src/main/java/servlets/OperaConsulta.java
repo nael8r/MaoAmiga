@@ -33,16 +33,7 @@ public class OperaConsulta extends HttpServlet {
 
 		HttpSession session = req.getSession();
 		
-		if (req.getParameter("acao").equals("preConsulta")) {
-
-			Consulta consulta = new Consulta();
-			consulta = cDAO.getConsulta(Integer.parseInt(req.getParameter("cod")));
-			
-			session.setAttribute("consulta", consulta);
-			
-			req.getRequestDispatcher("preConsulta.jsp").forward(req, resp);
-		}
-		else if (req.getParameter("acao").equals("preConsultaConcluida")) {
+		if (req.getParameter("acao").equals("preConsultaConcluida")) {
 			
 			Consulta consulta = (Consulta)session.getAttribute("consulta");	
 			
@@ -88,24 +79,31 @@ public class OperaConsulta extends HttpServlet {
 				req.getRequestDispatcher("mensagemErroServlet?mensagem=ERRO! - Preencha todos os campos corretamente!&direcao=preConsulta.jsp").forward(req, resp);
 			}
 		}
-		else if (req.getParameter("acao").equals("excluir")) {
-
+		else 
+		{
 			Consulta consulta = new Consulta();
 			consulta = cDAO.getConsulta(Integer.parseInt(req.getParameter("cod")));
 			
+			session.setAttribute("consulta", consulta);
 			
-			Transaction t = sessao.beginTransaction();
 			
+			if (req.getParameter("acao").equals("preConsulta")) {
+				
+				req.getRequestDispatcher("preConsulta.jsp").forward(req, resp);
+			} 
+			else if (req.getParameter("acao").equals("imprimir")) {
+					
+				req.getRequestDispatcher("imprimirConsulta.jsp").forward(req, resp);
+			}
+			else if (req.getParameter("acao").equals("excluir")) {
+				
+				
 				cDAO.excluir(consulta);
 			
 				consulta = null;
-			
-			t.commit();
-			
-			
-			sessao.close();
-
-			resp.sendRedirect("agendaConsultas.jsp?data=");
+	
+				resp.sendRedirect("agendaConsultas.jsp?data=");
+			}
 		}
 	}
 }
