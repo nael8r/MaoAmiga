@@ -194,7 +194,7 @@
 							<h5 class="center  white-text">Consultório Médico</h5>
 							<ul>
 								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Prontuá¡rio Médico</a> </li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Prontuário Médico</a> </li>
 								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
 							</ul>
 						</div>

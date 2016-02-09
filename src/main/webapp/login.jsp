@@ -6,7 +6,7 @@
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>Login - M�o Amiga</title>
+		<title>Login - Mão Amiga</title>
 
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,7 +17,7 @@
 	
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulat�rio Amigo Online</b></a>
+			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório Amigo Online</b></a>
 		</div>
 	</nav>
 	
@@ -33,7 +33,7 @@
 
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-			<h2 class="center s6">Formul�rio de Acesso</h2>
+			<h2 class="center s6">Formulário de Acesso</h2>
 
 			<form action="AutenticaLogin" method="post">
 				<div class="row s6">
@@ -66,32 +66,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
-					<h5 class="white-text"><b>Associa��o M�o Amiga</b></h5>
+					<h5 class="white-text"><b>Associação Mão Amiga</b></h5>
 					<p class="grey-text text-lighten-4">
-						Associa��o no combate ao c�ncer em Formiga.<br />
+						Associação no combate ao câncer em Formiga.<br />
 						Rua Lassance Cunha, 39 - Centro - Formiga MG. <br/>
 						Telefone: (37) 3322-3291.
 					</p>
 				</div>
-				<!--
-	
-				<div class="col l3 s12">
-					<h5 class="center  white-text">Ambulat�rio</h5>
-					<ul>
-						<li><a href="agendarConsulta.html" class="collection-item white-text"> <i class="material-icons">send</i> Agendar Consultas </a> </li>
-						<li><a href="listaEspera.html" class="collection-item white-text"> <i class="material-icons">send</i> Lista de Espera</a></li>
-						<li><a href="agendaConsultas.html" class="collection-item white-text"> <i class="material-icons">send</i> Agenda de Consultas</a></li>
-					</ul>
-				</div>
-				<div class="col l3 s12">
-					<h5 class="center  white-text">Consult�rio M�dico</h5>
-					<ul>
-						<li><a href="listaPacientes.html" class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
-						<li><a href="prontuarioMedico.html" class="collection-item white-text"> <i class="material-icons">send</i>Prontu�rio M�dico</a> </li>
-						<li><a href="consultarMedicamentos.html" class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
-					</ul>
-				</div>
-				-->
 			</div>
 		</div>
 		<div class="footer-copyright">
