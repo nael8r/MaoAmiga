@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,36 +39,57 @@ public class OperaConsulta extends HttpServlet {
 			Consulta consulta = new Consulta();
 			consulta = cDAO.getConsulta(Integer.parseInt(req.getParameter("cod")));
 			
-			
 			session.setAttribute("consulta", consulta);
-		
-			String url = "preConsulta.jsp?";
 			
-			url += "cod=" + consulta.getCodigo();
-			url += "&paciente=" + consulta.getPaciente().getNome();
-			url += "&medico=" + consulta.getMedico().getNome();
-			
-			req.getRequestDispatcher(url).forward(req, resp);
+			req.getRequestDispatcher("preConsulta.jsp").forward(req, resp);
 		}
 		else if (req.getParameter("acao").equals("preConsultaConcluida")) {
 			
-			Consulta consulta = (Consulta)session.getAttribute("consulta");			
+			Consulta consulta = (Consulta)session.getAttribute("consulta");	
+			
 			int idade;
 			float altura, temperatura, peso;
 			char sexo;
+			String pressao;
 
-			altura          = Float.parseFloat(req.getParameter("altura"));
-			temperatura     = Float.parseFloat(req.getParameter("temperatura"));
-			peso            = Float.parseFloat(req.getParameter("peso"));
-			idade           = Integer.parseInt(req.getParameter("idade"));
-			sexo            = req.getParameter("sexo").charAt(0);
+			try {
+				altura          = Float.parseFloat(req.getParameter("altura"));
+				temperatura     = Float.parseFloat(req.getParameter("temperatura"));
+				pressao         = req.getParameter("pressao");
+				peso            = Float.parseFloat(req.getParameter("peso"));
+				idade           = Integer.parseInt(req.getParameter("idade"));
+				sexo            = req.getParameter("sexo").charAt(0);
 			
-			consulta.setAltura(altura);
-			consulta.setPeso(peso);
-			consulta.setTemperatura(temperatura);
-			
-			
-			
+				if (sexo == 'X') {
+					PrintWriter o = resp.getWriter();
+					
+					req.getRequestDispatcher("snippets?mensagem=ERRO! - Preencha o campo Sexo corretamente!&direcao=preConsulta.jsp").forward(req, resp);
+				}
+				
+	
+				consulta.setAltura(altura);
+				consulta.setPeso(peso);
+				consulta.setTemperatura(temperatura);
+				consulta.setIdade(idade);
+				consulta.setSexo(sexo);
+				consulta.setPressaoArterial(pressao);
+				
+				Transaction t = sessao.beginTransaction();
+				
+					cDAO.atualizar(consulta);
+					
+					consulta = null;
+				
+				t.commit();
+				
+				sessao.close();		
+	
+				resp.sendRedirect("index.jsp");
+				
+				
+			} catch (Exception e) {
+				req.getRequestDispatcher("snippets?mensagem=ERRO! - Preencha todos os campos corretamente!&direcao=preConsulta.jsp").forward(req, resp);
+			}
 		}
 		else if (req.getParameter("acao").equals("excluir")) {
 
