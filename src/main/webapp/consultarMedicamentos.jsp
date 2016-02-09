@@ -10,46 +10,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-
-	List<Produtos> produtos = new ArrayList<Produtos>();
-
-	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
-
-		ProdutosDAO produtosDAO = (ProdutosDAO) session.getAttribute("produtoDAO");
-		
-		Integer codigo = Integer.parseInt(request.getParameter("cod"));
-		
-		Produtos produto = produtosDAO.getProduto(codigo);
-		
-		if (produto != null)
-			produtos.add(produto);
-	}
-	else if (request.getParameter("cod").isEmpty() && !request.getParameter("nome").isEmpty()) {
-
-		ProdutosDAO produtosDAO = (ProdutosDAO) session.getAttribute("produtoDAO");
-		
-		Produtos produto = produtosDAO.getProduto(request.getParameter("nome"));
-
-		if (produto != null)
-			produtos.add(produto);
-		
-	}
-	else {
-	
-		// Instancia os objetos para operação de cadastramento
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		
-		//Produtos produto = new Produtos();
-		ProdutosDAO produtosDAO = new ProdutosDAO(sessao);
-		
-		// Define cada um na sessão para uso posteriori
-		session.setAttribute("produtoDAO", produtosDAO);
-		session.setAttribute("sessao", sessao);
-		
-		produtos = produtosDAO.getProdutos();
-	}
-
-	pageContext.setAttribute("produtos", produtos);
+	pageContext.setAttribute("produtos", session.getAttribute("produtos"));
+	session.removeAttribute("produtos");
 %>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
