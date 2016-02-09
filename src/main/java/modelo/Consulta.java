@@ -46,6 +46,8 @@ public class Consulta implements Serializable {
 	//@Column(nullable=false)
 	@Column(name="pressao_arterial", length=10)
 	private String pressaoArterial;
+	//@Column(nullable=false)
+	private Integer idade;
 	
 	// Prontuário
 	@Lob
@@ -233,6 +235,16 @@ public class Consulta implements Serializable {
 
 	public void setAtestado(Boolean atestado) {
 		this.atestado = atestado;
+	}
+	
+	
+
+	public Integer getIdade() {
+		return idade;
+	}
+
+	public void setIdade(Integer idade) {
+		this.idade = idade;
 	}
 
 	@Override
