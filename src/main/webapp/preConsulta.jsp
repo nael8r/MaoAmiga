@@ -27,7 +27,7 @@
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
-					Amigo Online<b></a>
+					Amigo Online</b></a>
 		</div>
 	</nav>
 
@@ -118,15 +118,13 @@
 						Enviar <i class="material-icons right">send</i>
 					</button>
 					
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action" form="agendaConsultas.jsp?data=" >
+					<a class="btn waves-effect waves-light" href="agendaConsultas.jsp?data=">
 						Voltar <i class="material-icons right">keyboard_backspace</i>
-					</button>
+					</a>
 
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action" form="index.jsp">
+					<a class="btn waves-effect waves-light" href="index.jsp">
 						Cancelar <i class="material-icons right">cancel</i>
-					</button>
+					</a>
 				</div>
 			</form>
 		</div>

@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,9 +60,7 @@ public class OperaConsulta extends HttpServlet {
 				sexo            = req.getParameter("sexo").charAt(0);
 			
 				if (sexo == 'X') {
-					PrintWriter o = resp.getWriter();
-					
-					req.getRequestDispatcher("snippets?mensagem=ERRO! - Preencha o campo Sexo corretamente!&direcao=preConsulta.jsp").forward(req, resp);
+					req.getRequestDispatcher("mensagemErroServlet?mensagem=ERRO! - Preencha o campo Sexo corretamente!&direcao=preConsulta.jsp").forward(req, resp);
 				}
 				
 	
@@ -88,13 +85,14 @@ public class OperaConsulta extends HttpServlet {
 				
 				
 			} catch (Exception e) {
-				req.getRequestDispatcher("snippets?mensagem=ERRO! - Preencha todos os campos corretamente!&direcao=preConsulta.jsp").forward(req, resp);
+				req.getRequestDispatcher("mensagemErroServlet?mensagem=ERRO! - Preencha todos os campos corretamente!&direcao=preConsulta.jsp").forward(req, resp);
 			}
 		}
 		else if (req.getParameter("acao").equals("excluir")) {
 
 			Consulta consulta = new Consulta();
 			consulta = cDAO.getConsulta(Integer.parseInt(req.getParameter("cod")));
+			
 			
 			Transaction t = sessao.beginTransaction();
 			

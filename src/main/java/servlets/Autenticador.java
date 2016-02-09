@@ -18,6 +18,11 @@ import modelo.Usuario;
 
 public class Autenticador extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1557989432133977441L;
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -39,10 +44,7 @@ public class Autenticador extends HttpServlet {
 			
 			session.clear();
 			
-			resp.setContentType("text/html");
-			resp.getWriter().println("Erro no login! <br />");
-			
-			req.getRequestDispatcher("login.jsp").include(req, resp);
+			//req.getRequestDispatcher("mensagemErroServlet?mensagem=ERRO! - Dados de login inválidos!&direcao=login.jsp").forward(req, resp);
 		}
 			
 	}

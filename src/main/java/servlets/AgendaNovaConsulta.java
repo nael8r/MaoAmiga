@@ -1,12 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,8 +19,6 @@ import controle.MedicoDAO;
 import controle.PacienteDAO;
 import modelo.Consulta;
 import modelo.Paciente;
-import modelo.ReceituarioExames;
-import modelo.ReceituarioMedico;
 
 @WebServlet("/agendarConsulta")
 public class AgendaNovaConsulta extends HttpServlet {
