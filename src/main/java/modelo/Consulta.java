@@ -48,6 +48,8 @@ public class Consulta implements Serializable {
 	private String pressaoArterial;
 	//@Column(nullable=false)
 	private Integer idade;
+	//@Column(nullable=false)
+	private Character sexo;
 	
 	// Prontuário
 	@Lob
@@ -236,8 +238,14 @@ public class Consulta implements Serializable {
 	public void setAtestado(Boolean atestado) {
 		this.atestado = atestado;
 	}
-	
-	
+
+	public Character getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Character sexo) {
+		this.sexo = sexo;
+	}
 
 	public Integer getIdade() {
 		return idade;
