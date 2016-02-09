@@ -159,11 +159,7 @@ public class AgendaNovaConsulta extends HttpServlet {
 		
 		*/
 		
-		Transaction t = sessao.beginTransaction();
-		
 		consultaDao.salvar(consulta);
-		
-		t.commit();
 		
 		sessao.close();
 		

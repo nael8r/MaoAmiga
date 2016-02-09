@@ -92,7 +92,6 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-
 						<div class="col s12 m6">
 							<div class="icon-block">
 								<h2 class="center light-blue-text">

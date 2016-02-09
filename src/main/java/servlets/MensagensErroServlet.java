@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/snippets")
-public class Snippets extends HttpServlet {
+@WebServlet("/mensagensErroServlet")
+public class MensagensErroServlet extends HttpServlet {
 
 	/**
 	 * 

@@ -6,9 +6,11 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
+import modelo.Medico;
 import modelo.Usuario;
 
 public class UsuarioDAO {
@@ -22,17 +24,26 @@ public class UsuarioDAO {
 	public Serializable salvar(Usuario usuario){
 		
 		if(validaNomeLogin(usuario.getLogin()))
-			return this.sessao.save(usuario);
+		{
+			Transaction trans = sessao.beginTransaction();
+			Serializable cod = this.sessao.save(usuario);
+			trans.commit();
+			return cod;
+		}
 		else
 			return -1;
 	}
 	
 	public void excluir(Usuario usuario){
+		Transaction trans = sessao.beginTransaction();
 		this.sessao.delete(usuario);
+		trans.commit();
 	}
 	
 	public void atualizar(Usuario usuario){
+		Transaction trans = sessao.beginTransaction();
 		this.sessao.update(usuario);
+		trans.commit();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -56,6 +67,14 @@ public class UsuarioDAO {
 	{
 		Query consulta = sessao.createQuery("from usuario where codigo = :cod_param");
 		consulta.setInteger("cod_param", codigo);
+		
+		return (Usuario) consulta.uniqueResult();
+	}
+	
+	public Usuario getUsuario(String nome)
+	{
+		Query consulta = sessao.createQuery("from usuario where nome like :id");
+		consulta.setParameter("id", "%"+nome+"%");
 		
 		return (Usuario) consulta.uniqueResult();
 	}

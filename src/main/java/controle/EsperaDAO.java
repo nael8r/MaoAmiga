@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import modelo.Espera;
 import modelo.Paciente;
@@ -20,17 +21,24 @@ public class EsperaDAO {
 	
 	public Serializable salvar(Espera espera)
 	{
-		return sessao.save(espera);
+		Transaction trans = sessao.beginTransaction();
+		Serializable cod = sessao.save(espera);
+		trans.commit();
+		return cod;
 	}
 	
 	public void update(Espera espera)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.update(espera);
+		trans.commit();
 	}
 	
 	public void excluir(Espera espera)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.delete(espera);
+		trans.commit();
 	}
 	
 	public List<Espera> getEsperas()
@@ -71,6 +79,13 @@ public class EsperaDAO {
 		
 		return pacientes;
 	}
-	
+
+	public Session getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Session sessao) {
+		this.sessao = sessao;
+	}
 
 }
