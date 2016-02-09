@@ -23,7 +23,8 @@ public class Paciente implements Serializable {
 	private List<Espera> esperas;
 	@OneToMany(mappedBy="paciente",
 			cascade=CascadeType.ALL,
-			fetch=FetchType.EAGER)
+			fetch=FetchType.EAGER,
+			orphanRemoval=true)
 	private List<Consulta> consultas;
 	
 	public Paciente() {
