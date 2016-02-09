@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import conexao.HibernateUtil;
-import controle.ProdutosDAO;
+import controle.UsuarioDAO;
 import modelo.Produtos;
+import modelo.Usuario;
 
-@WebServlet("/consultarMedicamentoServlet")
-public class ConsultarMedicamentoServlet extends HttpServlet {
+@WebServlet("/consultarUsuariosServlet")
+public class ConsultarUsuariosServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -24,37 +25,36 @@ public class ConsultarMedicamentoServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<Produtos> produtos = new ArrayList<Produtos>();
-
-		ProdutosDAO produtosDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		UsuarioDAO usuDAO = new UsuarioDAO(HibernateUtil.getSessionFactory().openSession());
 		
 		if (!req.getParameter("cod").isEmpty() && req.getParameter("nome").isEmpty()) {
 			
 			Integer codigo = Integer.parseInt(req.getParameter("cod"));
 			
-			Produtos produto = produtosDAO.getProduto(codigo);
+			Usuario usuario = usuDAO.getUsuario(codigo);
 			
-			if (produto != null)
-				produtos.add(produto);
+			if (usuario != null)
+				usuarios.add(usuario);
 		}
 		else if (req.getParameter("cod").isEmpty() && !req.getParameter("nome").isEmpty()) {
 			
-			Produtos produto = produtosDAO.getProduto(req.getParameter("nome"));
+			Usuario usuario = usuDAO.getUsuario(req.getParameter("nome"));
 
-			if (produto != null)
-				produtos.add(produto);
+			if (usuario != null)
+				usuarios.add(usuario);
 			
 		}
 		else {
 			
-			produtos = produtosDAO.getProdutos();
+			usuarios = usuDAO.getUsuarios();
 		}
 		
-		produtosDAO.getSessao().close();
-
-		req.getSession().setAttribute("produtos", produtos);
+		usuDAO.getSessao().close();
 		
-		req.getRequestDispatcher("consultarMedicamentos.jsp").forward(req, resp);
+		req.getSession().setAttribute("usuarios", usuarios);
+		
+		req.getRequestDispatcher("gerenciarUsuarios.jsp").forward(req, resp);
 	}
 
 }

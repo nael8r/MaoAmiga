@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import modelo.Consulta;
 import modelo.Medico;
@@ -22,17 +23,24 @@ public class PacienteDAO {
 	
 	public Serializable salvar(Paciente paciente)
 	{
-		return sessao.save(paciente);
+		Transaction trans = sessao.beginTransaction();
+		Serializable cod = sessao.save(paciente);
+		trans.commit();
+		return cod;
 	}
 	
 	public void atualiza(Paciente paciente)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.update(paciente);
+		trans.commit();
 	}
 	
 	public void excluir(Paciente paciente)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.delete(paciente);
+		trans.commit();
 	}
 
 	@SuppressWarnings("unchecked")

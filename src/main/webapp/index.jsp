@@ -36,34 +36,52 @@
 			<!--   Icon Section   -->
 			<div class="row"> 
 				<c:choose>
-				 	<c:when test="${sessionScope.usuarioAutenticado.tipo == 'm'.charAt(0)}">		    
+					<c:when
+						test="${sessionScope.usuarioAutenticado.tipo == 'm'.charAt(0)}">
 						<div class="col s12 m6">
 							<div class="icon-block">
-								<h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+								<h2 class="center light-blue-text">
+									<i class="material-icons">flash_on</i>
+								</h2>
 								<h5 class="center">Ambulatório</h5>
-	
+
 								<ul class="collection with-header">
-									<li class="collection-item"><a class="collection-item"> <i class="material-icons left">send</i> Agendar Consultas </a> </li>
-									<li class="collection-item"><a class="collection-item"> <i class="material-icons left">send</i> Lista de Espera</a></li>
-									<li class="collection-item"><a class="collection-item"> <i class="material-icons left">send</i> Agenda de Consultas</a></li>
+									<li class="collection-item"><a class="collection-item">
+											<i class="material-icons left">send</i> Agendar Consultas
+									</a></li>
+									<li class="collection-item"><a class="collection-item">
+											<i class="material-icons left">send</i> Lista de Espera
+									</a></li>
+									<li class="collection-item"><a class="collection-item">
+											<i class="material-icons left">send</i> Agenda de Consultas
+									</a></li>
 								</ul>
 							</div>
 						</div>
-				    
+
 						<div class="col s12 m6">
 							<div class="icon-block">
-								<h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+								<h2 class="center light-blue-text">
+									<i class="material-icons">settings</i>
+								</h2>
 								<h5 class="center">Consultório Médico</h5>
-		
+
 								<ul class="collection with-header">
-									<li class="collection-item"><a href="listaPacientes?acao=procurarPaciente" class="collection-item"> <i class="material-icons left">send</i>Lista de Pacientes</a> </li>
-									<li class="collection-item"><a href="prontuarioMedico.jsp" class="collection-item"> <i class="material-icons left">send</i>Prontuário Médico</a> </li>
+									<li class="collection-item"><a
+										href="listaPacientes?acao=procurarPaciente"
+										class="collection-item"> <i class="material-icons left">send</i>Lista
+											de Pacientes
+									</a></li>
+									<li class="collection-item"><a href="prontuarioMedico.jsp"
+										class="collection-item"> <i class="material-icons left">send</i>Prontuário
+											Médico
+									</a></li>
 									<!-- li class="collection-item"><a href="consultarMedicamentos.jsp?cod=&nome=" class="collection-item"> <i class="material-icons left">send</i>Consultar Medicamentos</a> </li -->
-								</ul>	
+								</ul>
 							</div>
 						</div>
-				 	</c:when>
-				 	<c:otherwise>
+					</c:when>
+					<c:otherwise>
 				    	    
 						<div class="col s12 m6">
 							<div class="icon-block">
@@ -72,8 +90,9 @@
 	
 								<ul class="collection with-header">
 									<li class="collection-item"><a href="agendarConsulta?acao=procurarPaciente" class="collection-item"> <i class="material-icons left">send</i> Agendar Nova Consulta </a> </li>
+									<li class="collection-item"><a href="agendarConsulta?acao=procurarPaciente" class="collection-item"> <i class="material-icons left">send</i> Agendar Nova Consulta </a> </li>
 									<li class="collection-item"><a href="listaEspera.jsp" class="collection-item"> <i class="material-icons left">send</i> Lista de Espera</a></li>
-									<li class="collection-item"><a href="agendaConsultas.jsp?data=" class="collection-item"> <i class="material-icons left">send</i> Agenda de Consultas</a></li>
+									<li class="collection-item"><a href="gerenciarUsuarios.jsp" class="collection-item"> <i class="material-icons left">send</i> Gerenciar Usuários </a></li>
 									
 									
 									<li class="collection-item">

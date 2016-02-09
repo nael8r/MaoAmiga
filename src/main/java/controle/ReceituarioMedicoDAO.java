@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import modelo.ReceituarioMedico;
 
@@ -13,23 +14,29 @@ public class ReceituarioMedicoDAO {
 	private Session sessao;
 
 	public ReceituarioMedicoDAO(Session sessao) {
-		super();
 		this.sessao = sessao;
 	}
 	
 	public Serializable salvar(ReceituarioMedico rm)
 	{
-		return sessao.save(rm);
+		Transaction trans = sessao.beginTransaction();
+		Serializable cod = sessao.save(rm);
+		trans.commit();
+		return cod;
 	}
 	
 	public void atualiza(ReceituarioMedico rm)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.update(rm);
+		trans.commit();
 	}
 	
 	public void excluir(ReceituarioMedico rm)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.delete(rm);
+		trans.commit();
 	}
 	
 	public List<ReceituarioMedico> getReceituarios()
@@ -53,6 +60,14 @@ public class ReceituarioMedicoDAO {
 		consulta.setInteger("cod_param", codigo);
 		
 		return (ReceituarioMedico)consulta.uniqueResult();
+	}
+
+	public Session getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Session sessao) {
+		this.sessao = sessao;
 	}
 
 }

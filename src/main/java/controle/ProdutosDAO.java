@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import modelo.Produtos;
 import modelo.ReceituarioMedico;
@@ -20,17 +21,24 @@ public class ProdutosDAO {
 	
 	public Serializable salvar(Produtos produtos)
 	{
-		return sessao.save(produtos);
+		Transaction trans = sessao.beginTransaction();
+		Serializable cod = sessao.save(produtos);
+		trans.commit();
+		return cod;
 	}
 	
 	public void atualizar(Produtos produtos)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.update(produtos);
+		trans.commit();
 	}
 	
 	public void excluir(Produtos produtos)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.delete(produtos);
+		trans.commit();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -65,6 +73,16 @@ public class ProdutosDAO {
 		return (Produtos)consulta.uniqueResult();
 	}
 	
+	
+	
+	public Session getSessao() {
+		return sessao;
+	}
+
+	public void setSessao(Session sessao) {
+		this.sessao = sessao;
+	}
+
 	public List<ReceituarioMedico> getReceituariosMedicos(Integer codigo)
 	{
 		try {

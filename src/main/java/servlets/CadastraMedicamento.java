@@ -35,16 +35,12 @@ public class CadastraMedicamento extends HttpServlet {
 		produto.setCodigo(Integer.parseInt(req.getParameter("cod")));
 		produto.setNome(req.getParameter("nome"));
 		
-		Transaction transacao = sessao.beginTransaction();
-		
 		if (produtosDAO.getProduto(produto.getCodigo()) == null) {
 			produtosDAO.salvar(produto);
 		}
 		else {
 			produtosDAO.atualizar(produto);
 		}
-		
-		transacao.commit();
 		
 		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}

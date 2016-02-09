@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import modelo.Consulta;
 import modelo.Medico;
@@ -20,23 +21,29 @@ public class MedicoDAO {
 	}
 
 	public MedicoDAO(Session session) {
-		super();
 		this.sessao = session;
 	}
 	
 	public Serializable salvar(Medico medico)
 	{
-		return sessao.save(medico);
+		Transaction trans = sessao.beginTransaction();
+		Serializable cod = sessao.save(medico);
+		trans.commit();
+		return cod;
 	}
 	
 	public void atualizar(Medico medico)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.update(medico);
+		trans.commit();
 	}
 	
 	public void excluir(Medico medico)
 	{
+		Transaction trans = sessao.beginTransaction();
 		sessao.delete(medico);
+		trans.commit();
 	}
 	
 	public List<Medico> getMedicos()

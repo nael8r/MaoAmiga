@@ -81,7 +81,7 @@
 				<form>
 					<button class="btn waves-effect waves-light" type="submit"
 						name="action" formaction="prontuarioMedico" formmethod="get">
-						ProtuÃ¡rio MÃ©dico <i class="material-icons right">send</i>
+						Protuário Médico <i class="material-icons right">send</i>
 					</button>
 
 					<button class="btn waves-effect waves-light" type="submit"

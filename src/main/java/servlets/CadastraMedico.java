@@ -36,7 +36,6 @@ public class CadastraMedico extends HttpServlet {
 		medico.setEspecialidade(req.getParameter("especialidades"));
 		medico.setTelefone(req.getParameter("telefone"));
 		
-		Transaction transacao = sessao.beginTransaction();
 		
 		if (medicoDAO.getMedico(medico.getCodigo()) == null) {
 			medicoDAO.salvar(medico);
@@ -44,8 +43,6 @@ public class CadastraMedico extends HttpServlet {
 		else {
 			medicoDAO.atualizar(medico);
 		}
-		
-		transacao.commit();
 		
 		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}

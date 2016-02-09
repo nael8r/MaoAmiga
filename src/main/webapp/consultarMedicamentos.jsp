@@ -47,7 +47,7 @@
 		<div class="container">
 			<h2 class="center">Formulário de Procura</h2>
 
-			<form action="consultarMedicamentos.jsp" method="get">
+			<form action="consultarMedicamentoServlet" method="post">
 				<div class="row">
 					<div class="input-field col s12 m9">
 						<i class="material-icons prefix">account_circle</i>
