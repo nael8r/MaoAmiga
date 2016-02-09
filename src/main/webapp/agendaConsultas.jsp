@@ -61,7 +61,7 @@ request.removeAttribute("amanha");
 		<div class="container">
 			<h2 class="center">Formulário de Procura</h2>
 
-			<form action="agendaConsultasServlet">
+			<form action="agendaConsultasServlet" method="post">
 				<div class="row">
 
 					<div class="input-field col s12 m9">
@@ -97,8 +97,8 @@ request.removeAttribute("amanha");
 								<c:forEach items="${ontem}" var="onte">
 									<tr>
 										<td><input class="with-gap" type="radio" name="cod"
-											id="${onte.codigo }" value="${onte.codigo }" /> <label
-											for="${onte.codigo }">${onte.codigo }</label></td>
+											id="${onte.codigo }" value="${onte.codigo }" /> 
+											<label for="${onte.codigo }">${onte.codigo }</label></td>
 										<td>${onte.paciente.nome}</td>
 										<td>${onte.medico.nome }</td>
 									</tr>
