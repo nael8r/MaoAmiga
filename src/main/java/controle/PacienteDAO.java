@@ -63,8 +63,9 @@ public class PacienteDAO {
 	
 	public Paciente getPaciente(String nome)
 	{
-		Query consulta = sessao.createQuery("from paciente where nome = :cod_param");
-		consulta.setString("cod_param", nome);
+		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
+		Query consulta = sessao.createQuery("from paciente where nome like ?1");
+		consulta.setParameter(1, "%"+nome+"%");
 		
 		return (Paciente) consulta.uniqueResult();
 	}

@@ -65,8 +65,8 @@ public class MedicoDAO {
 	
 	public Medico getMedico(String nome)
 	{
-		Query consulta = sessao.createQuery("from medico where nome = :cod_param");
-		consulta.setString("cod_param", nome);
+		Query consulta = sessao.createQuery("from medico where nome like ?1");
+		consulta.setParameter(1, "%"+nome+"%");
 		
 		return (Medico) consulta.uniqueResult();
 	}
