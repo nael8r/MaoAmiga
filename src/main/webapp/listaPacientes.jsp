@@ -5,7 +5,19 @@
 <html lang="en">
 
 <%
+<<<<<<< HEAD
 	// TODO substituir o uso do datatables pelo c:foreach
+=======
+<<<<<<< HEAD
+	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
+	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
+	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
+	
+	pageContext.setAttribute("pacientes", pacientes);
+=======
+	// TODO substituir o uso do datatables pelo c:foreach
+>>>>>>> master
+>>>>>>> listaPacientes
 %>
 
 <head>
@@ -71,8 +83,53 @@
 							<td>X</td>
 						</tr>
 					</tbody>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+				</table -->
+				
+			<table class="bordered hoverable">
+				<thead>
+					<tr>
+						<td><b>Código</b></td>
+						<td><b>Nome</b></td>
+						<td><b>CPF</b></td>
+						<td><b>RG</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${pacientes}" var="paciente" >
+						<tr>
+							<td>${paciente.codigo }</td>
+							<td>${paciente.nome }</td>
+							<td>${paciente.cpf }</td>
+							<td>${paciente.rg }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+	<!-- 
+	
+
+			<datatables:table id="UsuariosTabela" data="${pacientes}">
+				<datatables:column title="Nome" property="nome" />
+				<datatables:column title="CPF" property="cpf" />
+				<datatables:column title="RG" property="rg" />
+			</datatables:table>
+
+			<%--
+			
+			<% mdcDAO.getSessao().close(); 
+			session.removeAttribute("mdcDAO");%>
+	
+			--%>
+	 -->
+=======
+>>>>>>> listaPacientes
 				</table>
 
+>>>>>>> master
 
 			<br> <br>
 

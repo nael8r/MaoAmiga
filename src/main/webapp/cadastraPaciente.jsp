@@ -6,7 +6,7 @@
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>Prontuário Médico - Mão Amiga</title>
+		<title>Cadastra Paciente - Mão Amiga</title>
 
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -24,7 +24,7 @@
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			<h1 class="header center orange-text">
-				<b>Prontuário Médico</b>
+				<b>Cadastra Paciente</b>
 			</h1>
 
 		</div>
@@ -33,92 +33,53 @@
 
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-			<h2 class="center">Formulário Pré Consulta</h2>
+			<h2 class="center">Formulário de Cadastro de Pacientes</h2>
 
-			<form action="#">
+			<form action="cadastraPaciente" method="post">
+				<div class="row">
+					<div class="input-field col s12 m4">
+						<i class="material-icons prefix">account_circle</i>
+						<input type="text" id="codigo" name="cod">
+						<label for="codigo">Codigo</label>
+					</div>
+					<div class="input-field col s12 m8">
+						<i class="material-icons prefix">account_circle</i>
+						<input type="text" id="nome" name="nome">
+						<label for="nome">Nome do Paciente</label>
+					</div>
+				</div>	
+
 				<div class="row">
 
 					<div class="input-field col s12 m6">
 						<i class="material-icons prefix">account_circle</i>
-						<input disabled value="Asdf" id="paciente" type="text" class="validate">
-									<label for="paciente">Paciente</label>
+						<input id="cpf" type="text" class="validate" name="cpf">
+									<label for="cpf">CPF</label>
 					</div>
 
 					<div class="input-field col s12 m6">
 						<i class="material-icons prefix">account_circle</i>
-						<input disabled value="Asdf - CRM" id="medico" type="text" class="validate">
-									<label for="medico">Médico</label>
+						<input id="rg" type="text" class="validate" name="rg">
+									<label for="rg">RG</label>
 					</div>
-				</div>  
-
-				<div class="row">
-					<div class="input-field col s12 m6">
-						<i class="material-icons prefix">account_circle</i>
-						<textarea id="queixa" class="materialize-textarea"></textarea>
-						<label for="queixa">Queixa Principal</label>
-
-					</div>
-
-					<div class="input-field  col s12 m6">
-						<div class="col s12 m6">
-							Medicamentos:
-							<p>
-								<input name="medicamentos" type="radio" id="sim" />
-								<label for="sim">Sim</label>
-							</p>
-							<p>
-								<input name="medicamentos" type="radio" id="nao" />
-								<label for="nao">Não</label>
-							</p>
-						</div>  
-						<div class="col s12 m6">
-							Pessoal:
-							<p>
-								<input name="pessoal" type="checkbox" id="alergia" />
-								<label for="alergia">Alergia</label>
-							</p>
-							<p>
-								<input name="pessoal" type="checkbox" id="febre" />
-								<label for="febre">Febre</label>
-							</p>
-						</div>
-								<br><br><br><br><br><br>
-						<div class="input-field s12 m12">
-							<i class="material-icons prefix">account_circle</i>
-							<textarea id="anotacoes" class="materialize-textarea"></textarea>
-							<label for="anotacoes">Anotações Finais</label>
-						</div>
-					</div>
-			
 
 				</div>  
 							<br><br>
 
-				<div class="left">
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Atestado Médico
-						<i class="material-icons right">book</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Receituário Médico
-						<i class="material-icons right">library_books</i>
-					</button>
-
-				</div>
 				<div class="right">
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+					<button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
 						<i class="material-icons right">send</i>
 					</button>
 
-					<button class="btn waves-effect waves-light" type="submit" name="action">Cancelar
+					<button class="btn waves-effect waves-light" type="submit" name="action" form="index.jsp">Cancelar
 						<i class="material-icons right">cancel</i>
 					</button>
 
-				</div>  
+				</div>	
 			</form>
 		</div>
 	</div>
+
 				<br><br>
 
 	<footer class="page-footer orange">
@@ -144,11 +105,11 @@
 							</ul>
 						</div>
 						<div class="col l3 s12">
-							<h5 class="center  white-text">Consultório Médico</h5>
+							<h5 class="center  white-text">Consultório Paciente</h5>
 							<ul>
 								<li><a href="listaPacientes" class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
-								<li><a href="prontuarioMedico.jsp" class="collection-item white-text"> <i class="material-icons">send</i>Prontuário Médico</a> </li>
-								<li><a href="consultarMedicamentos.jsp" class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
+								<li><a href="prontuarioMedico.jsp" class="collection-item white-text"> <i class="material-icons">send</i>Prontuário Paciente</a> </li>
+								<li><a href="consultarPacientes.jsp" class="collection-item white-text"> <i class="material-icons">send</i>Consultar Pacientes</a> </li>
 							</ul>
 						</div>
 				 	</c:when>
@@ -163,11 +124,11 @@
 							</ul>
 						</div>
 						<div class="col l3 s12">
-							<h5 class="center  white-text">Consultório Médico</h5>
+							<h5 class="center  white-text">Consultório Paciente</h5>
 							<ul>
 								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Prontuá¡rio Médico</a> </li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Consultar Medicamentos</a> </li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Prontuá¡rio Paciente</a> </li>
+								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Consultar Pacientes</a> </li>
 							</ul>
 						</div>
 				 	</c:otherwise>

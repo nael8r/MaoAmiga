@@ -10,6 +10,7 @@ import org.jasypt.util.password.BasicPasswordEncryptor;
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1919618119866719613L;
+	
 	@Id @GeneratedValue
 	private Integer codigo;
 	@Column(length=50, nullable=false)

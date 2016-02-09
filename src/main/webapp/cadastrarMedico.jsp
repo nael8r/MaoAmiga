@@ -1,60 +1,12 @@
-<%@page import="modelo.Produtos"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="controle.ProdutosDAO"%>
-<%@page import="conexao.HibernateUtil"%>
-<%@page import="org.hibernate.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-<%
-
-	List<Produtos> produtos = new ArrayList<>();
-
-	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
-
-		ProdutosDAO produtosDAO = (ProdutosDAO) session.getAttribute("produtoDAO");
-		
-		Integer codigo = Integer.parseInt(request.getParameter("cod"));
-		
-		Produtos produto = produtosDAO.getProduto(codigo);
-		
-		if (produto != null)
-			produtos.add(produto);
-	}
-	else if (request.getParameter("cod").isEmpty() && !request.getParameter("nome").isEmpty()) {
-
-		ProdutosDAO produtosDAO = (ProdutosDAO) session.getAttribute("produtoDAO");
-		
-		Produtos produto = produtosDAO.getProduto(request.getParameter("nome"));
-
-		if (produto != null)
-			produtos.add(produto);
-		
-	}
-	else {
-	
-		// Instancia os objetos para operação de cadastramento
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-		
-		//Produtos produto = new Produtos();
-		ProdutosDAO produtosDAO = new ProdutosDAO(sessao);
-		
-		// Define cada um na sessão para uso posteriori
-		session.setAttribute("produtoDAO", produtosDAO);
-		session.setAttribute("sessao", sessao);
-		
-		produtos = produtosDAO.getProdutos();
-	}
-
-	pageContext.setAttribute("produtos", produtos);
-%>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>Consultar Medicamentos - Mão Amiga</title>
+		<title>Cadastra Medicamento - Mão Amiga</title>
 
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -72,77 +24,78 @@
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			<h1 class="header center orange-text">
-				<b>Consultar Medicamentos</b>
+				<b>Cadastra Medicamento</b>
 			</h1>
 
 		</div>
 
 	</div>
 
-
-
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-			<h2 class="center">Formulário de Procura</h2>
+			<h2 class="center">Formulário de Cadastro de Medicamentos</h2>
 
-			<form action="consultarMedicamentos.jsp" method="get">
+			<form action="cadastraMedicamento" method="post">
 				<div class="row">
-					<div class="input-field col s12 m9">
-						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="medicamentos" name="nome">
-						<label for="medicamentos">Medicamentos</label>
-					</div>
-					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
-						<i class="material-icons right">search</i>
-					</button>
-
-				</div>  
-
-				<h5>Ou</h5>
-				<br>
-
-				<div class="row">
-					<div class="input-field col s12 m9">
+					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i>
 						<input type="text" id="codigo" name="cod">
-						<label for="codigo">Código</label>
+						<label for="codigo">Codigo</label>
 					</div>
-					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
-						<i class="material-icons right">search</i>
-					</button>
+					<div class="input-field col s12 m8">
+						<i class="material-icons prefix">account_circle</i>
+						<input type="text" id="nome" name="nome">
+						<label for="nome">Nome do Médico</label>
+					</div>
+				</div>	
+
+
+
+				<div class="row">
+
+					<div class="input-field col s12 m6">
+						<i class="material-icons prefix">account_circle</i>
+						<input id="CRM" type="text" class="validate" name="crm">
+									<label for="CRM">CRM</label>
+					</div>
+
+					<div class="input-field col s12 m3">
+						<i class="material-icons prefix">account_circle</i>
+						<input id="endereco" type="text" class="validate" name="endereco">
+									<label for="endereco">Endereço</label>
+					</div>
+
+					<div class="input-field col s12 m3">
+						<i class="material-icons prefix">account_circle</i>
+						<input id="telefone" type="text" class="validate" name="telefone">
+									<label for="telefone">Telefone</label>
+					</div>
+				</div>  
+
+				<div class="row">
+					<div class="input-field col s12 m3">
+						<i class="material-icons prefix">account_circle</i>
+						<textarea id="especialidades" class="materialize-textarea" name="especialidades"></textarea>
+						<label for="especialidades">Especialidades</label>
+
+					</div>
 
 				</div>  
-				<br><br>
-				<h5>Resultado da procura:</h5>
-				<br>
 
-				<table class="bordered hoverable">
-					<thead>
-						<tr>
-							<td><b>Código</b></td>
-							<td><b>Nome do Medicamento</b></td>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${produtos}" var="produto" >
-							<tr>
-								<td>${produto.codigo}</td>
-								<td>${produto.nome}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+
 
 							<br><br>
 
 				<div class="right">
-					<button class="btn waves-effect waves-light" type="submit" name="action" form="index.jsp" formmethod="get">Voltar
-						<i class="material-icons right">keyboad_backspace</i>
+					<button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
+						<i class="material-icons right">send</i>
 					</button>
 
-				</div>  
+					<button class="btn waves-effect waves-light" type="submit" name="action" form="index.jsp">Cancelar
+						<i class="material-icons right">cancel</i>
+					</button>
+
+				</div>	
 			</form>
 		</div>
 	</div>

@@ -1,6 +1,8 @@
 package controle;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -40,12 +42,38 @@ public class ConsultaDAO {
 		
 		return consulta.list();
 	}
-	
+
 	public List<Consulta> getConsultas(Integer limite)
 	{
 		Query consulta = sessao.createQuery("from consulta");
 		
 		consulta.setMaxResults(limite);
+		
+		return consulta.list();
+	}
+
+	public List<Consulta> getConsultas(Date data)
+	{
+
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(data);
+		
+		String dataString = cal.get(Calendar.YEAR) + "-";
+		
+		if (cal.get(Calendar.MONTH) < 10) {
+			dataString +=  "0" + cal.get(Calendar.MONTH) + "-";
+		} else {
+			dataString +=  cal.get(Calendar.MONTH) + "-";
+		}
+		
+		if (cal.get(Calendar.DAY_OF_MONTH) < 10) {
+			dataString +=  "0" + cal.get(Calendar.DAY_OF_MONTH);
+		} else {
+			dataString +=  cal.get(Calendar.DAY_OF_MONTH);
+		}
+		
+		Query consulta = sessao.createQuery("from consulta where data = :cod_param");
+		consulta.setString("cod_param", dataString);
 		
 		return consulta.list();
 	}

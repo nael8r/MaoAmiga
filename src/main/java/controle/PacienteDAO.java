@@ -34,14 +34,16 @@ public class PacienteDAO {
 	{
 		sessao.delete(paciente);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Paciente> getPacientes()
 	{
 		Query consulta = sessao.createQuery("from paciente");
 		
 		return consulta.list();
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Paciente> getPacientes(Integer limite)
 	{
 		Query consulta = sessao.createQuery("from paciente");
@@ -57,6 +59,14 @@ public class PacienteDAO {
 		
 		return (Paciente) consulta.uniqueResult();
 		
+	}
+	
+	public Paciente getPaciente(String nome)
+	{
+		Query consulta = sessao.createQuery("from paciente where nome = :cod_param");
+		consulta.setString("cod_param", nome);
+		
+		return (Paciente) consulta.uniqueResult();
 	}
 	
 	public List<Consulta> getConsultas(Integer codigo)

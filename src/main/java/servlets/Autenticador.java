@@ -37,6 +37,8 @@ public class Autenticador extends HttpServlet {
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {
 			
+			session.clear();
+			
 			resp.setContentType("text/html");
 			resp.getWriter().println("Erro no login! <br />");
 			
