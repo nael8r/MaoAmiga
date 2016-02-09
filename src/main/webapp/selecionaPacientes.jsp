@@ -1,26 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page import="controle.UsuarioDAO"%>
+<%@page import="modelo.Usuario"%>
+<%@page import="modelo.Paciente"%>
+<%@page import="controle.PacienteDAO"%>
+<%@page import="org.hibernate.Session"%>
+<%@page import="conexao.HibernateUtil"%>
+<%@page import="java.util.List"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <%
-<<<<<<< HEAD
-	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
-	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
-	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
-	
-	pageContext.setAttribute("pacientes", pacientes);
-=======
-	// TODO substituir o uso do datatables pelo c:foreach
->>>>>>> master
+//TODO substituir o uso do datatables pelo c:foreach
 %>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-<title>Lista Pacientes - MÃ£o Amiga</title>
+<title>Selecione um paciente - Mão Amiga</title>
 
 <!-- CSS  -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -34,7 +33,7 @@
 
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>AmbulatÃ³rio
+			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
 					Amigo Online<b></a>
 		</div>
 	</nav>
@@ -53,84 +52,16 @@
 		<div class="container">
 			<h5>Pacientes:</h5>
 			<br>
-
-			<table class="bordered hoverable">
-					<thead>
-						<tr>
-							<td><b>CÃ³digo</b></td>
-							<td><b>Paciente</b></td>
-							<td><b>Realizado</b></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-							<td>V</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-							<td>X</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-							<td>X</td>
-						</tr>
-					</tbody>
-<<<<<<< HEAD
-				</table -->
-				
-			<table class="bordered hoverable">
-				<thead>
-					<tr>
-						<td><b>Código</b></td>
-						<td><b>Nome</b></td>
-						<td><b>CPF</b></td>
-						<td><b>RG</b></td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${pacientes}" var="paciente" >
-						<tr>
-							<td>${paciente.codigo }</td>
-							<td>${paciente.nome }</td>
-							<td>${paciente.cpf }</td>
-							<td>${paciente.rg }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-
-	<!-- 
-	
-
-			<datatables:table id="UsuariosTabela" data="${pacientes}">
-				<datatables:column title="Nome" property="nome" />
-				<datatables:column title="CPF" property="cpf" />
-				<datatables:column title="RG" property="rg" />
-			</datatables:table>
-
-			<%--
 			
-			<% mdcDAO.getSessao().close(); 
-			session.removeAttribute("mdcDAO");%>
-	
-			--%>
-	 -->
-=======
-				</table>
-
->>>>>>> master
-
+			
+			
 			<br> <br>
 
 			<div class="right">
 				<form>
 					<button class="btn waves-effect waves-light" type="submit"
 						name="action" formaction="prontuarioMedico" formmethod="get">
-						ProtuÃ¡rio MÃ©dico <i class="material-icons right">send</i>
+						Protuário Médico <i class="material-icons right">send</i>
 					</button>
 
 					<button class="btn waves-effect waves-light" type="submit"

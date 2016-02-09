@@ -7,19 +7,6 @@
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
-	<!-- Dandelion filter definition and mapping -->
-	<filter>
-		<filter-name>dandelionFilter</filter-name>
-		<filter-class>com.github.dandelion.core.web.DandelionFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>dandelionFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-		<dispatcher>REQUEST</dispatcher>
-		<dispatcher>FORWARD</dispatcher>
-		<dispatcher>INCLUDE</dispatcher>
-		<dispatcher>ERROR</dispatcher>
-	</filter-mapping>
 	
 	<!-- filter>
 		<filter-name>registerDaoFiltro</filter-name>
@@ -31,14 +18,6 @@
 	</filter-mapping -->
 
 	<!-- Dandelion servlet definition and mapping -->
-	<servlet>
-		<servlet-name>dandelionServlet</servlet-name>
-		<servlet-class>com.github.dandelion.core.web.DandelionServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>dandelionServlet</servlet-name>
-		<url-pattern>/dandelion-assets/*</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>Autenticador_Servlet</servlet-name>

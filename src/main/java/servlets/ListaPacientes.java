@@ -32,8 +32,6 @@ public class ListaPacientes extends HttpServlet {
 		
 		req.getSession().setAttribute("mdcDAO", dao);
 		
-		Usuario usuarioAutenticado = (Usuario)req.getSession().getAttribute("usuarioAutenticado");
-		
 		req.getRequestDispatcher("listaPacientes.jsp").forward(req, resp);
 	}
 }
