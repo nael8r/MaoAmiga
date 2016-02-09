@@ -33,7 +33,7 @@ public class OperaConsulta extends HttpServlet {
 			
 			Consulta consulta = new Consulta();
 			
-			cDAO.excluir();
+			//cDAO.excluir();
 		}
 	}
 }

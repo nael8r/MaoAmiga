@@ -1,5 +1,5 @@
-<%@page import="modelo.Produtos"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Produtos"%>
 <%@page import="java.util.List"%>
 <%@page import="controle.ProdutosDAO"%>
 <%@page import="conexao.HibernateUtil"%>
@@ -11,7 +11,7 @@
 <html lang="en">
 <%
 
-	List<Produtos> produtos = new ArrayList<>();
+	List<Produtos> produtos = new ArrayList<Produtos>();
 
 	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
 
@@ -65,7 +65,7 @@
 	
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório Amigo Online<b></a>
+			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório Amigo Online</b></a>
 		</div>
 	</nav>
 	

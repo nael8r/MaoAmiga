@@ -11,7 +11,7 @@
 <html lang="en">
 
 <%
-	List<Medico> medicos = new ArrayList<>();
+	List<Medico> medicos = new ArrayList<Medico>();
 
 	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
 

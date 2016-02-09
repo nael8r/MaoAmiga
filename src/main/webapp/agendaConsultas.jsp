@@ -17,9 +17,9 @@
 
 
 <%
-	List<Consulta> ontem = new ArrayList<>();
-	List<Consulta> hoje = new ArrayList<>();
-	List<Consulta> amanha = new ArrayList<>();
+	List<Consulta> ontem = new ArrayList<Consulta>();
+	List<Consulta> hoje = new ArrayList<Consulta>();
+	List<Consulta> amanha = new ArrayList<Consulta>();
 
 	// Instancia os objetos para operação de cadastramento
 	Session sessao = HibernateUtil.getSessionFactory().openSession();

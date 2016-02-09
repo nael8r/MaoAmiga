@@ -1,3 +1,7 @@
+<%@page import="modelo.Paciente"%>
+<%@page import="java.util.List"%>
+<%@page import="modelo.Usuario"%>
+<%@page import="controle.MedicoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -5,19 +9,11 @@
 <html lang="en">
 
 <%
-<<<<<<< HEAD
-	// TODO substituir o uso do datatables pelo c:foreach
-=======
-<<<<<<< HEAD
 	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
 	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
 	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
 	
 	pageContext.setAttribute("pacientes", pacientes);
-=======
-	// TODO substituir o uso do datatables pelo c:foreach
->>>>>>> master
->>>>>>> listaPacientes
 %>
 
 <head>
@@ -39,7 +35,7 @@
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.html" class="brand-logo center"><b>AmbulatÃ³rio
-					Amigo Online<b></a>
+					Amigo Online</b></a>
 		</div>
 	</nav>
 
@@ -57,36 +53,6 @@
 		<div class="container">
 			<h5>Pacientes:</h5>
 			<br>
-
-			<table class="bordered hoverable">
-					<thead>
-						<tr>
-							<td><b>CÃ³digo</b></td>
-							<td><b>Paciente</b></td>
-							<td><b>Realizado</b></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-							<td>V</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-							<td>X</td>
-						</tr>
-						<tr>
-							<td>01</td>
-							<td>Asdf</td>
-							<td>X</td>
-						</tr>
-					</tbody>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-				</table -->
 				
 			<table class="bordered hoverable">
 				<thead>
@@ -108,28 +74,6 @@
 					</c:forEach>
 				</tbody>
 			</table>
-
-	<!-- 
-	
-
-			<datatables:table id="UsuariosTabela" data="${pacientes}">
-				<datatables:column title="Nome" property="nome" />
-				<datatables:column title="CPF" property="cpf" />
-				<datatables:column title="RG" property="rg" />
-			</datatables:table>
-
-			<%--
-			
-			<% mdcDAO.getSessao().close(); 
-			session.removeAttribute("mdcDAO");%>
-	
-			--%>
-	 -->
-=======
->>>>>>> listaPacientes
-				</table>
-
->>>>>>> master
 
 			<br> <br>
 
