@@ -35,27 +35,31 @@ public class Consulta implements Serializable {
 	private Date hora;
 	@Column(name="tipo_consulta", nullable=false)
 	private Character tipoConsulta;
+	
 	// Pré-consulta
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Float peso;
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Float altura;
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Float temperatura;
-	@Column(name="pressao_arterial", nullable=false, length=10)
+	//@Column(nullable=false)
+	@Column(name="pressao_arterial", length=10)
 	private String pressaoArterial;
+	
 	// Prontuário
 	@Lob
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private String queixa;
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Boolean usoMedicamentos;
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Character pessoais;
 	@Lob
-	@Column(nullable=false, name="anotacoes_finais")
+	//@Column(nullable=false)
+	@Column(name="anotacoes_finais")
 	private String anotacoesFinais;
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Boolean atestado;
 	// chaves estrangeiras
 	@ManyToOne(optional=false)

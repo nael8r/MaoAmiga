@@ -32,7 +32,8 @@ public class ProdutosDAO {
 	{
 		sessao.delete(produtos);
 	}
-	
+
+	@SuppressWarnings("unchecked")
 	public List<Produtos> getProdutos()
 	{
 		Query consulta = sessao.createQuery("from produtos");
@@ -52,6 +53,14 @@ public class ProdutosDAO {
 	{
 		Query consulta = sessao.createQuery("from produtos where codigo = :cod_param");
 		consulta.setInteger("cod_param", codigo);
+		
+		return (Produtos)consulta.uniqueResult();
+	}
+	
+	public Produtos getProduto(String nome)
+	{
+		Query consulta = sessao.createQuery("from produtos where nome = :cod_param");
+		consulta.setString("cod_param", nome);
 		
 		return (Produtos)consulta.uniqueResult();
 	}

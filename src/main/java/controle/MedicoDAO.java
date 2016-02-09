@@ -63,6 +63,14 @@ public class MedicoDAO {
 		return (Medico) consulta.uniqueResult();
 	}
 	
+	public Medico getMedico(String nome)
+	{
+		Query consulta = sessao.createQuery("from medico where nome = :cod_param");
+		consulta.setString("cod_param", nome);
+		
+		return (Medico) consulta.uniqueResult();
+	}
+	
 	public List<Consulta> getConsultas(Integer codigo)
 	{
 		return getMedico(codigo).getConstultas();

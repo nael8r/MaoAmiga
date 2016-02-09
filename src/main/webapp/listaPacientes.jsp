@@ -18,6 +18,8 @@
 	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
 	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
 	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
+	
+	pageContext.setAttribute("pacientes", pacientes);
 %>
 
 <head>
