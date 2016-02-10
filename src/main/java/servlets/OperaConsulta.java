@@ -98,7 +98,7 @@ public class OperaConsulta extends HttpServlet {
 			
 				consulta = null;
 	
-				resp.sendRedirect("agendaConsultas.jsp?data=");
+				resp.sendRedirect("listaConsultas.jsp?data=");
 			}
 		}
 	}

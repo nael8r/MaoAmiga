@@ -206,7 +206,7 @@
 									class="collection-item white-text"> <i
 										class="material-icons">send</i> Lista de Espera
 								</a></li>
-								<li><a href="agendaConsultas.jsp"
+								<li><a href="listaConsultas.jsp"
 									class="collection-item white-text"> <i
 										class="material-icons">send</i> Agenda de Consultas
 								</a></li>

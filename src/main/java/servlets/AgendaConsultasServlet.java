@@ -94,7 +94,7 @@ public class AgendaConsultasServlet extends HttpServlet {
 		request.getSession().setAttribute("hoje", hoje);
 		request.getSession().setAttribute("amanha", amanha);
 		
-		request.getRequestDispatcher("agendaConsultas.jsp").forward(request, response);;
+		request.getRequestDispatcher("listaConsultas.jsp").forward(request, response);;
 	}
 
 }

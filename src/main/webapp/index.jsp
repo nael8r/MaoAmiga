@@ -139,7 +139,7 @@
 											Lista de Espera
 									</a></li>
 									<li class="collection-item"><a
-										href="agendaConsultas.jsp?data=" class="collection-item">
+										href="listaConsultas.jsp?data=" class="collection-item">
 											<i class="material-icons left">send</i> Agenda de Consultas</a> </li>
 
 									<li class="collection-item"><a href="cadastraPaciente.jsp"
