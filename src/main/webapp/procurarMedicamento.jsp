@@ -10,8 +10,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-	pageContext.setAttribute("produtos", session.getAttribute("produtos"));
-	session.removeAttribute("produtos");
+	if(session.getAttribute("usuarios") == null)
+	{
+	  ProdutosDAO usuDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
+	  List<Produtos> produtos = usuDAO.getProdutos();
+	  pageContext.setAttribute("produtos", produtos);
+	}
+	else
+	{
+	  pageContext.setAttribute("produtos", session.getAttribute("produtos"));
+	  session.removeAttribute("produtos");
+	}
 %>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
