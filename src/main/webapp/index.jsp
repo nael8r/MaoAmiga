@@ -100,6 +100,11 @@
 								<h5 class="center">Ambulatório</h5>
 
 								<ul class="collection with-header">
+								<li class="collection-item"><a
+										href="gerenciarUsuarios.jsp"
+										class="collection-item"> <i class="material-icons left">send</i>
+											Gerenciar Usuários
+									</a></li>
 									<li class="collection-item"><a
 										href="agendarConsulta?acao=procurarPaciente"
 										class="collection-item"> <i class="material-icons left">send</i>
@@ -111,20 +116,7 @@
 									</a></li>
 									<li class="collection-item"><a
 										href="agendaConsultas.jsp?data=" class="collection-item">
-											<i class="material-icons left">send</i> Agenda de Consultas
-									</a></li>
-
-
-									<li class="collection-item"><a
-										href="agendarConsulta?acao=procurarPaciente"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Agendar Consultas
-									</a></li>
-
-									<li class="collection-item"><a href="listaEspera.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Lista de Espera
-									</a></li>
+											<i class="material-icons left">send</i> Agenda de Consultas</a> </li>
 
 									<li class="collection-item"><a href="cadastraPaciente.jsp"
 										class="collection-item"> <i class="material-icons left">send</i>

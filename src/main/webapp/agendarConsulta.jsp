@@ -69,7 +69,7 @@
 
 				<div class="right">
 					<button class="btn waves-effect waves-light" type="submit">Enviar
-						<i class="material-icons right">send</i>
+						<i class="material-icons right">send</i></button>
 
 					<a href="index.jsp" class="btn waves-effect waves-light">Cancelar
 						<i class="material-icons right">cancel</i>
