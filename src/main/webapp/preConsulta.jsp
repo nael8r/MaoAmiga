@@ -118,7 +118,7 @@
 						Enviar <i class="material-icons right">send</i>
 					</button>
 					
-					<a class="btn waves-effect waves-light" href="agendaConsultas.jsp?data=">
+					<a class="btn waves-effect waves-light" href="listaConsultas.jsp?data=">
 						Voltar <i class="material-icons right">keyboard_backspace</i>
 					</a>
 
@@ -194,7 +194,7 @@
 									class="collection-item white-text"> <i
 										class="material-icons">send</i> Lista de Espera
 								</a></li>
-								<li><a href="agendaConsultas.jsp"
+								<li><a href="listaConsultas.jsp"
 									class="collection-item white-text"> <i
 										class="material-icons">send</i> Agenda de Consultas
 								</a></li>

@@ -97,8 +97,8 @@ public class OperaConsulta extends HttpServlet {
 				cDAO.excluir(consulta);
 
 				consulta = null;
-
-				resp.sendRedirect("agendaConsultas.jsp?data=");
+	
+				resp.sendRedirect("listaConsultas.jsp?data=");
 			}
 		}
 	}

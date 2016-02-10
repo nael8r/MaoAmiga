@@ -7,6 +7,7 @@ import conexao.HibernateUtil;
 import io.github.benas.jpopulator.api.Populator;
 import io.github.benas.jpopulator.impl.PopulatorBuilder;
 import modelo.Consulta;
+import modelo.Produtos;
 
 public class Principal {
 
@@ -16,7 +17,7 @@ public class Principal {
 		
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		Transaction trans = sessao.beginTransaction();
-		//sessao.save(pop.populateBean(Consulta.class));
+		sessao.save(pop.populateBean(Produtos.class));
 		trans.commit();
 		sessao.close();
 		

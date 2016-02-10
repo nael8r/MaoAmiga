@@ -18,12 +18,12 @@
 
 	<h2>ATESTADO MÉDICO</h2>
 
-	<p>Atesto, que o Sr(a) ------ por motivo de doença ------ <br>
-		deverá manter-se em repouso por --- dia(s) a partir da presente data.
+	<p>Atesto, que o Sr(a) _____________________________ por motivo de doença ___________________________ <br>
+		deverá manter-se em repouso por __ dia(s) a partir da presente data.
 	</p>
 
-	<p>--- de ----------- de ------.</p>
+	<p>__ de _______ de ____.</p>
 
-	<p>.................................</p>
+	<p>____________________________</p>
 </body>
 </html>
