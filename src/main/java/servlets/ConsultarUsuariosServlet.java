@@ -36,7 +36,8 @@ public class ConsultarUsuariosServlet extends HttpServlet {
 
 			if (usuario != null)
 				usuarios.add(usuario);
-		} else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
+		} 
+		else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
 
 			Usuario usuario = usuDAO.getUsuario(req.getParameter("nome"));
 

@@ -1,3 +1,7 @@
+<%@page import="modelo.Medico"%>
+<%@page import="controle.MedicoDAO"%>
+<%@page import="modelo.Consulta"%>
+<%@page import="controle.ConsultaDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Produtos"%>
 <%@page import="java.util.List"%>
@@ -10,22 +14,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-	if(session.getAttribute("produtos") == null)
+	if(session.getAttribute("consultas") == null)
 	{
-	  ProdutosDAO usuDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
-	  List<Produtos> produtos = usuDAO.getProdutos();
-	  pageContext.setAttribute("produtos", produtos);
+	  //ConsultaDAO consultasDAO = new ConsultaDAO(HibernateUtil.getSessionFactory().openSession());
+	  //List<Consulta> consultas = consultasDAO.getConsultas();
+	  
+	  MedicoDAO medicoDAO = new MedicoDAO(HibernateUtil.getSessionFactory().openSession());
+	  Medico medico = (Medico)request.getSession().getAttribute("medicoAutenticado");
+	  List<Consulta> consultas = medicoDAO.getConsultas(medico.getCodigo()); 
+	  pageContext.setAttribute("consultas", consultas);
 	}
 	else
 	{
-	  pageContext.setAttribute("produtos", session.getAttribute("produtos"));
-	  session.removeAttribute("produtos");
+	  pageContext.setAttribute("consultas", session.getAttribute("consultas"));
+	  session.removeAttribute("consultas");
 	}
 %>
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>Consultar Medicamentos - Mão Amiga</title>
+		<title>Procurar Consultas - Mão Amiga</title>
 
 		<!-- CSS  -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,7 +51,7 @@
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			<h1 class="header center orange-text">
-				<b>Consultar Medicamentos</b>
+				<b>Procurar Consultas</b>
 			</h1>
 
 		</div>
@@ -56,15 +64,15 @@
 		<div class="container">
 			<h2 class="center">Formulário de Procura</h2>
 
-			<form action="consultarMedicamentoServlet" method="post">
+			<form action="procurarConsultaServlet" method="post">
 				<div class="row">
 					<div class="input-field col s12 m9">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="medicamentos" name="nome">
-						<label for="medicamentos">Medicamentos</label>
+						<input type="text" id="paciente" name="nome">
+						<label for="paciene">Nome Paciente</label>
 					</div>
 					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
+					<button class="btn waves-effect waves-light m3" type="submit" name="acao" value="procurar">Procurar
 						<i class="material-icons right">search</i>
 					</button>
 
@@ -80,11 +88,27 @@
 						<label for="codigo">Código</label>
 					</div>
 					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
+					<button class="btn waves-effect waves-light m3" type="submit" name="acao" value="procurar">Procurar
 						<i class="material-icons right">search</i>
 					</button>
 
 				</div>  
+
+				<h5>Ou</h5>
+				<br>
+				
+				<div class="row">
+
+					<div class="input-field col s12 m9">
+						<i class="material-icons prefix">account_circle</i> <input
+							type="date" class="datepicker" name="data" value="data">
+					</div>
+
+					<button class="btn waves-effect waves-light m3" type="submit"
+						name="acao" value="procurar">
+						Procurar <i class="material-icons right">search</i>
+					</button>
+				</div>
 				<br><br>
 				<h5>Resultado da procura:</h5>
 				<br>
@@ -93,14 +117,42 @@
 					<thead>
 						<tr>
 							<td><b>Código</b></td>
-							<td><b>Nome do Medicamento</b></td>
+							<td><b>Nome Paciente</b></td>
+							<td><b>Tipo Consulta</b></td>
+							<td><b>Data</b></td>
+							<td><b>Hora</b></td>
+							<td><b>Idade</b></td>
+							<td><b>Sexo</b></td>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${produtos}" var="produto" >
+						<c:forEach items="${consultas}" var="consulta" >
 							<tr>
-								<td>${produto.codigo}</td>
-								<td>${produto.nome}</td>
+								<td>
+									<input type="radio" id="${consulta.codigo}" name="codigo_selecionado" value="${consulta.codigo}" class="with-gap" />
+									<label for="${consulta.codigo}">${consulta.codigo}</label>
+								</td>
+								<td>${consulta.paciente.nome}</td>
+								<td>
+									<c:choose>
+									    <c:when test="${consulta.tipoConsulta eq '1'.charAt(0)}">
+									    	Consulta em Geral
+									    </c:when>
+									    <c:when test="${consulta.tipoConsulta eq '2'.charAt(0)}">
+									    	Curativo
+									    </c:when>
+									    <c:when test="${consulta.tipoConsulta eq '3'.charAt(0)}">
+									    	Entrega de Examos
+									    </c:when>
+									    <c:otherwise>
+									    	Não especificado pela secretária
+									    </c:otherwise>
+									</c:choose>
+								</td>
+								<td>${consulta.data}</td>	
+								<td>${consulta.hora}</td>
+								<td>${consulta.idade}</td>
+								<td>${consulta.sexo}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -109,10 +161,21 @@
 							<br><br>
 
 				<div class="right">
-					<a class="btn waves-effect waves-light" href="index.jsp">Voltar
-						<i class="material-icons right">keyboad_backspace</i>
-					</a>
-				</div>  
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="preConsulta">
+						Prontuário Médico <i class="material-icons right">assignment_ind</i>
+					</button>
+
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="imprimir">
+						Imprimir <i class="material-icons right">print</i>
+					</button>
+
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="cancelar">
+						Cancelar <i class="material-icons right">cancel</i>
+					</button>
+				</div>
 			</form>
 		</div>
 	</div>

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 
 import conexao.HibernateUtil;
+import controle.MedicoDAO;
 import controle.UsuarioDAO;
+import modelo.Medico;
 import modelo.Usuario;
 
 
@@ -38,6 +40,14 @@ public class Autenticador extends HttpServlet {
 			HttpSession sessao = req.getSession();
 			
 			sessao.setAttribute("usuarioAutenticado", usuario);
+			
+			if (Character.toLowerCase(usuario.getTipo()) == 'm') {
+				MedicoDAO medicoDAO = new MedicoDAO(session);
+				
+				Medico medico = medicoDAO.getMedico(usuario.getNome());
+				
+				sessao.setAttribute("medicoAutenticado", medico);
+			}
 			
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {

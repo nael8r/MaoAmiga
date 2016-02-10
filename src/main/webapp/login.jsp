@@ -39,12 +39,12 @@
 				<div class="row s6">
 					<div class="input-field col s6">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="login" type="text" class="validate" name="login">
+						<input id="login" type="text" class="validate" name="login" tabindex="1">
 						<label for="codigo">Login</label>
 					</div>
 					<div class="input-field col s6">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="senha" type="password" class="validate" name="senha">
+						<input id="senha" type="password" class="validate" name="senha" tabindex="2">
 						<label for="senha">Senha</label>
 					</div>
 				</div>	

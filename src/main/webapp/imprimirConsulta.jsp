@@ -1,3 +1,6 @@
+<%@page import="conexao.HibernateUtil"%>
+<%@page import="controle.ConsultaDAO"%>
+<%@page import="modelo.Consulta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -50,13 +53,13 @@
 			<td><b>Tipo da Consulta:</b></td>
 			<td>
 				<c:choose>
-				    <c:when test="${consulta.tipoConsulta eq '1' }">
+				    <c:when test="${consulta.tipoConsulta eq '1'.charAt(0) }">
 				    	Consulta em Geral
 				    </c:when>
-				    <c:when test="${consulta.tipoConsulta eq '2'}">
+				    <c:when test="${consulta.tipoConsulta eq '2'.charAt(0)}">
 				    	Curativo
 				    </c:when>
-				    <c:when test="${consulta.tipoConsulta eq '3'}">
+				    <c:when test="${consulta.tipoConsulta eq '3'.charAt(0)}">
 				    	Entrega de Examos
 				    </c:when>
 				    <c:otherwise>

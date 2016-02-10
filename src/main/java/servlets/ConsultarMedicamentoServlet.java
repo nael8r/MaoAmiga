@@ -25,10 +25,9 @@ public class ConsultarMedicamentoServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Produtos> produtos = new ArrayList<Produtos>();
-
 		ProdutosDAO produtosDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
 		
-		if (!req.getParameter("cod").isEmpty() && req.getParameter("nome").isEmpty()) {
+		if (req.getParameter("cod") != null && !req.getParameter("cod").isEmpty()) {
 			
 			Integer codigo = Integer.parseInt(req.getParameter("cod"));
 			
@@ -37,7 +36,7 @@ public class ConsultarMedicamentoServlet extends HttpServlet {
 			if (produto != null)
 				produtos.add(produto);
 		}
-		else if (req.getParameter("cod").isEmpty() && !req.getParameter("nome").isEmpty()) {
+		else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
 			
 			Produtos produto = produtosDAO.getProduto(req.getParameter("nome"));
 
@@ -54,7 +53,7 @@ public class ConsultarMedicamentoServlet extends HttpServlet {
 
 		req.getSession().setAttribute("produtos", produtos);
 		
-		req.getRequestDispatcher("consultarMedicamentos.jsp").forward(req, resp);
+		req.getRequestDispatcher("procurarMedicamento.jsp").forward(req, resp);
 	}
 
 }

@@ -102,6 +102,10 @@
 										class="collection-item"> <i class="material-icons left">send</i>Lista
 											de Pacientes
 									</a></li>
+									<li class="collection-item"><a
+										href="procurarConsulta.jsp" class="collection-item">
+											<i class="material-icons left">send</i> Procurar Consulta
+									</a> </li>
 									<li class="collection-item"><a href="prontuarioMedico.jsp"
 										class="collection-item"> <i class="material-icons left">send</i>Prontuário
 											Médico
@@ -140,7 +144,8 @@
 									</a></li>
 									<li class="collection-item"><a
 										href="agendaConsultas.jsp?data=" class="collection-item">
-											<i class="material-icons left">send</i> Agenda de Consultas</a> </li>
+											<i class="material-icons left">send</i> Agenda de Consultas
+									</a> </li>
 
 									<li class="collection-item"><a href="cadastraPaciente.jsp"
 										class="collection-item"> <i class="material-icons left">send</i>
