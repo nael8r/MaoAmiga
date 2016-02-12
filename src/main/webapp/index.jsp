@@ -22,7 +22,7 @@
 
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
+			<a id="logo-container" href="index.jsp" class="brand-logo center"><b>Ambulatório
 					Amigo Online</b></a>
 		</div>
 	</nav>
@@ -45,159 +45,84 @@
 		<div class="section">
 			<!--   Icon Section   -->
 			<div class="row">
-				<c:choose>
-					<c:when
-						test="${sessionScope.usuarioAutenticado.tipo == 'm'.charAt(0)}">
+				<div class="col s12 m6">
+					<div class="icon-block">
+						<h2 class="center light-blue-text">
+							<i class="material-icons">flash_on</i>
+						</h2>
+						<h5 class="center">Ambulatório</h5>
 
-						<div class="col s12 m6">
-							<div class="icon-block">
-								<h2 class="center light-blue-text">
-									<i class="material-icons">flash_on</i>
-								</h2>
-								<h5 class="center">Ambulatório</h5>
+						<ul class="collection with-header">
+							<li class="collection-item"><a
+								href="gerenciarUsuarios.jsp" class="collection-item"> <i
+									class="material-icons left">send</i> Gerenciar Usuários
+							</a></li>
+							<li class="collection-item"><a
+								href="agendarConsulta?acao=procurarPaciente"
+								class="collection-item"> <i class="material-icons left">send</i>
+									Agendar Nova Consulta
+							</a></li>
+							 
+							<li class="collection-item"><a
+								href="listaConsultas.jsp?data=" class="collection-item"> <i
+									class="material-icons left">send</i> Agenda de Consultas
+							</a></li>
 
-								<ul class="collection with-header">
-									<li class="collection-item"><a  class="collection-item"> <i
-											class="material-icons left">send</i> Gerenciar Usuários
-									</a></li>
-									<li class="collection-item"><a 
-										class="collection-item"> <i class="material-icons left">send</i>
-											Agendar Nova Consulta
-									</a></li>
-									 
-									<li class="collection-item"><a
-										 class="collection-item"> <i
-											class="material-icons left">send</i> Agenda de Consultas
-									</a></li>
+							<li class="collection-item"><a href="cadastraPaciente.jsp"
+								class="collection-item"> <i class="material-icons left">send</i>
+									Cadastra Paciente
+							</a></li>
+							<li class="collection-item"><a href="cadastraMedico.jsp"
+								class="collection-item"> <i class="material-icons left">send</i>
+									Cadastra Médico
+							</a></li>
+							<li class="collection-item"><a
+								href="cadastraMedicamento.jsp" class="collection-item"> <i
+									class="material-icons left">send</i> Cadastra Medicamento
+							</a></li>
+						</ul>
+					</div>
+				</div>
 
-									<li class="collection-item"><a 
-										class="collection-item"> <i class="material-icons left">send</i>
-											Cadastra Paciente
-									</a></li>
-									<li class="collection-item"><a 
-										class="collection-item"> <i class="material-icons left">send</i>
-											Cadastra Médico
-									</a></li>
-									<li class="collection-item"><a class="collection-item"> <i
-											class="material-icons left">send</i> Cadastra Medicamento
-									</a></li>
-								</ul>
-							</div>
-						</div>
+				<div class="col s12 m6">
+					<div class="icon-block">
+						<h2 class="center light-blue-text">
+							<i class="material-icons">settings</i>
+						</h2>
+						<h5 class="center">Consultório Médico</h5>
 
-						<div class="col s12 m6">
-							<div class="icon-block">
-								<h2 class="center light-blue-text">
-									<i class="material-icons">settings</i>
-								</h2>
-								<h5 class="center">Consultório Médico</h5>
-
-								<ul class="collection with-header">
-									<li class="collection-item"><a
-										href="listaPacientes?acao=procurarPaciente"
-										class="collection-item"> <i class="material-icons left">send</i>Lista
-											de Pacientes
-									</a></li>
-									<li class="collection-item"><a href="procurarConsulta.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Lista de Consultas
-									</a></li>
-									<li class="collection-item"><a href="listaEspera.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Lista de Espera
-									</a></li>
-									<li class="collection-item"><a
-										href="procurarMedicamento.jsp?cod=&nome="
-										class="collection-item"> <i class="material-icons left">send</i>Consultar
-											Medicamentos
-									</a></li>
-								</ul>
-							</div>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div class="col s12 m6">
-							<div class="icon-block">
-								<h2 class="center light-blue-text">
-									<i class="material-icons">flash_on</i>
-								</h2>
-								<h5 class="center">Ambulatório</h5>
-
-								<ul class="collection with-header">
-									<li class="collection-item"><a
-										href="gerenciarUsuarios.jsp" class="collection-item"> <i
-											class="material-icons left">send</i> Gerenciar Usuários
-									</a></li>
-									<li class="collection-item"><a
-										href="agendarConsulta?acao=procurarPaciente"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Agendar Nova Consulta
-									</a></li>
-									 
-									<li class="collection-item"><a
-										href="listaConsultas.jsp?data=" class="collection-item"> <i
-											class="material-icons left">send</i> Agenda de Consultas
-									</a></li>
-
-									<li class="collection-item"><a href="cadastraPaciente.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Cadastra Paciente
-									</a></li>
-									<li class="collection-item"><a href="cadastraMedico.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Cadastra Médico
-									</a></li>
-									<li class="collection-item"><a
-										href="cadastraMedicamento.jsp" class="collection-item"> <i
-											class="material-icons left">send</i> Cadastra Medicamento
-									</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="col s12 m6">
-							<div class="icon-block">
-								<h2 class="center light-blue-text">
-									<i class="material-icons">settings</i>
-								</h2>
-								<h5 class="center">Consultório Médico</h5>
-
-								<ul class="collection with-header">
-									<li class="collection-item"><a
-										class="collection-item"> <i class="material-icons left">send</i>Lista
-											de Pacientes
-									</a></li>
-									<li class="collection-item"><a
-										class="collection-item"> <i class="material-icons left">send</i>
-											Lista de Consultas
-									</a></li>
-									<li class="collection-item"><a
-										class="collection-item"> <i class="material-icons left">send</i>
-											Lista de Espera
-									</a></li>
-									<li class="collection-item"><a
-										class="collection-item"> <i class="material-icons left">send</i>Consultar
-											Medicamentos
-									</a></li>
-								</ul>
-							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-
-
+						<ul class="collection with-header">
+							<li class="collection-item"><a
+								href="listaPacientes?acao=procurarPaciente"
+								class="collection-item"> <i class="material-icons left">send</i>Lista
+									de Pacientes
+							</a></li>
+							<li class="collection-item"><a href="procurarConsulta.jsp"
+								class="collection-item"> <i class="material-icons left">send</i>
+									Lista de Consultas
+							</a></li>
+							<li class="collection-item"><a href="listaEspera.jsp"
+								class="collection-item"> <i class="material-icons left">send</i>
+									Lista de Espera
+							</a></li>
+							<li class="collection-item"><a
+								href="procurarMedicamento.jsp?cod=&nome="
+								class="collection-item"> <i class="material-icons left">send</i>Consultar
+									Medicamentos
+							</a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
-
-		<div class="section"></div>
 	</div>
 
 	<footer class="page-footer orange">
 		<div class="container">
 			<div class="row">
-				<div class="col s12">
+				<div class="col s12 m6">
 					<h5 class="white-text">
-						<b>Associação Mão Amiga</b>
+						<a href="index.jsp" class="white-text"><b>Associação Mão Amiga</b></a>
 					</h5>
 					<p class="grey-text text-lighten-4">
 						Associação no combate ao câncer em Formiga.<br /> Rua Lassance
@@ -206,26 +131,15 @@
 
 
 				</div>
-				<!--
-				<div class="col l3 s12">
-					<h5 class="white-text">Settings</h5>
-					<ul>
-						<li><a class="white-text" href="#!">Link 1</a></li>
-						<li><a class="white-text" href="#!">Link 2</a></li>
-						<li><a class="white-text" href="#!">Link 3</a></li>
-						<li><a class="white-text" href="#!">Link 4</a></li>
-					</ul>
+				
+				<div class="col s12 m6">
+					<div align="right">
+						
+						<a class="white-text" href="index.jsp"><b>Home</b></a><br/><br/>
+						<a class="white-text" href="login.jsp"><b>Logout</b></a><br/>
+					</div>
 				</div>
-				<div class="col l3 s12">
-					<h5 class="white-text">Connect</h5>
-					<ul>
-						<li><a class="white-text" href="#!">Link 1</a></li>
-						<li><a class="white-text" href="#!">Link 2</a></li>
-						<li><a class="white-text" href="#!">Link 3</a></li>
-						<li><a class="white-text" href="#!">Link 4</a></li>
-					</ul>
-				</div>
-				-->
+				
 			</div>
 		</div>
 		<div class="footer-copyright">

@@ -89,9 +89,9 @@
 						<i class="material-icons right">send</i>
 					</button>
 
-					<button class="btn waves-effect waves-light" type="submit" name="action" form="index.jsp">Cancelar
+					<a class="btn waves-effect waves-light" href="index.jsp">Cancelar
 						<i class="material-icons right">cancel</i>
-					</button>
+					</a>
 
 				</div>	
 			</form>

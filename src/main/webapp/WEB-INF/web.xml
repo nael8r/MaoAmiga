@@ -19,7 +19,8 @@
 
 	<!-- Dandelion servlet definition and mapping -->
 
-	<filter>
+	<!--
+<filter>
 		<filter-name>filtro_autenticacao</filter-name>
 		<filter-class>filtros.AutenticacaoFiltro</filter-class>
 	</filter>
@@ -27,6 +28,47 @@
 		<filter-name>filtro_autenticacao</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	-->
+	<filter>
+		<filter-name>filtro_autenticacao_medico</filter-name>
+		<filter-class>filtros.MedicoFiltro</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filtro_autenticacao_medico</filter-name>
+		<url-pattern>/procurarMedicamento.jsp</url-pattern>
+		<url-pattern>/consultarMedicamentoServlet</url-pattern>
+		<url-pattern>/listaPacientes</url-pattern>
+		<url-pattern>/listaEspera.jsp</url-pattern>
+		<url-pattern>/procurarConsulta.jsp</url-pattern>
+		<url-pattern>/procurarConsultaServlet</url-pattern>
+		<url-pattern>/prontuarioMedico</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>filtro_autenticacao_secretario</filter-name>
+		<filter-class>filtros.SecretarioFiltro</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filtro_autenticacao_secretario</filter-name>
+		<url-pattern>/cadastraMedicamento.jsp</url-pattern>
+		<url-pattern>/cadastraMedicamento</url-pattern>
+		<url-pattern>/cadastraMedico.jsp</url-pattern>
+		<url-pattern>/cadastraMedico</url-pattern>
+		<url-pattern>/cadastraPaciente.jsp</url-pattern>
+		<url-pattern>/cadastraPaciente</url-pattern>
+		<url-pattern>/gerenciarUsuarios.jsp</url-pattern>
+		<url-pattern>/listaConsultas.jsp</url-pattern>
+		<url-pattern>/consultarUsuariosServlet</url-pattern>
+		<url-pattern>/cadastraUsuario.jsp</url-pattern>
+		<url-pattern>/cadastraUsuario</url-pattern>
+		<url-pattern>/removeUsuarioServlet</url-pattern>
+		<url-pattern>/agendarConsulta</url-pattern>
+		<url-pattern>/procurarPaciente.jsp</url-pattern>
+		<url-pattern>/agendarConsulta</url-pattern>
+		<url-pattern>/procurarMedico.jsp</url-pattern>
+	</filter-mapping>
+
+
 
 	<servlet>
 		<servlet-name>Autenticador_Servlet</servlet-name>
