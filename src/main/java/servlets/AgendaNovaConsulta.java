@@ -15,9 +15,11 @@ import org.hibernate.Transaction;
 
 import conexao.HibernateUtil;
 import controle.ConsultaDAO;
+import controle.EsperaDAO;
 import controle.MedicoDAO;
 import controle.PacienteDAO;
 import modelo.Consulta;
+import modelo.Espera;
 import modelo.Paciente;
 
 @WebServlet("/agendarConsulta")
@@ -81,33 +83,35 @@ public class AgendaNovaConsulta extends HttpServlet {
 		data = data.substring(3, 6);
 		
 		if (data.equals("Jan")) {
-			mes = 1;
+			mes = 0;
 		} else if (data.equals("Feb")) {
-			mes = 2;
+			mes = 1;
 		} else if (data.equals("Mar")) {
-			mes = 3;
+			mes = 2;
 		} else if (data.equals("Apr")) {
-			mes = 4;
+			mes = 3;
 		} else if (data.equals("May")) {
-			mes = 5;
+			mes = 4;
 		} else if (data.equals("Jun")) {
-			mes = 6;
+			mes = 5;
 		} else if (data.equals("Jul")) {
-			mes = 7;
+			mes = 6;
 		} else if (data.equals("Aug")) {
-			mes = 8;
+			mes = 7;
 		} else if (data.equals("Sep")) {
-			mes = 9;
+			mes = 8;
 		} else if (data.equals("Oct")) {
-			mes = 10;
+			mes = 9;
 		} else if (data.equals("Nov")) {
-			mes = 11;
+			mes = 10;
 		} else if (data.equals("Dez")) {
-			mes = 12;
-		} else mes = 1;
+			mes = 11;
+		} else mes = 0;
 		
 		dt.set(ano, mes, dia);
 		
+		Espera novaEspera = new Espera(dt.getTime(), consulta.getPaciente());
+		EsperaDAO esperaDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
 		
 		
 		consulta.setData(dt.getTime());
@@ -160,6 +164,7 @@ public class AgendaNovaConsulta extends HttpServlet {
 		*/
 		
 		consultaDao.salvar(consulta);
+		esperaDAO.salvar(novaEspera);
 		
 		sessao.close();
 		

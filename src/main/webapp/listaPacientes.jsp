@@ -1,3 +1,4 @@
+<%@page import="modelo.Medico"%>
 <%@page import="modelo.Paciente"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.Usuario"%>
@@ -11,7 +12,8 @@
 <%
 	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
 	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
-	List<Paciente> pacientes = mdcDAO.getPacientes(usuarioAutenticado.getCodigo());
+	Medico m = mdcDAO.getMedico(usuarioAutenticado.getNome());
+	List<Paciente> pacientes = mdcDAO.getPacientes(m.getCodigo());
 	
 	pageContext.setAttribute("pacientes", pacientes);
 %>
@@ -34,7 +36,7 @@
 
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>AmbulatÃ³rio
+			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
 					Amigo Online</b></a>
 		</div>
 	</nav>
@@ -78,17 +80,9 @@
 			<br> <br>
 
 			<div class="right">
-				<form>
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action" formaction="prontuarioMedico" formmethod="get">
-						Protuário Médico <i class="material-icons right">send</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action">
-						Cancelar <i class="material-icons right">cancel</i>
-					</button>
-				</form>
+				<a class="btn waves-effect waves-light" href="index.jsp">
+					Voltar <i class="material-icons right">keyboard_backspace</i>
+				</a>
 
 			</div>
 		</div>

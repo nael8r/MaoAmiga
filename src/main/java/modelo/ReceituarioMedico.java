@@ -9,12 +9,15 @@ public class ReceituarioMedico implements Serializable {
 	private static final long serialVersionUID = -6428859897486544367L;
 	@Id @GeneratedValue
 	private Integer codigo;
+	
 	@Lob
 	@Column(nullable=false)
 	private String medicamentos;
-	@ManyToOne(optional=false)
+	
+	@ManyToOne(optional=false, cascade=CascadeType.ALL)
 	@JoinColumn(name="cod_consulta")
 	private Consulta consulta;
+	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="cod_produtos")
 	private Produtos produtos;

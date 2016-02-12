@@ -29,6 +29,8 @@ public class Autenticador extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
+		req.getSession().invalidate();
+		
 		String login = req.getParameter("login");
 		String senha = req.getParameter("senha");
 		
@@ -54,7 +56,7 @@ public class Autenticador extends HttpServlet {
 			
 			session.clear();
 			
-			req.getRequestDispatcher("snippets?mensagem=ERRO! - Dados de login inválidos!&direcao=login.jsp").forward(req, resp);
+			req.getRequestDispatcher("mensagensErroServlet?mensagem=ERRO! - Dados de login inválidos!&direcao=login.jsp").forward(req, resp);
 		}
 			
 	}

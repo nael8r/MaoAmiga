@@ -29,7 +29,7 @@ public class CadastraMedico extends HttpServlet {
 		
 		Medico medico = new Medico();
 		
-		medico.setCodigo(Integer.parseInt(req.getParameter("cod")));
+		//medico.setCodigo(Integer.parseInt(req.getParameter("cod")));
 		medico.setNome(req.getParameter("nome"));
 		medico.setCrm(req.getParameter("crm"));
 		medico.setEndereco(req.getParameter("endereco"));
@@ -37,12 +37,7 @@ public class CadastraMedico extends HttpServlet {
 		medico.setTelefone(req.getParameter("telefone"));
 		
 		
-		if (medicoDAO.getMedico(medico.getCodigo()) == null) {
-			medicoDAO.salvar(medico);
-		}
-		else {
-			medicoDAO.atualizar(medico);
-		}
+		medicoDAO.salvar(medico);
 		
 		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}

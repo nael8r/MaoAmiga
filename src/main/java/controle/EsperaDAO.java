@@ -64,6 +64,14 @@ public class EsperaDAO {
 		return (Espera)consulta.uniqueResult();
 	}
 	
+	public List<Espera> getEsperaDoPaciente(Integer codigo)
+	{
+		Query consulta = sessao.createQuery("from espera where cod_paciente = :cod_param");
+		consulta.setInteger("cod_param", codigo);
+
+		return consulta.list();
+	}
+	
 	public List<Paciente> getPacientes()
 	{
 		List<Espera> esperas = getEsperas();

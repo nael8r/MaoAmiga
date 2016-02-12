@@ -9,6 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import conexao.HibernateUtil;
 import modelo.Consulta;
 import modelo.Medico;
 import modelo.ReceituarioExames;
@@ -39,6 +40,12 @@ public class ConsultaDAO {
 	
 	public void excluir(Consulta consulta)
 	{
+		ReceituarioMedicoDAO rmDAO = new ReceituarioMedicoDAO(HibernateUtil.getSessionFactory().openSession());
+		rmDAO.excluirReceituarioDaConsulta(consulta);
+		
+		ReceituarioExamesDAO reDAO = new ReceituarioExamesDAO(HibernateUtil.getSessionFactory().openSession());
+		reDAO.excluirReceituarioDaConsulta(consulta);
+		
 		Transaction trans = sessao.beginTransaction();
 		sessao.delete(consulta);
 		trans.commit();

@@ -23,14 +23,13 @@
 
 		if (paciente != null)
 			pacientes.add(paciente);
+		
 	} else if (request.getParameter("cod").isEmpty() && !request.getParameter("nome").isEmpty()) {
 
 		PacienteDAO pacienteDAO = (PacienteDAO) session.getAttribute("pacienteDAO");
 
-		Paciente paciente = pacienteDAO.getPaciente(request.getParameter("nome"));
+		pacientes = pacienteDAO.getPacientes(request.getParameter("nome"));
 
-		if (paciente != null)
-			pacientes.add(paciente);
 	} else {
 
 		// Instancia os objetos para operação de cadastramento
@@ -67,7 +66,7 @@
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
-					Amigo Online<b></a>
+					Amigo Online</b></a>
 		</div>
 	</nav>
 
@@ -139,9 +138,7 @@
 								<td>${paciente.rg}</td>
 								<td>
 									<a href="agendarConsulta?acao=procurarMedico&cod=${paciente.codigo}">
-										<div>
 											<i class="material-icons right">send</i>Selecionar
-										</div>
 									</a>
 								</td>
 							</tr>

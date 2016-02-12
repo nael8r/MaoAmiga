@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity(name="espera")
-public class Espera implements Serializable {
+public class Espera implements Serializable, Comparable<Espera> {
 
 	private static final long serialVersionUID = 4363136501653697837L;
 	@Id @GeneratedValue
@@ -80,6 +80,16 @@ public class Espera implements Serializable {
 	@Override
 	public String toString() {
 		return "Espera [data=" + data + "]";
+	}
+
+	public int compareTo(Espera o) {
+		if (this.getData().getTime() < o.getData().getTime()) {
+			return -1;
+		}
+		else if (this.getData().getTime() > o.getData().getTime()) {
+			return 1;
+		} else
+			return 0;
 	}
 	
 	

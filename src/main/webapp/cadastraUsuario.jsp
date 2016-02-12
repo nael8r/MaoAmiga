@@ -48,11 +48,15 @@
 							do Usuário</label>
 					</div>
 
-					<div class="input-field col s12 m4">
-						<i class="material-icons prefix">account_circle</i> <input
-							id="tipo" type="text" class="validate" name="tipo"> <label
-							for="tipo">Tipo</label>
+					<div class="input-field col s12 m4">							
+						<select name="tipo">
+							<option disabled="disabled">Escolha uma das opções</option>
+							<option value="m">Médico</option>
+							<option value="u">Secretária</option>
+						</select>
 					</div>
+					
+					
 				</div>
 
 				<div class="row">

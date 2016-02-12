@@ -50,7 +50,6 @@
 						<tr>
 							<td><b>Código</b></td>
 							<td><b>Nome do Medicamento</b></td>
-							<td>Selecione</td>
 						</tr>
 					</thead>
 					<tbody>

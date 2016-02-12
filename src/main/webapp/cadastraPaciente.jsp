@@ -39,12 +39,12 @@
 				<div class="row">
 					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="codigo" name="cod">
+						<input disabled="disabled" type="text" id="codigo" name="cod">
 						<label for="codigo">Codigo</label>
 					</div>
 					<div class="input-field col s12 m8">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="nome" name="nome">
+						<input type="text" id="nome" name="nome" length="50">
 						<label for="nome">Nome do Paciente</label>
 					</div>
 				</div>	
@@ -53,13 +53,13 @@
 
 					<div class="input-field col s12 m6">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="cpf" type="text" class="validate" name="cpf">
+						<input id="cpf" type="text" class="validate" name="cpf" length="11">
 									<label for="cpf">CPF</label>
 					</div>
 
 					<div class="input-field col s12 m6">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="rg" type="text" class="validate" name="rg">
+						<input id="rg" type="text" class="validate" name="rg" length="11">
 									<label for="rg">RG</label>
 					</div>
 

@@ -1,10 +1,18 @@
+<%@page import="conexao.HibernateUtil"%>
+<%@page import="controle.ProdutosDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%
 	pageContext.setAttribute("consulta", request.getAttribute("consulta"));
+								
+	// medicamentos
+	ProdutosDAO pDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
+	pageContext.setAttribute("produtos", pDAO.getProdutos());
+	pDAO.getSessao().close();
 %>
+								    
 <html lang="en">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -57,35 +65,81 @@
 				<div class="row">
 					<div class="input-field col s12 m6">
 						<i class="material-icons prefix">account_circle</i>
-						<textarea id="queixa" class="materialize-textarea">${consulta.queixa }</textarea>
+						<textarea id="queixa" class="materialize-textarea" name="queixa">${consulta.queixa }</textarea>
 						<label for="queixa">Queixa Principal</label>
 
 					</div>
 
 					<div class="input-field  col s12 m6">
-						<div class="col s12 m6">
+						<div class="col s12 m12" id="medicamento">
 							Medicamentos:
+							<!-- 
 							<p>
-								<input name="medicamentos" type="radio" id="sim" />
-								<label for="sim">Sim</label>
+								<input name="medicamentos" type="radio" class="medicamentos" id="medicamentos_nao" />
+								<label for="medicamentos_nao">Não</label>
 							</p>
-							<p>
-								<input name="medicamentos" type="radio" id="nao" />
-								<label for="nao">Não</label>
-							</p>
+								
+								<input name="medicamentos" type="radio" class="medicamentos" id="medicamento_sim" />
+								<label for="medicamento_sim">Sim</label>
+								
+								<button class="btn waves-effect waves-light right" id="bt_receituario_medico" type="submit" name="acao" value="receituario">Receituário Médico
+									<i class="material-icons right">library_books</i>
+								</button>
+							 -->
+								
+								 <!-- Modal Trigger -->
+								  <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Medicamentos</a>
+								
+								
+								  <!-- Modal Structure -->
+								  <div id="modal1" class="modal modal-fixed-footer">
+								    <div class="modal-content">
+								      <h4>Escolha dos Medicamentos</h4>
+								      Selecione o medicamento a ser receitado e escreva a descrição de uso:
+										<table class="bordered hoverable">
+											<thead>
+												<tr>
+													<td><b>Código</b></td>
+													<td><b>Nome Medicamento</b></td>
+													<td><b>Descrição  do Medicamento</b></td>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${produtos}" var="produto">
+													<tr>
+														<td>
+															<input type="checkbox" name="produtosGrupo" value="${produto.codigo}" id="${produto.codigo}">
+															<label for="${produto.codigo}">${produto.codigo}</label>
+														</td>
+														<td>${produto.nome}</td>
+														<td>
+															<input type="text" class="validate" name="medicamentos_descricao" />
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+								    </div>
+								    <div class="modal-footer">
+								    
+								      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat "><b>Pronto!</b></a>
+								    </div>
+								  </div>
+								
+								
 						</div>  
-						<div class="col s12 m6">
-							Pessoal:
+						<div class="col s12 m12">
+								
+							<br><br>Pessoal:
 							<p>
-								<input name="pessoal" type="checkbox" id="alergia" />
-								<label for="alergia">Alergia</label>
-							</p>
-							<p>
-								<input name="pessoal" type="checkbox" id="febre" />
+								<input name="pessoal" type="checkbox" id="alergia" value="alergia" />
+								<label for="alergia">Alergia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+								
+								<input name="pessoal" type="checkbox" id="febre" value="febre" />
 								<label for="febre">Febre</label>
 							</p>
 						</div>
-								<br><br><br><br><br><br>
+								<br><br><br><br><br><br><br><br><br><br><br>
 						<div class="input-field s12 m12">
 							<i class="material-icons prefix">account_circle</i>
 							<textarea id="anotacoes" name="anotacoesFinais" class="materialize-textarea">${consulta.anotacoesFinais }</textarea>
@@ -122,6 +176,7 @@
 			</form>
 		</div>
 	</div>
+	
 				<br><br>
 
 	<footer class="page-footer orange">
@@ -189,6 +244,12 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
+	<script> 
+	 $(document).ready(function(){
+		    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+		    $('.modal-trigger').leanModal();
+		  });
+	</script> 
 
 	</body>
 </html>

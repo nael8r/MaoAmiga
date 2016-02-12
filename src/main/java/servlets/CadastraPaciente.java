@@ -28,21 +28,14 @@ public class CadastraPaciente extends HttpServlet {
 		
 		Paciente paciente = new Paciente();
 		
-		paciente.setCodigo(Integer.parseInt(req.getParameter("cod")));
+		//paciente.setCodigo(Integer.parseInt(req.getParameter("cod")));
 		paciente.setNome(req.getParameter("nome"));
 		paciente.setCpf(req.getParameter("cpf"));
 		paciente.setRg(req.getParameter("rg"));
 		
 		
-		if (pacienteDAO.getPaciente(paciente.getCodigo()) == null) {
-
-			Transaction transacao = sessao.beginTransaction();
-			pacienteDAO.salvar(paciente);
-			transacao.commit();
-		}
-		else {
-			pacienteDAO.atualiza(paciente);
-		}
+		pacienteDAO.salvar(paciente);
+		
 		
 		
 		req.getRequestDispatcher("index.jsp").forward(req, resp);

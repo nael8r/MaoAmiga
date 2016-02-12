@@ -109,8 +109,8 @@
 							<br><br>
 
 				<div class="right">
-					<a class="btn waves-effect waves-light" href="index.jsp">Voltar
-						<i class="material-icons right">keyboad_backspace</i>
+					<a class="btn waves-effect waves-light" href="index.jsp">
+						Voltar <i class="material-icons right">keyboard_backspace</i>
 					</a>
 				</div>  
 			</form>

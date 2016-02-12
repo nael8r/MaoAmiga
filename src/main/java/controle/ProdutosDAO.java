@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import modelo.Medico;
 import modelo.Produtos;
 import modelo.ReceituarioMedico;
 
@@ -72,7 +73,15 @@ public class ProdutosDAO {
 		
 		return (Produtos)consulta.uniqueResult();
 	}
-	
+
+	public List<Produtos> getProdutos(String nome)
+	{
+		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
+		Query consulta = sessao.createQuery("from produtos where nome like :id");
+		consulta.setParameter("id", "%"+nome+"%");
+		
+		return consulta.list();
+	}
 	
 	
 	public Session getSessao() {

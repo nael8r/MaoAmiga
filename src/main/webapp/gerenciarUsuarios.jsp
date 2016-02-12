@@ -41,7 +41,7 @@
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
-					Amigo Online<b></a>
+					Amigo Online</b></a>
 		</div>
 	</nav>
 
@@ -101,6 +101,7 @@
 							<td><b>Nome</b></td>
 							<td><b>Login</b></td>
 							<td><b>Tipo</b></td>
+							<td><b>Excluir Usuário</b></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -111,9 +112,7 @@
 								<td>${usuario.login }</td>
 								<td>${usuario.tipo }</td>
 								<td><a href="removeUsuarioServlet?cod=${usuario.codigo}">
-										<div>
 											<i class="material-icons right">send</i>Exluir
-										</div>
 								</a></td>
 							</tr>
 						</c:forEach>
@@ -127,11 +126,6 @@
 					<a class="btn waves-effect waves-light" href="cadastraUsuario.jsp">
 						Criar novo usuário <i class="material-icons">person_add</i>
 					</a>
-				
-					<button class="btn waves-effect waves-light" type="submit"
-						name="action">
-						Ok <i class="material-icons right">send</i>
-					</button>
 
 					<a class="btn waves-effect waves-light" href="index.jsp">
 						Voltar <i class="material-icons right">cancel</i>

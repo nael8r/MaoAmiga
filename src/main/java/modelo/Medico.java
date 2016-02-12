@@ -22,7 +22,7 @@ public class Medico implements Serializable {
 	@Column(length=50, nullable=false)
 	private String especialidade;
 	@OneToMany(mappedBy="medico",
-			cascade=CascadeType.ALL,
+			//cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER,
 			orphanRemoval=true)
 	private List<Consulta> consultas;

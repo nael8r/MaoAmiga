@@ -23,10 +23,17 @@
 	<h2>RECEITUÁRIO MÉDICO</h2>
 
 	<table class="bordered hoverable">
+		<thead>
+			<tr>
+				<td><b>Nome do Medicamento</b></td>
+				<td><b>Forma de uso</b></td>
+			</tr>
+		</thead>
 		<tbody>
 			<c:forEach items="${medicamentos}" var="medicamento">
 				<tr>
-					<td>${medicamento}</td>
+					<td>${medicamento.produtos.nome}</td>
+					<td>${medicamento.medicamentos}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

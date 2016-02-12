@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -26,59 +27,79 @@ public class Consulta implements Serializable {
 	
 	@Id @GeneratedValue
 	private Integer codigo;
+	
 	// Agenda
 	@Temporal(TemporalType.DATE)
 	@Column(nullable=false)
 	private Date data;
+	
 	@Temporal(TemporalType.TIME)
 	@Column(nullable=false)
 	private Date hora;
+	
 	@Column(name="tipo_consulta", nullable=false)
 	private Character tipoConsulta;
+	
 	
 	// Pré-consulta
 	//@Column(nullable=false)
 	private Float peso;
+	
 	//@Column(nullable=false)
 	private Float altura;
+	
 	//@Column(nullable=false)
 	private Float temperatura;
+	
 	//@Column(nullable=false)
 	@Column(name="pressao_arterial", length=10)
 	private String pressaoArterial;
+	
 	//@Column(nullable=false)
 	private Integer idade;
+	
 	//@Column(nullable=false)
 	private Character sexo;
+	
 	
 	// Prontuário
 	@Lob
 	//@Column(nullable=false)
 	private String queixa;
+	
 	//@Column(nullable=false)
 	private Boolean usoMedicamentos;
+	
 	//@Column(nullable=false)
 	private Character pessoais;
+	
 	@Lob
 	//@Column(nullable=false)
 	@Column(name="anotacoes_finais")
 	private String anotacoesFinais;
+	
 	//@Column(nullable=false)
 	private Boolean atestado;
+	
 	// chaves estrangeiras
 	@ManyToOne(optional=false)
 	@JoinColumn(name="cod_paciente")
 	private Paciente paciente;
+	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="cod_medico")
 	private Medico medico;
+	
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy="consulta",
-			cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="consulta"
+			//, cascade=CascadeType.ALL
+			)
 	private List<ReceituarioMedico> receituariosMedicos;
+	
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy="consulta",
-			cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="consulta"
+			//, cascade=CascadeType.ALL
+			)
 	private List<ReceituarioExames> receituariosExames;
 	
 	public Consulta() {

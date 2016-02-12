@@ -104,7 +104,7 @@
 
 					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i> <input
-							type="text" id="pressao" name="pressao" value="${consulta.pressaoArterial }"> <label
+							type="text" id="pressao" name="pressao" value="${consulta.pressaoArterial }" length="10"> <label
 							for="pressao">Pressão Arterial</label>
 					</div>
 				</div>

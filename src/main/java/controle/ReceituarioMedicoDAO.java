@@ -1,12 +1,14 @@
 package controle;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import modelo.Consulta;
 import modelo.ReceituarioMedico;
 
 public class ReceituarioMedicoDAO {
@@ -36,6 +38,26 @@ public class ReceituarioMedicoDAO {
 	{
 		Transaction trans = sessao.beginTransaction();
 		sessao.delete(rm);
+		trans.commit();
+	}
+	
+	public void excluirReceituarioDaConsulta(Consulta c)
+	{	
+		List<ReceituarioMedico> todos = sessao.createQuery("from receituario_medico").list();
+		
+		Iterator<ReceituarioMedico> i = todos.iterator();
+
+		Transaction trans = sessao.beginTransaction();
+		
+		while (i.hasNext()) {
+		   ReceituarioMedico rm = i.next(); 
+		   ReceituarioMedico rm_Remover = rm; 
+		   
+		   if (rm.getConsulta().getCodigo() == c.getCodigo()) {
+			   sessao.delete(rm_Remover);
+			   i.remove();
+		   }
+		}
 		trans.commit();
 	}
 	

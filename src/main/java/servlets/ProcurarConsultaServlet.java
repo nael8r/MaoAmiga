@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 
@@ -41,8 +42,16 @@ public class ProcurarConsultaServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// Instancia os objetos para operação de cadastramento
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
+		Session sessao;
+		if (req.getAttribute("sessao") == null) {
+			// Instancia os objetos para operação de cadastramento
+			sessao = HibernateUtil.getSessionFactory().openSession();
+			req.getSession().setAttribute("sessao", sessao);
+		} else {
+			sessao = (Session) req.getSession().getAttribute("sessao");
+		}
+		
+		
 
 		// Retoma a consulta para alteração
 		ConsultaDAO consultaDao = new ConsultaDAO(sessao);
@@ -103,7 +112,7 @@ public class ProcurarConsultaServlet extends HttpServlet {
 					// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 					data = data.substring(3, 6);
 
-					mes = util.DateUtils.getMes(data);
+					mes = util.DateUtils.getMes(data) + 1;
 
 					dt.set(ano, mes, dia);
 
@@ -113,7 +122,7 @@ public class ProcurarConsultaServlet extends HttpServlet {
 
 				} catch (NullPointerException e) {
 					req.getRequestDispatcher(
-							"mensagemErroServlet?mensagem=ERRO! - Dados da data estão incorretos. Ex: 3, March 2010&direcao=procurarConsulta.jsp")
+							"mensagensErroServlet?mensagem=ERRO! - Dados da data estão incorretos. Ex: 3, March 2010&direcao=procurarConsulta.jsp")
 							.forward(req, resp);
 				} finally {
 					sessao.close();
@@ -174,12 +183,20 @@ public class ProcurarConsultaServlet extends HttpServlet {
 			Consulta consulta = new Consulta();
 			consulta = consultaDao.getConsulta(Integer.parseInt(req.getParameter("codigo_selecionado")));
 
-			req.getSession().setAttribute("consulta", consulta);
+			HttpSession session = req.getSession();
+			
+			session.setAttribute("consulta", consulta);
+			
 
 			
-			if (req.getParameter("acao") != null && req.getParameter("acao").equals("preConsulta")) {
-
+			if (req.getParameter("acao") != null && req.getParameter("acao").equals("prontuarioMedico")) {
+				
 				req.getRequestDispatcher("prontuarioMedico.jsp").forward(req, resp);
+				
+				
+			} else if (req.getParameter("acao") != null && req.getParameter("acao").equals("exames")) {
+				
+				req.getRequestDispatcher("listaExames.jsp?").forward(req, resp);
 				
 				
 			} else if (req.getParameter("acao") != null && req.getParameter("acao").equals("imprimir")) {

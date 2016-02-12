@@ -160,12 +160,12 @@
 
 							<br><br>
 
-				<div class="right">
+				<div class="right">				
 					<button class="btn waves-effect waves-light" type="submit"
-						name="acao" value="preConsulta">
+						name="acao" value="prontuarioMedico">
 						Prontuário Médico <i class="material-icons right">assignment_ind</i>
 					</button>
-
+					
 					<button class="btn waves-effect waves-light" type="submit"
 						name="acao" value="imprimir">
 						Imprimir <i class="material-icons right">print</i>

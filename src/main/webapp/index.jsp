@@ -57,33 +57,29 @@
 								<h5 class="center">Ambulatório</h5>
 
 								<ul class="collection with-header">
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Agendar Nova Consulta
+									<li class="collection-item"><a  class="collection-item"> <i
+											class="material-icons left">send</i> Gerenciar Usuários
 									</a></li>
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Lista de Espera
+									<li class="collection-item"><a 
+										class="collection-item"> <i class="material-icons left">send</i>
+											Agendar Nova Consulta
 									</a></li>
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Agenda de Consultas
-									</a></li>
-
-
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Agendar Consultas
+									 
+									<li class="collection-item"><a
+										 class="collection-item"> <i
+											class="material-icons left">send</i> Agenda de Consultas
 									</a></li>
 
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Lista de Espera
+									<li class="collection-item"><a 
+										class="collection-item"> <i class="material-icons left">send</i>
+											Cadastra Paciente
 									</a></li>
-
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Cadastra Paciente
+									<li class="collection-item"><a 
+										class="collection-item"> <i class="material-icons left">send</i>
+											Cadastra Médico
 									</a></li>
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Cadastra Médico
-									</a></li>
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i> Cadastra Medicamento
+									<li class="collection-item"><a class="collection-item"> <i
+											class="material-icons left">send</i> Cadastra Medicamento
 									</a></li>
 								</ul>
 							</div>
@@ -102,13 +98,13 @@
 										class="collection-item"> <i class="material-icons left">send</i>Lista
 											de Pacientes
 									</a></li>
-									<li class="collection-item"><a
-										href="procurarConsulta.jsp" class="collection-item">
-											<i class="material-icons left">send</i> Procurar Consulta
-									</a> </li>
-									<li class="collection-item"><a href="prontuarioMedico.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>Prontuário
-											Médico
+									<li class="collection-item"><a href="procurarConsulta.jsp"
+										class="collection-item"> <i class="material-icons left">send</i>
+											Lista de Consultas
+									</a></li>
+									<li class="collection-item"><a href="listaEspera.jsp"
+										class="collection-item"> <i class="material-icons left">send</i>
+											Lista de Espera
 									</a></li>
 									<li class="collection-item"><a
 										href="procurarMedicamento.jsp?cod=&nome="
@@ -128,24 +124,20 @@
 								<h5 class="center">Ambulatório</h5>
 
 								<ul class="collection with-header">
-								<li class="collection-item"><a
-										href="gerenciarUsuarios.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Gerenciar Usuários
+									<li class="collection-item"><a
+										href="gerenciarUsuarios.jsp" class="collection-item"> <i
+											class="material-icons left">send</i> Gerenciar Usuários
 									</a></li>
 									<li class="collection-item"><a
 										href="agendarConsulta?acao=procurarPaciente"
 										class="collection-item"> <i class="material-icons left">send</i>
 											Agendar Nova Consulta
 									</a></li>
-									<li class="collection-item"><a href="listaEspera.jsp"
-										class="collection-item"> <i class="material-icons left">send</i>
-											Lista de Espera
-									</a></li>
+									 
 									<li class="collection-item"><a
-										href="agendaConsultas.jsp?data=" class="collection-item">
-											<i class="material-icons left">send</i> Agenda de Consultas
-									</a> </li>
+										href="listaConsultas.jsp?data=" class="collection-item"> <i
+											class="material-icons left">send</i> Agenda de Consultas
+									</a></li>
 
 									<li class="collection-item"><a href="cadastraPaciente.jsp"
 										class="collection-item"> <i class="material-icons left">send</i>
@@ -168,17 +160,24 @@
 								<h2 class="center light-blue-text">
 									<i class="material-icons">settings</i>
 								</h2>
-								<h5 class="center">Consultório Médico - ARRUMAR</h5>
+								<h5 class="center">Consultório Médico</h5>
 
 								<ul class="collection with-header">
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i>Lista de Pacientes
+									<li class="collection-item"><a
+										class="collection-item"> <i class="material-icons left">send</i>Lista
+											de Pacientes
 									</a></li>
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i>Prontuário Médico
+									<li class="collection-item"><a
+										class="collection-item"> <i class="material-icons left">send</i>
+											Lista de Consultas
 									</a></li>
-									<li class="collection-item"><a class="collection-item">
-											<i class="material-icons left">send</i>Consultar Medicamentos
+									<li class="collection-item"><a
+										class="collection-item"> <i class="material-icons left">send</i>
+											Lista de Espera
+									</a></li>
+									<li class="collection-item"><a
+										class="collection-item"> <i class="material-icons left">send</i>Consultar
+											Medicamentos
 									</a></li>
 								</ul>
 							</div>

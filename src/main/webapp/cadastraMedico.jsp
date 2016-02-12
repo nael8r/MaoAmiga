@@ -39,12 +39,12 @@
 				<div class="row">
 					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="codigo" name="cod">
+						<input disabled ="text" id="codigo" name="cod">
 						<label for="codigo">Codigo</label>
 					</div>
 					<div class="input-field col s12 m8">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="nome" name="nome">
+						<input type="text" id="nome" name="nome" length="50">
 						<label for="nome">Nome do Médico</label>
 					</div>
 				</div>	
@@ -55,19 +55,19 @@
 
 					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="CRM" type="text" class="validate" name="crm">
+						<input id="CRM" type="text" class="validate" name="crm" length="20">
 									<label for="CRM">CRM</label>
 					</div>
 
 					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="endereco" type="text" class="validate" name="endereco">
+						<input id="endereco" type="text" class="validate" name="endereco" length="50">
 									<label for="endereco">Endereço</label>
 					</div>
 
 					<div class="input-field col s12 m4">
 						<i class="material-icons prefix">account_circle</i>
-						<input id="telefone" type="text" class="validate" name="telefone">
+						<input id="telefone" type="text" class="validate" name="telefone" length="20">
 									<label for="telefone">Telefone</label>
 					</div>
 				</div>  
@@ -75,7 +75,7 @@
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">account_circle</i>
-						<textarea id="especialidades" class="materialize-textarea" name="especialidades"></textarea>
+						<textarea id="especialidades" class="materialize-textarea" name="especialidades" length="50"></textarea>
 						<label for="especialidades">Especialidades</label>
 
 					</div>

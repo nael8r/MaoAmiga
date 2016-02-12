@@ -39,7 +39,7 @@
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="codigo" name="cod">
+						<input disabled="disabled" type="text" id="codigo" name="cod">
 						<label for="codigo">Codigo</label>
 					</div>
 				</div>	
@@ -47,7 +47,7 @@
 				<div class="row">
 					<div class="input-field col s12">
 						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="nome" name="nome">
+						<input type="text" id="nome" name="nome" length="50">
 						<label for="nome">Nome do Medicamento</label>
 					</div>
 				</div>	

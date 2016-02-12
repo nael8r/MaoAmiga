@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import conexao.HibernateUtil;
 import controle.ConsultaDAO;
 import modelo.Consulta;
@@ -32,7 +30,6 @@ public class AgendaConsultasServlet extends HttpServlet {
 		List<Consulta> amanha = new ArrayList<Consulta>();
 
 		// Instancia os objetos para operação de cadastramento
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
 		try {
 			if (!request.getParameter("data").isEmpty()) {
@@ -44,7 +41,7 @@ public class AgendaConsultasServlet extends HttpServlet {
 				int tamStringData;
 
 				// Retoma a consulta para alteração
-				ConsultaDAO consultaDao = new ConsultaDAO(sessao);
+				ConsultaDAO consultaDao = new ConsultaDAO(HibernateUtil.getSessionFactory().openSession());
 
 				String data = request.getParameter("data");
 
@@ -71,7 +68,7 @@ public class AgendaConsultasServlet extends HttpServlet {
 				// Mes - recebe o Mes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 				data = data.substring(3, 6);
 
-				mes = util.DateUtils.getMes(data);
+				mes = util.DateUtils.getMes(data) + 1;
 
 				dt.set(ano, mes, dia);
 
@@ -87,7 +84,6 @@ public class AgendaConsultasServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		finally {
-			sessao.close();
 		}
 		
 		request.getSession().setAttribute("ontem", ontem);

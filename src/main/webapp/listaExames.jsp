@@ -1,57 +1,64 @@
+<%@page import="modelo.ReceituarioExames"%>
+<%@page import="controle.ReceituarioExamesDAO"%>
+<%@page import="modelo.Paciente"%>
+<%@page import="modelo.Medico"%>
+<%@page import="controle.MedicoDAO"%>
+<%@page import="controle.PacienteDAO"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="org.hibernate.Session"%>
-<%@page import="controle.MedicoDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="modelo.Medico"%>
+<%@page import="modelo.Consulta"%>
 <%@page import="java.util.List"%>
+<%@page import="controle.ConsultaDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-
 <%
-	List<Medico> medicos = new ArrayList<Medico>();
 
-	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
+	List<ReceituarioExames> exames = new ArrayList<ReceituarioExames>();
+	ReceituarioExamesDAO reDAO = new ReceituarioExamesDAO(HibernateUtil.getSessionFactory().openSession());
 
-		MedicoDAO medicoDAO = (MedicoDAO) session.getAttribute("medicoDAO");
+	Consulta consulta = (Consulta)session.getAttribute("consulta");
+	
+	if (consulta != null) {
+		
+		if (request.getParameter("acao") != null) {
+				
+			if (request.getParameter("acao").equals("add")  && !request.getParameter("descricao").isEmpty()) {
+			
+				ReceituarioExames re = new ReceituarioExames();
+				
+				re.setProntuario(consulta);
+				re.setExames(request.getParameter("descricao"));
+			
+				reDAO.salvar(re);	
+				
+			
+			} else if (request.getParameter("acao").equals("excluir")  && !request.getParameter("codigo_exame").isEmpty()) {
+			
+				String codigo_string = request.getParameter("codigo_exame");
+				
+				ReceituarioExames re = reDAO.getReceituario(Integer.parseInt(codigo_string));
+				
+				reDAO.excluir(re);
+			
+			}
+		}
 
-		Integer codigo = Integer.parseInt(request.getParameter("cod"));
-
-		Medico medico = medicoDAO.getMedico(codigo);
-
-		if (medico != null)
-			medicos.add(medico);
-
-	} else if (request.getParameter("cod").isEmpty() && !request.getParameter("nome").isEmpty()) {
-
-		MedicoDAO medicoDAO = (MedicoDAO) session.getAttribute("medicoDAO");
-
-		medicos = medicoDAO.getMedicos(request.getParameter("nome"));
-
-	} else {
-
-		// Instancia os objetos para operação de cadastramento
-		Session sessao = HibernateUtil.getSessionFactory().openSession();
-
-		//Medicos medico = new Medicos();
-		MedicoDAO medicoDAO = new MedicoDAO(sessao);
-
-		// Define cada um na sessão para uso posteriori
-		session.setAttribute("medicoDAO", medicoDAO);
-		session.setAttribute("sessao", sessao);
-
-		medicos = medicoDAO.getMedicos();
+		exames = reDAO.getReceituariosDaConsulta(consulta.getCodigo());
+		
 	}
-
-	pageContext.setAttribute("medicos", medicos);
+	
+	pageContext.setAttribute("exames", exames);
 %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-<title>Procurar Médico - Mão Amiga</title>
+<title>Lista de Exames - Mão Amiga</title>
 
 <!-- CSS  -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -66,14 +73,14 @@
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
-					Amigo Online<b></a>
+					Amigo Online</b></a>
 		</div>
 	</nav>
 
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			<h1 class="header center orange-text">
-				<b>Procurar Médico</b>
+				<b>Lista de Exames</b>
 			</h1>
 
 		</div>
@@ -82,82 +89,72 @@
 
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
-			<h2 class="center">Formulário de Procura</h2>
-
-			<form action="procurarMedico.jsp" method="get">
+			<form action="listaExames.jsp" method="get">
 				<div class="row">
-					<div class="input-field col s12 m9">
-						<i class="material-icons prefix">account_circle</i> <input
-							type="text" id="nome" name="nome"> <label for="nome">Nome
-							Médico</label>
+					<div class="col s12 m12">
+						<table class="bordered hoverable">
+							<thead>
+								<tr>
+									<td><b>Código</b></td>
+									<td><b>Exame</b></td>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${exames}" var="exame">
+									<tr>
+										<td><input class="with-gap" type="radio" name="codigo_exame"
+											id="${exame.codigo }" value="${exame.codigo }" /> <label
+											for="${exame.codigo }">${exame.codigo }</label></td>
+										<td>${exame.exames}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
-
-					<button class="btn waves-effect waves-light m3" type="submit"
-						name="action">
-						Procurar <i class="material-icons right">search</i>
-					</button>
-
 				</div>
 
-				<h5>Ou</h5>
-				<br>
+				<br> <br>
 
-				<div class="row">
-					<div class="input-field col s12 m9">
-						<i class="material-icons prefix">account_circle</i> <input
-							type="text" id="codigo" name="cod"> <label for="codigo">Código</label>
-					</div>
+				<div class="right">
 
-					<button class="btn waves-effect waves-light m3" type="submit"
-						name="action">
-						Procurar <i class="material-icons right">search</i>
+					 <!-- Modal Trigger -->
+					   <button data-target="modal1" class="btn modal-trigger">
+					   	Adicionar
+					   	<i class="material-icons right">plus_one</i>
+					   </button>
+					
+					  <!-- Modal Structure -->
+					  <div id="modal1" class="modal modal-fixed-footer">
+					    <div class="modal-content">
+					      <h4>Novo Exame</h4>
+					      <p>Adicione o exame abaixo</p>
+					      <textarea name="descricao"></textarea>
+					    </div>
+					    <div class="modal-footer">					      
+							<button class="modal-action modal-close btn waves-effect waves-light" type="submit"
+								name="acao" value="add">
+								Adicionar novo Exame <i class="material-icons right">playlist_add_check</i>
+							</button>
+							
+							<button class="modal-action modal-close btn waves-effect waves-light" form="#">
+								Cancelar <i class="material-icons right">delete</i>
+							</button>
+					    </div>
+					  </div>
+
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="excluir">
+						Excluir <i class="material-icons right">delete</i>
 					</button>
 
+					<a class="btn waves-effect waves-light" href="index.jsp">
+						Cancelar <i class="material-icons right">cancel</i>
+					</a>
 				</div>
-				<br>
-				<br>
-				<h5>Resultado da procura:</h5>
-				<br>
-
-				<table class="bordered hoverable">
-					<thead>
-						<tr>
-							<td><b>Código</b></td>
-							<td><b>CRM</b></td>
-							<td><b>Nome Completo</b></td>
-							<td><b>Endereço</b></td>
-							<td><b>Telefone</b></td>
-							<td><b>Especialidades</b></td>
-							<td><b>Selecinonar</b></td>
-
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${medicos}" var="medico">
-							<tr>
-								<td>${medico.codigo}</td>
-								<td>${medico.crm}</td>
-								<td>${medico.nome}</td>
-								<td>${medico.endereco}</td>
-								<td>${medico.telefone}</td>
-								<td>${medico.especialidade}</td>
-								<td><a
-									href="agendarConsulta?acao=agendarConsulta&cod=${medico.codigo}">
-										<div>
-											<i class="material-icons right">send</i>Selecionar
-										</div>
-								</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-				<br>
-				<br>
 			</form>
 		</div>
 	</div>
-
+          
 	<br>
 	<br>
 
@@ -194,9 +191,9 @@
 						<div class="col l3 s12">
 							<h5 class="center  white-text">Consultório Médico</h5>
 							<ul>
-								<li><a href="listaMedicos"
+								<li><a href="listaPacientes"
 									class="collection-item white-text"> <i
-										class="material-icons">send</i>Lista de Medicos
+										class="material-icons">send</i>Lista de Pacientes
 								</a></li>
 								<li><a href="prontuarioMedico.jsp"
 									class="collection-item white-text"> <i
@@ -232,7 +229,7 @@
 							<h5 class="center  white-text">Consultório Médico</h5>
 							<ul>
 								<li><a class="collection-item white-text"> <i
-										class="material-icons">send</i>Lista de Medicos
+										class="material-icons">send</i>Lista de Pacientes
 								</a></li>
 								<li><a class="collection-item white-text"> <i
 										class="material-icons">send</i>Prontuá¡rio Médico
@@ -259,6 +256,12 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
+	<script>
+	 $(document).ready(function(){
+		    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+		    $('.modal-trigger').leanModal();
+		  });
+	</script>
 
 </body>
 </html>

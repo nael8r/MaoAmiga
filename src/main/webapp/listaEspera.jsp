@@ -1,7 +1,37 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="modelo.Espera"%>
+<%@page import="conexao.HibernateUtil"%>
+<%@page import="controle.EsperaDAO"%>
+<%@page import="java.util.Collections"%>
+<%@page import="java.util.Collection"%>
+<%@page import="modelo.Paciente"%>
+<%@page import="java.util.List"%>
+<%@page import="modelo.Medico"%>
+<%@page import="modelo.Usuario"%>
+<%@page import="controle.MedicoDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
+<%
+
+	MedicoDAO mdcDAO = new MedicoDAO(HibernateUtil.getSessionFactory().openSession());
+	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
+	Medico m = mdcDAO.getMedico(usuarioAutenticado.getNome());
+	List<Paciente> pacientes = mdcDAO.getPacientes(m.getCodigo());
+	
+	List<Espera> esperas = new ArrayList<Espera>();
+	EsperaDAO eDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
+	
+	for (Paciente paciente : pacientes) {
+		esperas.addAll(eDAO.getEsperaDoPaciente(paciente.getCodigo()));
+	}
+	
+	Collections.sort(esperas);
+	
+	pageContext.setAttribute("esperas", esperas);
+%>
 <html lang="en">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -17,7 +47,7 @@
 	
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório Amigo Online<b></a>
+			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório Amigo Online</b></a>
 		</div>
 	</nav>
 	
@@ -35,102 +65,33 @@
 		<div class="container">
 			<h2 class="center">Formulário de Procura</h2>
 
-			<form action="#">
-				<div class="row">
-					<div class="input-field col s12 m9">
-						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="nome">
-						<label for="nome">Nome</label>
-					</div>
-					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
-						<i class="material-icons right">search</i>
-					</button>
-
-				</div>  
-
-				<h5>Ou</h5>
-				<br>
-
-				<div class="row">
-					<div class="input-field col s12 m9">
-						<i class="material-icons prefix">account_circle</i>
-						<input type="text" id="telefone">
-						<label for="telefone">Telefone</label>
-					</div>
-					
-					<button class="btn waves-effect waves-light m3" type="submit" name="action">Procurar
-						<i class="material-icons right">search</i>
-					</button>
-
-				</div>  
-
-				<div class="right">
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Adicionar
-						<i class="material-icons right">add</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Deletar
-						<i class="material-icons right">delete</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Acima
-						<i class="material-icons right">keyboard_arrow_up</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Abaixo
-						<i class="material-icons right">keyboard_arrow_down</i>
-					</button>
-				</div>
-
-				<br><br>
-				<h5>Resultado da procura:</h5>
-				<br>
-
 				<table class="bordered hoverable">
 					<thead>
 						<tr>
-							<td><b>Nome</b></td>
-							<td><b>Telefone</b></td>
+							<td><b>Código do Paciente</b></td>
+							<td><b>Nome do Paciente</b></td>
+							<td><b>Data</b></td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Asdf</td>
-							<td>(00)0000-0000</td>
-						</tr>
-						<tr>
-							<td>Asdf</td>
-							<td>(00)0000-0000</td>
-						</tr>
-						<tr>
-							<td>Asdf</td>
-							<td>(00)0000-0000</td>
-						</tr>
+						<c:forEach items="${esperas}" var="espera" >
+							<tr>
+								<td>${espera.paciente.codigo }</td>
+								<td>${espera.paciente.nome }</td>
+								<td>${espera.data }</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-
 							<br><br>
 
 				<div class="right">
 
-					<button class="btn waves-effect waves-light" type="submit" name="action">Ok
-						<i class="material-icons right">send</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Cancelar
-						<i class="material-icons right">cancel</i>
-					</button>
-
-					<button class="btn waves-effect waves-light" type="submit" name="action">Voltar
+					<a class="btn waves-effect waves-light" href="index.jsp">Voltar
 						<i class="material-icons right">keyboard_backspace</i>
-					</button>
-
-					</button>
+					</a>
 
 				</div>  
-			</form>
 		</div>
 	</div>
 

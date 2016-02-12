@@ -38,10 +38,7 @@ public class ConsultarMedicamentoServlet extends HttpServlet {
 		}
 		else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
 			
-			Produtos produto = produtosDAO.getProduto(req.getParameter("nome"));
-
-			if (produto != null)
-				produtos.add(produto);
+			produtos = produtosDAO.getProdutos(req.getParameter("nome"));
 			
 		}
 		else {

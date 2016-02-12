@@ -78,6 +78,15 @@ public class MedicoDAO {
 		
 		return (Medico) consulta.uniqueResult();
 	}
+
+	public List<Medico> getMedicos(String nome)
+	{
+		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
+		Query consulta = sessao.createQuery("from medico where nome like :id");
+		consulta.setParameter("id", "%"+nome+"%");
+		
+		return consulta.list();
+	}
 	
 	public List<Consulta> getConsultas(Integer codigo)
 	{
