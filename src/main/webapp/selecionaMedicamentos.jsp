@@ -28,7 +28,7 @@
 
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório
+			<a id="logo-container" href="index.jsp" class="brand-logo center"><b>Ambulatório
 					Amigo Online</b></a>
 		</div>
 	</nav>
@@ -73,6 +73,49 @@
 			</form>
 		</div>
 	</div>
+
+
+	<br>
+	<br>
+
+	<footer class="page-footer orange">
+		<div class="container">
+			<div class="row">
+				<div class="col s12 m6">
+					<h5 class="white-text">
+						<a href="index.jsp" class="white-text"><b>Associação Mão Amiga</b></a>
+					</h5>
+					<p class="grey-text text-lighten-4">
+						Associação no combate ao câncer em Formiga.<br /> Rua Lassance
+						Cunha, 39 - Centro - Formiga MG. <br /> Telefone: (37) 3322-3291.
+					</p>
+
+
+				</div>
+				
+				<div class="col s12 m6">
+					<div align="right">
+						
+						<a class="white-text" href="index.jsp"><b>Home</b></a><br/><br/>
+						<a class="white-text" href="login.jsp"><b>Logout</b></a><br/>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				Made by <a class="orange-text text-lighten-3"
+					href="http://materializecss.com">Materialize</a>
+			</div>
+		</div>
+	</footer>
+
+
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
 
 </body>
 </html>

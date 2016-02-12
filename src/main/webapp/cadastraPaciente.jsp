@@ -17,7 +17,7 @@
 	
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.html" class="brand-logo center"><b>Ambulatório Amigo Online</b></a>
+			<a id="logo-container" href="index.jsp" class="brand-logo center"><b>Ambulatório Amigo Online</b></a>
 		</div>
 	</nav>
 	
@@ -85,54 +85,26 @@
 	<footer class="page-footer orange">
 		<div class="container">
 			<div class="row">
-				<div class="col l6 s12">
-					<h5 class="white-text"><b>Associação Mão Amiga</b></h5>
+				<div class="col s12 m6">
+					<h5 class="white-text">
+						<a href="index.jsp" class="white-text"><b>Associação Mão Amiga</b></a>
+					</h5>
 					<p class="grey-text text-lighten-4">
-						Associação no combate ao câncer em Formiga.<br />
-						Rua Lassance Cunha, 39 - Centro - Formiga MG. <br/>
-						Telefone: (37) 3322-3291.
+						Associação no combate ao câncer em Formiga.<br /> Rua Lassance
+						Cunha, 39 - Centro - Formiga MG. <br /> Telefone: (37) 3322-3291.
 					</p>
+
+
 				</div>
 				
-				<c:choose>
-				 	<c:when test="${sessionScope.usuarioAutenticado.tipo == 'm'.charAt(0)}">	
-						<div class="col l3 s12">
-							<h5 class="center  white-text">Ambulatório</h5>
-							<ul>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i> Agendar Consultas </a> </li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i> Lista de Espera</a></li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i> Agenda de Consultas</a></li>
-							</ul>
-						</div>
-						<div class="col l3 s12">
-							<h5 class="center  white-text">Consultório Paciente</h5>
-							<ul>
-								<li><a href="listaPacientes" class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
-								<li><a href="prontuarioMedico.jsp" class="collection-item white-text"> <i class="material-icons">send</i>Prontuário Paciente</a> </li>
-								<li><a href="consultarPacientes.jsp" class="collection-item white-text"> <i class="material-icons">send</i>Consultar Pacientes</a> </li>
-							</ul>
-						</div>
-				 	</c:when>
-				 	
-				 	<c:otherwise>
-						<div class="col l3 s12">
-							<h5 class="center  white-text">Ambulatório</h5>
-							<ul>
-								<li><a href="agendarConsulta.jsp" class="collection-item white-text"> <i class="material-icons">send</i> Agendar Consultas </a> </li>
-								<li><a href="listaEspera.jsp" class="collection-item white-text"> <i class="material-icons">send</i> Lista de Espera</a></li>
-								<li><a href="listaConsultas.jsp" class="collection-item white-text"> <i class="material-icons">send</i> Agenda de Consultas</a></li>
-							</ul>
-						</div>
-						<div class="col l3 s12">
-							<h5 class="center  white-text">Consultório Paciente</h5>
-							<ul>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Lista de Pacientes</a> </li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Prontuá¡rio Paciente</a> </li>
-								<li><a class="collection-item white-text"> <i class="material-icons">send</i>Consultar Pacientes</a> </li>
-							</ul>
-						</div>
-				 	</c:otherwise>
-				</c:choose>
+				<div class="col s12 m6">
+					<div align="right">
+						
+						<a class="white-text" href="index.jsp"><b>Home</b></a><br/><br/>
+						<a class="white-text" href="login.jsp"><b>Logout</b></a><br/>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 		<div class="footer-copyright">
