@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Medico;
 import modelo.Usuario;
 
 public class AutenticacaoFiltro implements Filter {
@@ -24,19 +25,84 @@ public class AutenticacaoFiltro implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		
-		HttpSession session = req.getSession();
-		
-		Usuario usuario = (Usuario) session.getAttribute("usuarioAutenticado");
-		
-		if (usuario == null) {
-			HttpServletResponse resp = (HttpServletResponse) response;
+		HttpServletResponse resp = (HttpServletResponse) response;
 
-			resp.sendRedirect("login.jsp");
+		/*
+		System.out.println(req.getServerName() + ":" + req.getServerPort() + ":" + req.getContextPath()+ ":" + req.getRequestURI());
+		
+		
+		
+		if (req.getRequestURI().equals("/MaoAmiga/") || req.getRequestURI().contains("login.jsp") || req.getRequestURI().contains("css") || req.getRequestURI().contains("js/") || req.getRequestURI().contains("font")) {
+			chain.doFilter(request, response);
+		} else {
+			HttpSession session = req.getSession(false);
+			Usuario usuario = null;
+			
+			if (session != null && session.getAttribute("usuarioAutenticado") != null)
+				usuario = (Usuario) session.getAttribute("usuarioAutenticado");
+
+			if (usuario == null) {
+				
+				req.getRequestDispatcher("login.jsp").forward(req, resp);
+			} else {
+
+				chain.doFilter(request, response);
+			}
 		}
-
-		chain.doFilter(request, response);
+		*/
 		
+		/*
+		else if (usuario.getTipo() == 'm') {
+			if (session.getAttribute("medicoAutenticado") != null) {
+				Medico m = (Medico) session.getAttribute("medicoAutenticado");
+				if (usuario.getNome().equals(m.getNome())) {
+					
+					if (req.getRequestURL().toString().contains("AutenticaLogin")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("listaPacientes")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("index")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("procurarMedicamento")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("consultarMedicamentoServlet")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("listaEspera")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("procurarConsulta")) {
+						chain.doFilter(request, response);
+						
+					} else if (req.getRequestURL().toString().contains("prontuarioMedico")) {
+						chain.doFilter(request, response);
+		
+					} else {
+						session.invalidate();
+						resp.sendRedirect("login.jsp");
+					}
+					
+				} else {
+					session.invalidate();
+					resp.sendRedirect("login.jsp");
+				}
+			} else {
+				session.invalidate();
+				resp.sendRedirect("login.jsp");
+			}
+		} else if (usuario.getTipo() == 'u') {
+			
+		} else {
+			session.invalidate();
+			resp.sendRedirect("login.jsp");
+		
+		}*/
+		
+		//chain.doFilter(request, response);
 	}
 	
 	public void init(FilterConfig arg0) throws ServletException {
