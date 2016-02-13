@@ -15,6 +15,10 @@ import modelo.Medico;
 import modelo.ReceituarioExames;
 import modelo.ReceituarioMedico;
 
+
+/*
+	Servlet de controle de comunicação com o banco de dados da classe consulta
+*/
 public class ConsultaDAO {
 	
 	private Session sessao;
@@ -38,6 +42,8 @@ public class ConsultaDAO {
 		trans.commit();
 	}
 	
+	// Realizando o ato de exclusão de uma consulta, verifica os dados dos respectivos receiturários
+		// para que não haja dados de consultas inexistentes
 	public void excluir(Consulta consulta)
 	{
 		ReceituarioMedicoDAO rmDAO = new ReceituarioMedicoDAO(HibernateUtil.getSessionFactory().openSession());
@@ -67,6 +73,7 @@ public class ConsultaDAO {
 		return consulta.list();
 	}
 
+	// Retorna a consulta as consultas que tiverem a data tal como passado como parâmetro.
 	public List<Consulta> getConsultas(Date data)
 	{
 

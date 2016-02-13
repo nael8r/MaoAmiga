@@ -12,6 +12,9 @@ import modelo.Consulta;
 import modelo.Medico;
 import modelo.Paciente;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Paciente
+*/
 public class PacienteDAO {
 	
 	private Session sessao;
@@ -69,6 +72,7 @@ public class PacienteDAO {
 		
 	}
 	
+	// Pega pacientes que tiver 'nome' incluido no nome
 	public Paciente getPaciente(String nome)
 	{
 		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
@@ -79,7 +83,7 @@ public class PacienteDAO {
 	}
 	
 	
-	
+	// Pega todos os pacientes que tiver 'nome' incluido no nome
 	public List<Paciente> getPacientes(String nome)
 	{
 		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
@@ -88,8 +92,6 @@ public class PacienteDAO {
 		
 		return consulta.list();
 	}
-	
-	
 	
 	
 	public List<Consulta> getConsultas(Integer codigo)

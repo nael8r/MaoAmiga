@@ -6,6 +6,11 @@ import javax.persistence.*;
 
 import org.jasypt.util.password.BasicPasswordEncryptor;
 
+/*
+	Classe de Usuário com as anotações do Hibernate para criação e especificação 
+		do banco de dados
+*/
+
 @Entity(name="usuario")
 public class Usuario implements Serializable {
 

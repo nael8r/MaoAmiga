@@ -3,6 +3,11 @@ package modelo;
 import java.io.Serializable;
 import javax.persistence.*;
 
+/*
+	Classe de Receituário Médico com as anotações do Hibernate para criação e especificação 
+		do banco de dados
+*/
+
 @Entity(name="receituario_medico")
 public class ReceituarioMedico implements Serializable {
 	

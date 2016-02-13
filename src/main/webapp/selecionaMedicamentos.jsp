@@ -1,3 +1,7 @@
+<!--
+	Página de seleção de medicamentos
+-->
+
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="controle.ProdutosDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

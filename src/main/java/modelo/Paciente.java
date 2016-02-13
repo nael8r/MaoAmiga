@@ -5,6 +5,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/*
+	Classe de Paciente com as anotações do Hibernate para criação e especificação 
+		do banco de dados
+*/
+
 @Entity(name="paciente")
 public class Paciente implements Serializable {
 

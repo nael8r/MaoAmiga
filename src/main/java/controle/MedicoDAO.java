@@ -14,6 +14,9 @@ import modelo.Paciente;
 import modelo.ReceituarioMedico;
 import modelo.Usuario;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Médico
+*/
 public class MedicoDAO {
 	private Session sessao;
 	
@@ -61,7 +64,7 @@ public class MedicoDAO {
 		
 		return consulta.list();
 	}
-	
+
 	public Medico getMedico(Integer codigo)
 	{
 		Query consulta = sessao.createQuery("from medico where codigo = :cod_param");
@@ -70,6 +73,7 @@ public class MedicoDAO {
 		return (Medico) consulta.uniqueResult();
 	}
 	
+	// Procedimento para resgatar os dados de o médico que tem 'nome' como parte do nome
 	public Medico getMedico(String nome)
 	{
 		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
@@ -79,6 +83,7 @@ public class MedicoDAO {
 		return (Medico) consulta.uniqueResult();
 	}
 
+	// Procedimento para resgatar os dados de todos os médicos que tenham 'nome' como parte do nome
 	public List<Medico> getMedicos(String nome)
 	{
 		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string
@@ -93,6 +98,7 @@ public class MedicoDAO {
 		return getMedico(codigo).getConsultas();
 	}
 	
+	// Retorna todos os receituários relacionados com o médico
 	public List<ReceituarioMedico> getReceituarios(Integer codigo)
 	{
 		List<Consulta> consultas = getConsultas(codigo);

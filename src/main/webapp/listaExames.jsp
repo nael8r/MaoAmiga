@@ -1,3 +1,7 @@
+<!--
+	Página de listagem de exames
+-->
+
 <%@page import="modelo.ReceituarioExames"%>
 <%@page import="controle.ReceituarioExamesDAO"%>
 <%@page import="modelo.Paciente"%>
@@ -18,15 +22,21 @@
 <html lang="en">
 <%
 
+	// Lista dos exames a serem exibidos
 	List<ReceituarioExames> exames = new ArrayList<ReceituarioExames>();
+	// Controle
 	ReceituarioExamesDAO reDAO = new ReceituarioExamesDAO(HibernateUtil.getSessionFactory().openSession());
 
+	// Recebe a consulta dos exames que serão exibido
 	Consulta consulta = (Consulta)session.getAttribute("consulta");
 	
+	// Se lista foi realmente definida
 	if (consulta != null) {
 		
+		// Verifica a acao a ser feita
 		if (request.getParameter("acao") != null) {
 				
+			// Adiciona mai exames
 			if (request.getParameter("acao").equals("add")  && !request.getParameter("descricao").isEmpty()) {
 			
 				ReceituarioExames re = new ReceituarioExames();
@@ -37,6 +47,7 @@
 				reDAO.salvar(re);	
 				
 			
+			// exclui exame pelo código
 			} else if (request.getParameter("acao").equals("excluir")  && !request.getParameter("codigo_exame").isEmpty()) {
 			
 				String codigo_string = request.getParameter("codigo_exame");
@@ -48,10 +59,12 @@
 			}
 		}
 
+		// Lista novos exames
 		exames = reDAO.getReceituariosDaConsulta(consulta.getCodigo());
 		
 	}
 	
+	// Define no escopo da página
 	pageContext.setAttribute("exames", exames);
 %>
 <head>

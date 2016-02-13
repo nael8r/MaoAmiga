@@ -1,3 +1,7 @@
+<!--
+	Página de procura de Pacientes cadastrados
+-->
+
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="controle.PacienteDAO"%>
@@ -11,31 +15,41 @@
 <html lang="en">
 
 <%
+	// Cria uma lista vazia para armazenar os novos pacientes a serem exibidos
 	List<Paciente> pacientes = new ArrayList<Paciente>();
 
+	// Verifica que tipo de busca está sendo feita
+		// Por codigo
 	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
 
+		// Instancia o controle
 		PacienteDAO pacienteDAO = (PacienteDAO) session.getAttribute("pacienteDAO");
 
+		// Recolhe o código 
 		Integer codigo = Integer.parseInt(request.getParameter("cod"));
 
+		// Pega o paciente e adiciona na lista
 		Paciente paciente = pacienteDAO.getPaciente(codigo);
 
 		if (paciente != null)
 			pacientes.add(paciente);
 		
+		// Por nome
 	} else if (request.getParameter("cod").isEmpty() && !request.getParameter("nome").isEmpty()) {
 
+		// Instancia o controle
 		PacienteDAO pacienteDAO = (PacienteDAO) session.getAttribute("pacienteDAO");
 
+		// Pega todos os pacientes que possuem 'nome' no nome
 		pacientes = pacienteDAO.getPacientes(request.getParameter("nome"));
 
 	} else {
 
+		// Caso nenhuma das opções, pega todos os pacientes
+
 		// Instancia os objetos para operação de cadastramento
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
-		//Pacientes paciente = new Pacientes();
 		PacienteDAO pacienteDAO = new PacienteDAO(sessao);
 
 		// Define cada um na sessão para uso posteriori
@@ -45,6 +59,7 @@
 		pacientes = pacienteDAO.getPacientes();
 	}
 
+	// Define uma cópia do escopo para a página
 	pageContext.setAttribute("pacientes", pacientes);
 %>
 <head>

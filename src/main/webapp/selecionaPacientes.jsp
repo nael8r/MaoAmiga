@@ -1,3 +1,7 @@
+<!--
+	Página de seleção pe paciente
+-->
+
 <%@page import="controle.UsuarioDAO"%>
 <%@page import="modelo.Usuario"%>
 <%@page import="modelo.Paciente"%>
@@ -10,10 +14,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-
-<%
-//TODO substituir o uso do datatables pelo c:foreach
-%>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -52,9 +52,7 @@
 		<div class="container">
 			<h5>Pacientes:</h5>
 			<br>
-			
-			
-			
+
 			<br> <br>
 
 			<div class="right">

@@ -12,22 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import conexao.HibernateUtil;
 import controle.UsuarioDAO;
-import modelo.Produtos;
 import modelo.Usuario;
+
+/*
+	Servlet responsável por realizar buscas de usuários no banco de dados
+*/
 
 @WebServlet("/consultarUsuariosServlet")
 public class ConsultarUsuariosServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// Lista dos usuários a serem exibidos
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		UsuarioDAO usuDAO = new UsuarioDAO(HibernateUtil.getSessionFactory().openSession());
 
+		// Verifica o tipo de solicitação
+			// Código
 		if (req.getParameter("cod") != null && !req.getParameter("cod").isEmpty()) {
 
 			Integer codigo = Integer.parseInt(req.getParameter("cod"));
@@ -37,6 +40,8 @@ public class ConsultarUsuariosServlet extends HttpServlet {
 			if (usuario != null)
 				usuarios.add(usuario);
 		} 
+
+			// Nome do usuário
 		else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
 
 			Usuario usuario = usuDAO.getUsuario(req.getParameter("nome"));
@@ -46,13 +51,16 @@ public class ConsultarUsuariosServlet extends HttpServlet {
 
 		} else {
 
+			// Ou a exibição de todos
 			usuarios = usuDAO.getUsuarios();
 		}
 
 		usuDAO.getSessao().close();
 
+		// Define a lista na sessão
 		req.getSession().setAttribute("usuarios", usuarios);
 
+		// Redireciona para a exibição
 		req.getRequestDispatcher("gerenciarUsuarios.jsp").forward(req, resp);
 	}
 

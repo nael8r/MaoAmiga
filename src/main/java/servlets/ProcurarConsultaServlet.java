@@ -20,12 +20,19 @@ import controle.MedicoDAO;
 import modelo.Consulta;
 import modelo.Medico;
 
+/*
+	Servlet que realiza todos os procedimentos de busca de consulta
+*/
+
 @WebServlet("/procurarConsultaServlet")
 public class ProcurarConsultaServlet extends HttpServlet {
 
-	public List<Consulta> consultasApenasDoUsuario(List<Consulta> consultas, Medico m) {
+	// Método para obter consultas que tiverem deerminado médico
+	public List<Consulta> consultasApenasDoMedico(List<Consulta> consultas, Medico m) {
+		// lista que será retornado os dados
 		List<Consulta> novaLista = new ArrayList<Consulta>();
 
+		// Para cada item da lista de consultas, seleciona apenas que tiverem determinado médico
 		for (Consulta c : consultas) {
 			if (c.getMedico().getCodigo() == m.getCodigo()) {
 				novaLista.add(c);
@@ -34,14 +41,13 @@ public class ProcurarConsultaServlet extends HttpServlet {
 		return novaLista;
 	}
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2945681250702720282L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		// Verifica se exite alguma seção já definida anteriormente 
+			// pra pegar a sessão de conexão com o banco
 		Session sessao;
 		if (req.getAttribute("sessao") == null) {
 			// Instancia os objetos para operação de cadastramento
@@ -53,16 +59,20 @@ public class ProcurarConsultaServlet extends HttpServlet {
 		
 		
 
-		// Retoma a consulta para alteração
+		// Controle de consultas
 		ConsultaDAO consultaDao = new ConsultaDAO(sessao);
 
+		// Caso a operação seja de procura
 		if (req.getParameter("acao") != null && req.getParameter("acao").equals("procurar")) {
 
+			// Define uma nova lista de consulta
 			List<Consulta> consultas = new ArrayList<Consulta>();
+
 
 			MedicoDAO medicoDAO = new MedicoDAO(HibernateUtil.getSessionFactory().openSession());
 			Medico medico = null;
 
+			// Recebe o médico responsável pelas consultas
 			try {
 				medico = (Medico) req.getSession().getAttribute("medicoAutenticado");
 			} catch (Exception e) {
@@ -70,9 +80,13 @@ public class ProcurarConsultaServlet extends HttpServlet {
 						"mensagemErroServlet?mensagem=ERRO! - Você não está logado como um usuário Médico!&direcao=login.jsp")
 						.forward(req, resp);
 			}
+
+			//Se a procura for por:
+				//data da consulta
 			if (req.getParameter("data") != null && !req.getParameter("data").isEmpty()
 					&& !req.getParameter("data").contains("data")) {
 
+				// Recebe a data
 				try {
 					Calendar dt = Calendar.getInstance();
 					int dia, mes, ano;
@@ -116,9 +130,13 @@ public class ProcurarConsultaServlet extends HttpServlet {
 
 					dt.set(ano, mes, dia);
 
+
+					// Busca no banco pela data informada
 					consultas = consultaDao.getConsultas(dt.getTime());
 
-					consultas = consultasApenasDoUsuario(consultas, medico);
+					// Filtra apenas os dados do médico
+					consultas = consultasApenasDoMedico(consultas, medico);
+
 
 				} catch (NullPointerException e) {
 					req.getRequestDispatcher(
@@ -127,12 +145,17 @@ public class ProcurarConsultaServlet extends HttpServlet {
 				} finally {
 					sessao.close();
 				}
+
+
+				// Por nome do paciente.
 			} else if (req.getParameter("nome") != null && !req.getParameter("nome").isEmpty()) {
 
 				try {
 
+					// Pegas as consultas do médico
 					consultas = medicoDAO.getConsultas(medico.getCodigo());
 
+					// Filtra as que possui o respectivo nome do paciente
 					List<Consulta> consultasNomePaciente = new ArrayList<Consulta>();
 
 					for (Consulta consulta : consultas) {
@@ -142,7 +165,6 @@ public class ProcurarConsultaServlet extends HttpServlet {
 					}
 
 					consultas.clear();
-
 					consultas = consultasNomePaciente;
 
 				} catch (Exception e) {
@@ -151,6 +173,8 @@ public class ProcurarConsultaServlet extends HttpServlet {
 							.forward(req, resp);
 				}
 
+
+				// Por código da consulta
 			} else if (req.getParameter("cod") != null && !req.getParameter("cod").isEmpty()) {
 
 				Integer codigo = Integer.parseInt(req.getParameter("cod"));
@@ -160,50 +184,66 @@ public class ProcurarConsultaServlet extends HttpServlet {
 				if (consulta != null) {
 					consultas.add(consulta);
 
-					consultas = consultasApenasDoUsuario(consultas, medico);
+					consultas = consultasApenasDoMedico(consultas, medico);
 				}
 
+
+			// Caso nenhum parâmetro tenha sido definido, retorna todas as consultas
+				// do respectivo médico
 			} else {
 
 				consultas = medicoDAO.getConsultas(medico.getCodigo());
 			}
 
+			// Define a lista na sessão
 			req.getSession().setAttribute("consultas", consultas);
 
+			// Redireciona para a exibição dos novos resulados
 			req.getRequestDispatcher("procurarConsulta.jsp").forward(req, resp);
 
+
+
+			// Operação de cancelamento
 		} else if (req.getParameter("acao") != null && req.getParameter("acao").equals("cancelar")) {
 
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 			
 			
+			// Caso tenha selecionado alguma consulta
 		} else if (req.getParameter("codigo_selecionado") != null
 				&& !req.getParameter("codigo_selecionado").isEmpty()) {
 			
+			// Recebe os dados dessa consulta
 			Consulta consulta = new Consulta();
 			consulta = consultaDao.getConsulta(Integer.parseInt(req.getParameter("codigo_selecionado")));
 
 			HttpSession session = req.getSession();
 			
+			// Define-a na sessão
 			session.setAttribute("consulta", consulta);
-			
 
 			
+			// Caso a ação seja
+				// Prontoário médico
 			if (req.getParameter("acao") != null && req.getParameter("acao").equals("prontuarioMedico")) {
 				
 				req.getRequestDispatcher("prontuarioMedico.jsp").forward(req, resp);
 				
 				
+				// Exames
 			} else if (req.getParameter("acao") != null && req.getParameter("acao").equals("exames")) {
 				
 				req.getRequestDispatcher("listaExames.jsp?").forward(req, resp);
 				
 				
+				// Imprimir Consulta
 			} else if (req.getParameter("acao") != null && req.getParameter("acao").equals("imprimir")) {
 
 				req.getRequestDispatcher("imprimirConsulta.jsp").forward(req, resp);
 				
 			}
+
+			// caso contrário, exibe comando inválido
 		} else {
 			req.getRequestDispatcher("mensagensErroServlet?mensagem=ERRO! - Comandos Inválidos!&direcao=index.jsp")
 					.forward(req, resp);

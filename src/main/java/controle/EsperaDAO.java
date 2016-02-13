@@ -11,6 +11,9 @@ import org.hibernate.Transaction;
 import modelo.Espera;
 import modelo.Paciente;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Espera
+*/
 public class EsperaDAO {
 	
 	private Session sessao;

@@ -1,3 +1,7 @@
+<!--
+	Página de listagem de pacientes de acordo com o médico
+-->
+
 <%@page import="modelo.Medico"%>
 <%@page import="modelo.Paciente"%>
 <%@page import="java.util.List"%>
@@ -10,6 +14,7 @@
 <html lang="en">
 
 <%
+	// Cria nova lista de pacientes do respectivo médico responsavel
 	MedicoDAO mdcDAO = (MedicoDAO) session.getAttribute("mdcDAO");
 	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
 	Medico m = mdcDAO.getMedico(usuarioAutenticado.getNome());

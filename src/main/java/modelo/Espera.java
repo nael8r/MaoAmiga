@@ -5,6 +5,11 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+/*
+	Classe de Espera com as anotações do Hibernate para criação e especificação 
+		do banco de dados
+*/
+
 @Entity(name="espera")
 public class Espera implements Serializable, Comparable<Espera> {
 
@@ -82,6 +87,10 @@ public class Espera implements Serializable, Comparable<Espera> {
 		return "Espera [data=" + data + "]";
 	}
 
+
+	// Função de compraração de datas.
+		// Este é necessário para que possa ordenar as datas
+		// ao serem exibidas na lista de espera.
 	public int compareTo(Espera o) {
 		if (this.getData().getTime() < o.getData().getTime()) {
 			return -1;

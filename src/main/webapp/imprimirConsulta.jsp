@@ -1,3 +1,7 @@
+<!--
+	Página de impressao de dados da consulta
+-->
+
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="controle.ConsultaDAO"%>
 <%@page import="modelo.Consulta"%>

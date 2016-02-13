@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import conexao.HibernateUtil;
 import controle.ConsultaDAO;
@@ -22,12 +21,13 @@ import modelo.Consulta;
 import modelo.Espera;
 import modelo.Paciente;
 
+/*
+	Servlet de agendamento de uma nova consulta com sua informações básicas
+*/
+
 @WebServlet("/agendarConsulta")
 public class AgendaNovaConsulta extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -37,28 +37,29 @@ public class AgendaNovaConsulta extends HttpServlet {
 
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 		
-		
 		// Retoma a consulta para alteração
 		Consulta consulta = (Consulta)session.getAttribute("consulta");
 		ConsultaDAO consultaDao = new ConsultaDAO(sessao);
 
+		// Recebe os dados básicos da consulta
 		String data = req.getParameter("data");
 		int hora = Integer.parseInt(req.getParameter("hora"));
 		int min = Integer.parseInt(req.getParameter("minuto"));
 		Character tipo = req.getParameter("tipo").charAt(0);
 
+		// Realiza conversão do formato da hora para o arquivamento no banco de dados
 		Calendar dt = Calendar.getInstance();
 		Calendar horario = Calendar.getInstance();
 		
 		int dia, mes, ano;
 
-		// hora
+		// hora ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		horario.set(Calendar.HOUR_OF_DAY, hora);
 		horario.set(Calendar.MINUTE, min);
 		
 		consulta.setHora(horario.getTime());
 		
-		// data - dia
+		// dia ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		String diaString = null;
 		
 		if (data.charAt(1) == ' ') {
@@ -74,12 +75,12 @@ public class AgendaNovaConsulta extends HttpServlet {
 		
 		dia = Integer.parseInt(diaString);
 		
-
+		// ano ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		int tamStringData = data.length();
 		
 		ano = Integer.parseInt(data.substring(tamStringData - 4, tamStringData));
 	
-		
+		// mes ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 		data = data.substring(3, 6);
 		
 		if (data.equals("Jan")) {
@@ -108,8 +109,10 @@ public class AgendaNovaConsulta extends HttpServlet {
 			mes = 11;
 		} else mes = 0;
 		
+
 		dt.set(ano, mes, dia);
 		
+		// cria um novo objeto para arquivamento da lista de espera
 		Espera novaEspera = new Espera(dt.getTime(), consulta.getPaciente());
 		EsperaDAO esperaDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
 		
@@ -118,58 +121,13 @@ public class AgendaNovaConsulta extends HttpServlet {
 		
 		consulta.setTipoConsulta(tipo);
 		
-		
-/*
-		
-		Float altura, temperatura, peso;
-		Boolean usoMedicamentos, atestado;
-		Character pessoais;
-		String anotacoesFinais, pressaoArterial, queixa;
-		// TODO ReceituarioSSSSS
-		//List<ReceituarioExames> receituariosExames = new ArrayList<ReceituarioExames>();
-		//List<ReceituarioMedico> receituariosMedicos = new ArrayList<ReceituarioMedico>();
-		
-
-		altura          = Float.parseFloat(req.getParameter("altura"));
-		temperatura     = Float.parseFloat(req.getParameter("temperatura"));
-		peso            = Float.parseFloat(req.getParameter("peso"));
-		
-		usoMedicamentos = Boolean.parseBoolean(req.getParameter("usoMedicamentos"));
-		atestado        = Boolean.parseBoolean(req.getParameter("atestado"));
-		
-		pessoais        = req.getParameter("pessoais").charAt(0);
-		
-		anotacoesFinais = req.getParameter("anotacoesFinais");
-		pressaoArterial = req.getParameter("pressaoArterial");
-		queixa          = req.getParameter("queixa");
-		
-		consulta.setAltura(altura);
-		consulta.setAnotacoesFinais(anotacoesFinais);
-		consulta.setAtestado(atestado);
-		// TODO
-		//consulta.setData(data);
-		//consulta.setHora(hora);
-		consulta.setPeso(peso);
-		consulta.setPessoais(pessoais);
-		consulta.setPressaoArterial(pressaoArterial);
-		consulta.setQueixa(queixa);
-		// TODO
-		//consulta.setReceituariosExames(receituariosExames);
-		//consulta.setReceituariosMedicos(receituariosMedicos);
-		consulta.setTemperatura(temperatura);
-		consulta.setTipoConsulta(tipoConsulta);
-		consulta.setUsoMedicamentos(usoMedicamentos);
-		
-		
-		*/
-		
+		// Salva a consulta e tambem o item Espera
 		consultaDao.salvar(consulta);
 		esperaDAO.salvar(novaEspera);
 		
 		sessao.close();
 		
 		// Redireciona para a próxima página 
-
 		resp.sendRedirect("index.jsp");
 	}
 	

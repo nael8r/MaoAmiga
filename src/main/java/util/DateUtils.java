@@ -1,7 +1,11 @@
 package util;
 
+/*
+	Classe responsável em realizar a conversão do mês entre banco de dados e página web
+*/
 public class DateUtils {
 	
+	// Recebe o prefixo do mês e retorna seu respectivo valor
 	public static Integer getMes(String prefixo)
 	{
 		if (prefixo.equals("Jan")) {

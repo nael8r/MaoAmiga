@@ -4,6 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/*
+	Classe de Receituário Exames com as anotações do Hibernate para criação e especificação 
+		do banco de dados
+*/
+
 @Entity(name="receituario_exames")
 public class ReceituarioExames implements Serializable {
 

@@ -14,6 +14,9 @@ import modelo.Paciente;
 import modelo.ReceituarioExames;
 import modelo.ReceituarioMedico;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Receiturario de Exames
+*/
 public class ReceituarioExamesDAO {
 	
 	private Session sessao;
@@ -45,6 +48,10 @@ public class ReceituarioExamesDAO {
 	}
 
 	
+	// Procedimento para exclusão de todos os receituários referentes a denterminada consulta.
+		// Este procedimento é necessário pois, ao efetuar o cadastro de uma nova consulta, caso 
+		// esta não seja possível de ser completada, todos os receituários criados referentes
+		// a esta consulta deverão de ser excluídos
 	public void excluirReceituarioDaConsulta(Consulta c)
 	{	
 		List<ReceituarioExames> todos = sessao.createQuery("from receituario_exames").list();

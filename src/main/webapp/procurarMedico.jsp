@@ -1,3 +1,7 @@
+<!--
+	Procura de Médicos
+-->
+
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="controle.MedicoDAO"%>
@@ -11,10 +15,13 @@
 <html lang="en">
 
 <%
+	// Lista dos médicos que serão exibidos
 	List<Medico> medicos = new ArrayList<Medico>();
 
+	// Procura médico pelo codigo
 	if (!request.getParameter("cod").isEmpty() && request.getParameter("nome").isEmpty()) {
 
+		// Realiza a procura do médico pelo seu código
 		MedicoDAO medicoDAO = (MedicoDAO) session.getAttribute("medicoDAO");
 
 		Integer codigo = Integer.parseInt(request.getParameter("cod"));
@@ -24,18 +31,20 @@
 		if (medico != null)
 			medicos.add(medico);
 
+		// Por nome
 	} else if (request.getParameter("cod").isEmpty() && !request.getParameter("nome").isEmpty()) {
 
+		// Pega todos os médicos que possuem 'nome' no nome
 		MedicoDAO medicoDAO = (MedicoDAO) session.getAttribute("medicoDAO");
 
 		medicos = medicoDAO.getMedicos(request.getParameter("nome"));
 
 	} else {
 
+		// Caso contrário, exibe todos os médicos cadastrados
 		// Instancia os objetos para operação de cadastramento
 		Session sessao = HibernateUtil.getSessionFactory().openSession();
 
-		//Medicos medico = new Medicos();
 		MedicoDAO medicoDAO = new MedicoDAO(sessao);
 
 		// Define cada um na sessão para uso posteriori
@@ -45,6 +54,7 @@
 		medicos = medicoDAO.getMedicos();
 	}
 
+	// Define o escopo para o acesso na página
 	pageContext.setAttribute("medicos", medicos);
 %>
 <head>
@@ -66,7 +76,7 @@
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.jsp" class="brand-logo center"><b>Ambulatório
-					Amigo Online<b></a>
+					Amigo Online</b></a>
 		</div>
 	</nav>
 

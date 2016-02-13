@@ -11,6 +11,9 @@ import org.hibernate.Transaction;
 import modelo.Consulta;
 import modelo.ReceituarioMedico;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Receituário Médico
+*/
 public class ReceituarioMedicoDAO {
 	
 	private Session sessao;
@@ -41,14 +44,21 @@ public class ReceituarioMedicoDAO {
 		trans.commit();
 	}
 	
+	// Método que realiza a exclusão dos receituários de determinada consulta
+		// É necessário pois, quando realiza-se um cadastro de uma nova consulta e este falha,
+		// os dados preechidos previamente do receituário devem ser eliminados já que são
+		// dependentes diretamente da consulta
 	public void excluirReceituarioDaConsulta(Consulta c)
 	{	
+		// Seleciona todos os receituários
 		List<ReceituarioMedico> todos = sessao.createQuery("from receituario_medico").list();
 		
+		// Utiliza o iterator para operar sobre as iterações
 		Iterator<ReceituarioMedico> i = todos.iterator();
 
 		Transaction trans = sessao.beginTransaction();
 		
+		// Apaga os dados referentes à consulta
 		while (i.hasNext()) {
 		   ReceituarioMedico rm = i.next(); 
 		   ReceituarioMedico rm_Remover = rm; 

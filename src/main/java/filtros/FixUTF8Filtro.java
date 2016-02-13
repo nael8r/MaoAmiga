@@ -10,12 +10,15 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+/*
+	Classe responsável por definir o tipo de codificação de todas as páginas
+		definindo para UTF-8
+*/
+
 @WebFilter("/*")
 public class FixUTF8Filtro implements Filter {
 
 	public void destroy() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -26,8 +29,6 @@ public class FixUTF8Filtro implements Filter {
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
-
 	}
 
 }

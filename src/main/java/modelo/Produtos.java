@@ -5,6 +5,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+/*
+	Classe de Produtos com as anotações do Hibernate para criação e especificação 
+		do banco de dados
+*/
+
 @Entity(name="produtos")
 public class Produtos implements Serializable {
 

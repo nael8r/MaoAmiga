@@ -11,6 +11,9 @@ import modelo.Medico;
 import modelo.Produtos;
 import modelo.ReceituarioMedico;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Produto
+*/
 public class ProdutosDAO {
 	
 	private Session sessao;
@@ -74,6 +77,7 @@ public class ProdutosDAO {
 		return (Produtos)consulta.uniqueResult();
 	}
 
+	// Seleciona todos os produtos que possui 'nome' como parte do nome
 	public List<Produtos> getProdutos(String nome)
 	{
 		// https://stackoverflow.com/questions/28555942/hibernate-query-for-searching-part-of-string

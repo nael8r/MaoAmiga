@@ -17,6 +17,7 @@
 
 
 <%
+	// Listas a serem atribuidas no escopo da página
 	pageContext.setAttribute("ontem", request.getAttribute("ontem"));
 	pageContext.setAttribute("hoje", request.getAttribute("hoje"));
 	pageContext.setAttribute("amanha", request.getAttribute("amanha"));

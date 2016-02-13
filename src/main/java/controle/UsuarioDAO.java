@@ -13,6 +13,9 @@ import org.jasypt.util.password.BasicPasswordEncryptor;
 import modelo.Medico;
 import modelo.Usuario;
 
+/*
+	Servlet de controle de comunicação com o banco de dados da classe Usuário
+*/
 public class UsuarioDAO {
 	
 	private Session sessao;
@@ -54,15 +57,6 @@ public class UsuarioDAO {
 		return consulta.list();
 	}
 	
-//	@SuppressWarnings("unchecked")
-//	public List<Usuario> getUsuarios(Integer limite)
-//	{
-//		Query consulta = sessao.createQuery("from usuario");
-//		consulta.setMaxResults(limite);
-//		
-//		return consulta.list();
-//	}
-	
 	public Usuario getUsuario(Integer codigo)
 	{
 		Query consulta = sessao.createQuery("from usuario where codigo = :cod_param");
@@ -71,6 +65,7 @@ public class UsuarioDAO {
 		return (Usuario) consulta.uniqueResult();
 	}
 	
+	// Recolhe usuário que possui um nome que tenha 'nome' incluido
 	public Usuario getUsuario(String nome)
 	{
 		Query consulta = sessao.createQuery("from usuario where nome like :id");
@@ -96,10 +91,6 @@ public class UsuarioDAO {
 	
 	public Usuario validaLogin(String login, String senha)
 	{
-//		Criteria criteria = session.createCriteria(Usuario.class, "u");
-//		criteria.add(Restrictions.eq("u.login", login));
-//		criteria.add(Restrictions.eq("u.senha", senha));
-//		return (Usuario)criteria.uniqueResult();
 		
 		String hql = "select u from usuario u where u.login = :login_param";
 		
@@ -122,7 +113,4 @@ public class UsuarioDAO {
 	public void setSessao(Session sessao) {
 		this.sessao = sessao;
 	}
-	
-	
-
 }

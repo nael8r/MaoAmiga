@@ -1,3 +1,7 @@
+<!--
+	Página de procura de consultas
+-->
+
 <%@page import="modelo.Medico"%>
 <%@page import="controle.MedicoDAO"%>
 <%@page import="modelo.Consulta"%>
@@ -14,11 +18,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
+	// Verifica se as consultas já foram definidas em escopo de sessao
 	if(session.getAttribute("consultas") == null)
 	{
-	  //ConsultaDAO consultasDAO = new ConsultaDAO(HibernateUtil.getSessionFactory().openSession());
-	  //List<Consulta> consultas = consultasDAO.getConsultas();
-	  
+		// Se não, define novo escopo com todas as consultas
 	  MedicoDAO medicoDAO = new MedicoDAO(HibernateUtil.getSessionFactory().openSession());
 	  Medico medico = (Medico)request.getSession().getAttribute("medicoAutenticado");
 	  List<Consulta> consultas = medicoDAO.getConsultas(medico.getCodigo()); 
@@ -26,6 +29,7 @@
 	}
 	else
 	{
+		// Caso já, utiliza-as
 	  pageContext.setAttribute("consultas", session.getAttribute("consultas"));
 	  session.removeAttribute("consultas");
 	}

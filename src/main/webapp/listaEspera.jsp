@@ -1,3 +1,7 @@
+<!--
+	Lista de pacientes em espera
+-->
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="modelo.Espera"%>
@@ -15,21 +19,29 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <%
-
+	// Controle de médicos
 	MedicoDAO mdcDAO = new MedicoDAO(HibernateUtil.getSessionFactory().openSession());
+	// Verifica se o usuário está autenticado para resgatar o objeto médico relacionado a ele
 	Usuario usuarioAutenticado = (Usuario)session.getAttribute("usuarioAutenticado");
 	Medico m = mdcDAO.getMedico(usuarioAutenticado.getNome());
+	// Lista de pacientes do respectivo médico
 	List<Paciente> pacientes = mdcDAO.getPacientes(m.getCodigo());
 	
+	// Lista de experas que será exibida
 	List<Espera> esperas = new ArrayList<Espera>();
+	// Controle de Espera
 	EsperaDAO eDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
 	
+	// Pega todos os exames dos respectivos pacientes relacionados com o médico
+		// Assim, só será exibido exames do médico logado
 	for (Paciente paciente : pacientes) {
 		esperas.addAll(eDAO.getEsperaDoPaciente(paciente.getCodigo()));
 	}
 	
+	// Ordena pela data
 	Collections.sort(esperas);
 	
+	// Define a lista no escopo de página
 	pageContext.setAttribute("esperas", esperas);
 %>
 <html lang="en">

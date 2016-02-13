@@ -5,10 +5,15 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
 
+/*
+	Classe para início da conexão do Hiberate com o banco de dados
+*/
 public class HibernateUtil {
+	// Sessão de comunicação
 	private static final SessionFactory	sessionFactory	= buildSessionFactory();
 	
-	private static SessionFactory buildSessionFactory() {
+	// Iniciando uma nova comunicação por meio da configuração existente no 'hibernate.cfg.xml'
+ 	private static SessionFactory buildSessionFactory() {
 		try {
 			Configuration cfg = new Configuration();
 			cfg.configure("hibernate.cfg.xml");
@@ -24,6 +29,7 @@ public class HibernateUtil {
 		}
 	}
 	
+	// Retorna a sessão
 	public static SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}

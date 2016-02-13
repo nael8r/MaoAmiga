@@ -1,3 +1,7 @@
+<!--
+	Página de gerenciamento de usuários
+-->
+
 <%@page import="java.util.List"%>
 <%@page import="modelo.Usuario"%>
 <%@page import="java.util.ArrayList"%>
@@ -9,15 +13,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
-
+	// Verifica se a lista de usuários já esta definida na sessão
 	if(session.getAttribute("usuarios") == null)
 	{
+		// Se não, cria uma nova com todos
 		UsuarioDAO usuDAO = new UsuarioDAO(HibernateUtil.getSessionFactory().openSession());
 		List<Usuario> usuarios = usuDAO.getUsuarios();
 		pageContext.setAttribute("usuarios", usuarios);
 	}
 	else
 	{
+		// Se sim, pega a lista da sessão
 		pageContext.setAttribute("usuarios", session.getAttribute("usuarios"));
 		session.removeAttribute("usuarios");
 	}

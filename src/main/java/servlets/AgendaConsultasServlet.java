@@ -15,25 +15,31 @@ import conexao.HibernateUtil;
 import controle.ConsultaDAO;
 import modelo.Consulta;
 
+/*
+	Procedimento de busca de consultas por meio de datas.
+	Escolhido uma data, cria-se três listas.
+		Lista de consultas da data selecionada - (ontem)
+		Lista de consultas da data anterior à selecionada - (hoje)
+		Lista de consultas da data posterior selecionada - (amanha)
+*/
+
 @WebServlet("/agendaConsultasServlet")
 public class AgendaConsultasServlet extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2945681250702720282L;
-	
+		
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// Cria as 3 listas que serão preenchidas com consults
 		List<Consulta> ontem = new ArrayList<Consulta>();
 		List<Consulta> hoje = new ArrayList<Consulta>();
 		List<Consulta> amanha = new ArrayList<Consulta>();
 
-		// Instancia os objetos para operação de cadastramento
-
 		try {
+			// Verifica se o parametro data foi preenchido corretamente
 			if (!request.getParameter("data").isEmpty()) {
 
+				// Realiza a leitura deste e conversão para a consulta no banco de dados
 				Calendar dt = Calendar.getInstance();
 				Calendar diaAnterior = Calendar.getInstance();
 				Calendar diaPosterior = Calendar.getInstance();
@@ -72,9 +78,11 @@ public class AgendaConsultasServlet extends HttpServlet {
 
 				dt.set(ano, mes, dia);
 
+				// Obtem a data anterior e posterior subtraindo/adicionando 1 (um) dia em milissegundos (86.400.000 milissegundos)
 				diaAnterior.setTimeInMillis(dt.getTimeInMillis() - 24 * 60 * 60 * 1000);
 				diaPosterior.setTimeInMillis(dt.getTimeInMillis() + 24 * 60 * 60 * 1000);
 
+				// Recebe as consultas referentes a cada dia
 				ontem = consultaDao.getConsultas(diaAnterior.getTime());
 				hoje = consultaDao.getConsultas(dt.getTime());
 				amanha = consultaDao.getConsultas(diaPosterior.getTime());
@@ -86,10 +94,12 @@ public class AgendaConsultasServlet extends HttpServlet {
 		finally {
 		}
 		
+		// acopla cada uma na sessão
 		request.getSession().setAttribute("ontem", ontem);
 		request.getSession().setAttribute("hoje", hoje);
 		request.getSession().setAttribute("amanha", amanha);
 		
+		// redireciona para a página de exibição
 		request.getRequestDispatcher("listaConsultas.jsp").forward(request, response);;
 	}
 

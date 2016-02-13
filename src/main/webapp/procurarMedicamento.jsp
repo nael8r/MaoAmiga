@@ -1,3 +1,7 @@
+<!--
+	Página de consulta a medicamentos
+-->
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.Produtos"%>
 <%@page import="java.util.List"%>
@@ -10,12 +14,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <%
+	// Vefifica se os produtos foram definidos em escopo da secao
 	if(session.getAttribute("produtos") == null)
 	{
+		// Se não, define novos escopo já com todos os produtos
 	  ProdutosDAO usuDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
 	  List<Produtos> produtos = usuDAO.getProdutos();
 	  pageContext.setAttribute("produtos", produtos);
 	}
+		// Se sim, utiliza este
 	else
 	{
 	  pageContext.setAttribute("produtos", session.getAttribute("produtos"));

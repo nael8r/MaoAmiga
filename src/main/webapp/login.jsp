@@ -1,9 +1,15 @@
+<!--
+	Página de login
+-->
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <%
+	// Toda vez que for acessada, invalidará a sessão a fim de forçar uma nova autenticacao
 	session.invalidate();
 %>
 <head>

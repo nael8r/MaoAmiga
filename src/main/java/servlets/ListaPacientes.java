@@ -12,16 +12,16 @@ import org.hibernate.Session;
 
 import conexao.HibernateUtil;
 import controle.MedicoDAO;
-import controle.PacienteDAO;
-import controle.UsuarioDAO;
-import modelo.Usuario;
+
+/*
+	Servlet que realiza a inicialização dos dados da listagem de pacientes.
+		É definido o controle do médico na sessão para que a página possa selecionar 
+		apenas os pacietnes do médico responsável
+*/
 
 @WebServlet("/listaPacientes")
 public class ListaPacientes extends HttpServlet {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7990034399384818368L;
 
 	@Override

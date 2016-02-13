@@ -1,3 +1,7 @@
+<!--
+	Página de Pré consulta feita pelo secretário
+-->
+
 <%@page import="modelo.Consulta"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

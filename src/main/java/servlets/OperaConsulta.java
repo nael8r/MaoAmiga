@@ -15,12 +15,13 @@ import conexao.HibernateUtil;
 import controle.ConsultaDAO;
 import modelo.Consulta;
 
+/*
+	Servlet de operações de consulta, incluindo definição de Pré-Consulta
+*/
+
 @WebServlet("/operaConsulta")
 public class OperaConsulta extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5692333961401394154L;
 
 	@Override
@@ -32,9 +33,13 @@ public class OperaConsulta extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 
+		// Verifica se foi definido alguma ação
 		if (req.getParameter("acao") != null) {
 			
+			// Verifica se a ação é
+				// De definição de Pre Consulta
 			if (req.getParameter("acao").equals("preConsultaConcluida")) {
+
 
 				cDAO = new ConsultaDAO(sessao);
 				Consulta consulta = (Consulta) session.getAttribute("consulta");
@@ -44,6 +49,7 @@ public class OperaConsulta extends HttpServlet {
 				char sexo;
 				String pressao;
 
+				// Recebe os dados
 				try {
 					altura = Float.parseFloat(req.getParameter("altura"));
 					temperatura = Float.parseFloat(req.getParameter("temperatura"));
@@ -58,6 +64,7 @@ public class OperaConsulta extends HttpServlet {
 								.forward(req, resp);
 					}
 
+					// Salva os novos dados
 					consulta.setAltura(altura);
 					consulta.setPeso(peso);
 					consulta.setTemperatura(temperatura);
@@ -65,6 +72,7 @@ public class OperaConsulta extends HttpServlet {
 					consulta.setSexo(sexo);
 					consulta.setPressaoArterial(pressao);
 
+					// Salva no banco de dados
 					cDAO.atualizar(consulta);
 
 					sessao.close();
@@ -80,6 +88,9 @@ public class OperaConsulta extends HttpServlet {
 					sessao.close();
 					e.printStackTrace();
 				}
+
+
+				// caso não seja a conclusão da pré-consulta
 			} else {
 				cDAO = new ConsultaDAO(sessao);
 				session.setAttribute("consultaDAO", cDAO);
@@ -87,6 +98,8 @@ public class OperaConsulta extends HttpServlet {
 				Consulta consulta = cDAO.getConsulta(Integer.parseInt(req.getParameter("cod")));
 
 				
+				// Verifica se quer redirecionamento para
+					// preConsulta a ser preenchida
 				if (req.getParameter("acao").equals("preConsulta")) {
 
 					session.setAttribute("consulta", consulta);
@@ -95,6 +108,7 @@ public class OperaConsulta extends HttpServlet {
 					
 					req.getRequestDispatcher("preConsulta.jsp").forward(req, resp);
 					
+					// imprimir os dados 
 				} else if (req.getParameter("acao").equals("imprimir")) {
 
 					session.setAttribute("consulta", consulta);
@@ -105,6 +119,7 @@ public class OperaConsulta extends HttpServlet {
 					
 					req.getRequestDispatcher("imprimirConsulta.jsp").forward(req, resp);
 					
+					// Excluir a consulta
 				} else if (req.getParameter("acao").equals("excluir")) {
 
 					// TODO
