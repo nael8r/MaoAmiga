@@ -52,6 +52,9 @@ public class ConsultaDAO {
 		ReceituarioExamesDAO reDAO = new ReceituarioExamesDAO(HibernateUtil.getSessionFactory().openSession());
 		reDAO.excluirReceituarioDaConsulta(consulta);
 		
+		EsperaDAO eDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
+		eDAO.excluirEsperaDaConsulta(consulta.getPaciente().getCodigo(), consulta.getData().getTime());
+		
 		Transaction trans = sessao.beginTransaction();
 		sessao.delete(consulta);
 		trans.commit();

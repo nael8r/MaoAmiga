@@ -62,7 +62,7 @@
 				    		<option disabled selected>Escolha Tipo Consulta</option>
 				    		<option value="1">Consulta em Geral</option>
 				    		<option value="2">Curativo</option>
-				    		<option value="3">Entrega de Examos</option>
+				    		<option value="3">Entrega de Exames</option>
 				    	</select>
 
 					</div>

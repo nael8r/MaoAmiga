@@ -164,6 +164,13 @@
 
 							<br><br>
 
+				<div class="left">				
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="exames">
+						Exames <i class="material-icons right">assignment_ind</i>
+					</button>
+				</div>
+
 				<div class="right">				
 					<button class="btn waves-effect waves-light" type="submit"
 						name="acao" value="prontuarioMedico">

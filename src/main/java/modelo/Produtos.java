@@ -19,7 +19,7 @@ public class Produtos implements Serializable {
 	@Column(length=50, nullable=false)
 	private String nome;
 	@OneToMany(mappedBy="produtos",
-			cascade=CascadeType.ALL,
+			//cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER)
 	private List<ReceituarioMedico> receituariosMedicos;
 	public Integer getCodigo() {

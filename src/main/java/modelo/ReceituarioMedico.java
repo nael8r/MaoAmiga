@@ -19,7 +19,9 @@ public class ReceituarioMedico implements Serializable {
 	@Column(nullable=false)
 	private String medicamentos;
 	
-	@ManyToOne(optional=false, cascade=CascadeType.ALL)
+	@ManyToOne(optional=false
+			//, cascade=CascadeType.ALL
+			)
 	@JoinColumn(name="cod_consulta")
 	private Consulta consulta;
 	

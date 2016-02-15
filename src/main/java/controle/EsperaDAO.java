@@ -1,7 +1,9 @@
 package controle;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -10,6 +12,7 @@ import org.hibernate.Transaction;
 
 import modelo.Espera;
 import modelo.Paciente;
+import modelo.ReceituarioMedico;
 
 /*
 	Servlet de controle de comunicação com o banco de dados da classe Espera
@@ -65,6 +68,30 @@ public class EsperaDAO {
 		consulta.setInteger("cod_param", codigo);
 		
 		return (Espera)consulta.uniqueResult();
+	}
+	
+	public void excluirEsperaDaConsulta(int codigoPaciente, long milissegundos)
+	{
+		Date data = new Date(milissegundos);
+		List<Espera> e = new ArrayList<>();
+		
+		Query consulta = sessao.createQuery("from espera");
+		
+		Iterator<Espera> iter = consulta.list().iterator();
+		
+		Transaction t = sessao.beginTransaction();
+		
+		while(iter.hasNext()) {
+			Espera buff = iter.next();
+			Espera buff_remove = buff;
+
+		   if (buff_remove.getPaciente().getCodigo() == codigoPaciente && buff_remove.getData().equals(data)) {
+			   sessao.delete(buff_remove);
+			   iter.remove();
+		   }
+		}
+		
+		t.commit();
 	}
 	
 	public List<Espera> getEsperaDoPaciente(Integer codigo)

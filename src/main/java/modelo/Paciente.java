@@ -23,7 +23,7 @@ public class Paciente implements Serializable {
 	@Column(length=11, nullable=false)
 	private String rg;
 	@OneToMany(mappedBy="paciente",
-			cascade=CascadeType.ALL,
+			//cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER)
 	private List<Espera> esperas;
 	@OneToMany(mappedBy="paciente",
