@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -108,27 +109,43 @@ public class AgendaNovaConsulta extends HttpServlet {
 		} else if (data.equals("Dez")) {
 			mes = 11;
 		} else mes = 0;
-		
 
-		dt.set(ano, mes, dia);
 		
-		// cria um novo objeto para arquivamento da lista de espera
-		Espera novaEspera = new Espera(dt.getTime(), consulta.getPaciente());
-		EsperaDAO esperaDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
+		dt.set(ano, mes + 1, dia);
 		
+		int quantConsultasDia = consultaDao.getConsultas(dt.getTime()).size();
 		
-		consulta.setData(dt.getTime());
-		
-		consulta.setTipoConsulta(tipo);
-		
-		// Salva a consulta e tambem o item Espera
-		consultaDao.salvar(consulta);
-		esperaDAO.salvar(novaEspera);
-		
-		sessao.close();
-		
-		// Redireciona para a próxima página 
-		resp.sendRedirect("index.jsp");
+		// Verifica o limite de 7 consultas ao dia
+		if (quantConsultasDia >= 7) {	
+			sessao.close();
+			// Direciona-o para a tela de index
+			req.getRequestDispatcher(
+					"mensagensErroServlet?mensagem=ERRO! - O número máximo de consultas (7) já foi atingido!&direcao=index.jsp"
+					).forward(req, resp);
+			
+			// Caso contrário, continua com o cadastro
+		} else {
+
+			dt.set(ano, mes, dia);
+			
+			// cria um novo objeto para arquivamento da lista de espera
+			Espera novaEspera = new Espera(dt.getTime(), consulta.getPaciente());
+			EsperaDAO esperaDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
+			
+			
+			consulta.setData(dt.getTime());
+			
+			consulta.setTipoConsulta(tipo);
+			
+			// Salva a consulta e tambem o item Espera
+			consultaDao.salvar(consulta);
+			esperaDAO.salvar(novaEspera);
+			
+			sessao.close();
+			
+			// Redireciona para a próxima página 
+			resp.sendRedirect("index.jsp");
+		}
 	}
 	
 	@Override
