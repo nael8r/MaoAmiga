@@ -10,7 +10,7 @@ import javax.persistence.*;
 
 @Entity(name="receituario_medico")
 public class ReceituarioMedico implements Serializable {
-	
+
 	private static final long serialVersionUID = -6428859897486544367L;
 	@Id @GeneratedValue
 	private Integer codigo;
@@ -19,8 +19,11 @@ public class ReceituarioMedico implements Serializable {
 	@Column(nullable=false)
 	private String medicamentos;
 	
+	@Column(nullable=false)
+	private int quantidade;
+	
 	@ManyToOne(optional=false
-			//, cascade=CascadeType.ALL
+			, cascade=CascadeType.REMOVE
 			)
 	@JoinColumn(name="cod_consulta")
 	private Consulta consulta;
@@ -67,6 +70,14 @@ public class ReceituarioMedico implements Serializable {
 
 	public void setProdutos(Produtos produtos) {
 		this.produtos = produtos;
+	}
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	@Override

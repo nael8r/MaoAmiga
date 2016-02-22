@@ -14,29 +14,34 @@ import javax.persistence.*;
 public class Paciente implements Serializable {
 
 	private static final long serialVersionUID = -6594217200682507286L;
+	
 	@Id @GeneratedValue
 	private Integer codigo;
+	
 	@Column(length=50, nullable=false)
 	private String nome;
+	
 	@Column(length=11, nullable=false)
 	private String cpf;
+	
 	@Column(length=11, nullable=false)
 	private String rg;
+	
 	@OneToMany(mappedBy="paciente",
-			//cascade=CascadeType.ALL,
+			cascade=CascadeType.REMOVE,
 			fetch=FetchType.EAGER)
 	private List<Espera> esperas;
+	
 	@OneToMany(mappedBy="paciente",
-			//cascade=CascadeType.ALL,
+			cascade=CascadeType.REMOVE,
 			fetch=FetchType.EAGER,
 			orphanRemoval=true)
 	private List<Consulta> consultas;
 	
-	public Paciente() {
-	}
+	
+	public Paciente() {}
 
 	public Paciente(String nome, String cpf, String rg) {
-		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;

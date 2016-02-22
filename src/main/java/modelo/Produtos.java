@@ -12,16 +12,25 @@ import javax.persistence.*;
 
 @Entity(name="produtos")
 public class Produtos implements Serializable {
-
+	
 	private static final long serialVersionUID = 1419690007796173533L;
+	
 	@Id @GeneratedValue
 	private Integer codigo;
+	
 	@Column(length=50, nullable=false)
 	private String nome;
+	
 	@OneToMany(mappedBy="produtos",
 			//cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER)
 	private List<ReceituarioMedico> receituariosMedicos;
+
+	@Column(nullable=false)
+	private int quantidade;
+	
+	
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -40,6 +49,14 @@ public class Produtos implements Serializable {
 	public void setReceituariosMedicos(List<ReceituarioMedico> receituariosMedicos) {
 		this.receituariosMedicos = receituariosMedicos;
 	}
+
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

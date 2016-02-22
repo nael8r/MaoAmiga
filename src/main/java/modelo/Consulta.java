@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -95,15 +96,17 @@ public class Consulta implements Serializable {
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="consulta"
-			//, cascade=CascadeType.ALL
+			, cascade=CascadeType.REMOVE
 			)
 	private List<ReceituarioMedico> receituariosMedicos;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy="consulta"
-			//, cascade=CascadeType.ALL
+			, cascade=CascadeType.REMOVE
 			)
 	private List<ReceituarioExames> receituariosExames;
+	
+	
 	
 	public Consulta() {
 	}

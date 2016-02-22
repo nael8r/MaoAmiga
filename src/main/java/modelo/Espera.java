@@ -14,11 +14,14 @@ import javax.persistence.*;
 public class Espera implements Serializable, Comparable<Espera> {
 
 	private static final long serialVersionUID = 4363136501653697837L;
+	
 	@Id @GeneratedValue
 	private Integer codigo;
+	
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date data;
+	
 	@ManyToOne(optional=false)
 	@JoinColumn(name="cod_paciente")
 	private Paciente paciente;

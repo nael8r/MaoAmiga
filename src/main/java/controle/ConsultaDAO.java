@@ -46,11 +46,11 @@ public class ConsultaDAO {
 		// para que não haja dados de consultas inexistentes
 	public void excluir(Consulta consulta)
 	{
-		ReceituarioMedicoDAO rmDAO = new ReceituarioMedicoDAO(HibernateUtil.getSessionFactory().openSession());
-		rmDAO.excluirReceituarioDaConsulta(consulta);
+		//ReceituarioMedicoDAO rmDAO = new ReceituarioMedicoDAO(HibernateUtil.getSessionFactory().openSession());
+		//rmDAO.excluirReceituarioDaConsulta(consulta);
 		
-		ReceituarioExamesDAO reDAO = new ReceituarioExamesDAO(HibernateUtil.getSessionFactory().openSession());
-		reDAO.excluirReceituarioDaConsulta(consulta);
+		//ReceituarioExamesDAO reDAO = new ReceituarioExamesDAO(HibernateUtil.getSessionFactory().openSession());
+		//reDAO.excluirReceituarioDaConsulta(consulta);
 		
 		EsperaDAO eDAO = new EsperaDAO(HibernateUtil.getSessionFactory().openSession());
 		eDAO.excluirEsperaDaConsulta(consulta.getPaciente().getCodigo(), consulta.getData().getTime());

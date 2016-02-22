@@ -36,13 +36,21 @@ public class CadastraMedicamento extends HttpServlet {
 		// Novo objeto para armazenamento das informações
 		Produtos produto = new Produtos();
 		
-		// Salva os novos dados no objeto
-		produto.setNome(req.getParameter("nome"));
+		try {
+
+			// Salva os novos dados no objeto
+			produto.setNome(req.getParameter("nome"));
+			produto.setQuantidade(Integer.parseInt(req.getParameter("quantidade")));
+			
+			// Salva o objeto no banco de dados
+			produtosDAO.salvar(produto);
+			
+			// Redireciona para o index
+			req.getRequestDispatcher("procurarMedicamento.jsp").forward(req, resp);
+			
+		} catch (Exception e) {
+			req.getRequestDispatcher("mensagensErroServlet?mensagem=ERRO! - Dados de cadastro errôneos!&direcao=cadastraMedicamento.jsp").forward(req, resp);
+		}
 		
-		// Salva o objeto no banco de dados
-		produtosDAO.salvar(produto);
-		
-		// Redireciona para o index
-		req.getRequestDispatcher("index.jsp").forward(req, resp);
 	}
 }

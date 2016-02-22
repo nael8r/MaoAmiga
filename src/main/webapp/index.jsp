@@ -57,16 +57,16 @@
 						<h5 class="center">Ambulatório</h5>
 
 						<ul class="collection with-header">
-							<li class="collection-item"><a
-								href="gerenciarUsuarios.jsp" class="collection-item"> <i
-									class="material-icons left">send</i> Gerenciar Usuários
+							<li class="collection-item"><a href="gerenciarUsuarios.jsp"
+								class="collection-item"> <i class="material-icons left">send</i>
+									Gerenciar Usuários
 							</a></li>
 							<li class="collection-item"><a
 								href="agendarConsulta?acao=procurarPaciente"
 								class="collection-item"> <i class="material-icons left">send</i>
 									Agendar Nova Consulta
 							</a></li>
-							 
+
 							<li class="collection-item"><a
 								href="listaConsultas.jsp?data=" class="collection-item"> <i
 									class="material-icons left">send</i> Agenda de Consultas
@@ -80,9 +80,11 @@
 								class="collection-item"> <i class="material-icons left">send</i>
 									Cadastra Médico
 							</a></li>
+
 							<li class="collection-item"><a
-								href="cadastraMedicamento.jsp" class="collection-item"> <i
-									class="material-icons left">send</i> Cadastra Medicamento
+								href="procurarMedicamento.jsp?cod=&nome="
+								class="collection-item"> <i class="material-icons left">send</i>Consultar
+									e Cadastrar Medicamentos
 							</a></li>
 						</ul>
 					</div>
@@ -126,7 +128,8 @@
 			<div class="row">
 				<div class="col s12 m6">
 					<h5 class="white-text">
-						<a href="index.jsp" class="white-text"><b>Associação Mão Amiga</b></a>
+						<a href="index.jsp" class="white-text"><b>Associação Mão
+								Amiga</b></a>
 					</h5>
 					<p class="grey-text text-lighten-4">
 						Associação no combate ao câncer em Formiga.<br /> Rua Lassance
@@ -135,15 +138,15 @@
 
 
 				</div>
-				
+
 				<div class="col s12 m6">
 					<div align="right">
-						
-						<a class="white-text" href="index.jsp"><b>Home</b></a><br/><br/>
-						<a class="white-text" href="login.jsp"><b>Logout</b></a><br/>
+
+						<a class="white-text" href="index.jsp"><b>Home</b></a><br /> <br />
+						<a class="white-text" href="login.jsp"><b>Logout</b></a><br />
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer-copyright">

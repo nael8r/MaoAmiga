@@ -5,37 +5,42 @@
 <%@page import="conexao.HibernateUtil"%>
 <%@page import="controle.ProdutosDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%
 	pageContext.setAttribute("consulta", request.getAttribute("consulta"));
-								
+
 	// medicamentos
 	ProdutosDAO pDAO = new ProdutosDAO(HibernateUtil.getSessionFactory().openSession());
 	pageContext.setAttribute("produtos", pDAO.getProdutos());
 	pDAO.getSessao().close();
 %>
-								    
+
 <html lang="en">
 <head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>Prontuário Médico - Mão Amiga</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Prontuário Médico - Mão Amiga</title>
 
-		<!-- CSS  -->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<!-- CSS  -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link href="css/materialize.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="css/style.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 </head>
 <body>
-	
+
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.jsp" class="brand-logo center"><b>Ambulatório Amigo Online</b></a>
+			<a id="logo-container" href="index.jsp" class="brand-logo center"><b>Ambulatório
+					Amigo Online</b></a>
 		</div>
 	</nav>
-	
+
 	<div class="section no-pad-bot" id="index-banner">
 		<div class="container">
 			<h1 class="header center orange-text">
@@ -54,17 +59,17 @@
 				<div class="row">
 
 					<div class="input-field col s12 m6">
-						<i class="material-icons prefix">account_circle</i>
-						<input disabled value="${consulta.paciente.nome }" id="paciente" type="text" class="validate">
-									<label for="paciente">Paciente</label>
+						<i class="material-icons prefix">account_circle</i> <input
+							disabled value="${consulta.paciente.nome }" id="paciente"
+							type="text" class="validate"> <label for="paciente">Paciente</label>
 					</div>
 
 					<div class="input-field col s12 m6">
-						<i class="material-icons prefix">account_circle</i>
-						<input disabled value="${consulta.medico.nome }" id="medico" type="text" class="validate">
-									<label for="medico">Médico</label>
+						<i class="material-icons prefix">account_circle</i> <input
+							disabled value="${consulta.medico.nome }" id="medico" type="text"
+							class="validate"> <label for="medico">Médico</label>
 					</div>
-				</div>  
+				</div>
 
 				<div class="row">
 					<div class="input-field col s12 m6">
@@ -90,105 +95,123 @@
 									<i class="material-icons right">library_books</i>
 								</button>
 							 -->
-								
-								 <!-- Modal Trigger -->
-								  <a class="modal-trigger waves-effect waves-light btn" href="#modal1">Medicamentos</a>
-								
-								
-								  <!-- Modal Structure -->
-								  <div id="modal1" class="modal modal-fixed-footer">
-								    <div class="modal-content">
-								      <h4>Escolha dos Medicamentos</h4>
-								      Selecione o medicamento a ser receitado e escreva a descrição de uso:
-										<table class="bordered hoverable">
-											<thead>
+
+							<!-- Modal Trigger -->
+							<a class="modal-trigger waves-effect waves-light btn"
+								href="#modal1">Medicamentos</a>
+
+
+							<!-- Modal Structure -->
+							<div id="modal1" class="modal modal-fixed-footer">
+								<div class="modal-content">
+									<h4>Escolha dos Medicamentos</h4>
+									<font color="#FF0000"><b>ATENÇÃO:</b> Selecione o medicamento a ser receitado, a quantidade necessária e escreva a descrição
+									de uso:</font>
+									<table class="bordered hoverable">
+										<thead>
+											<tr>
+												<td><b>Código</b></td>
+												<td><b>Nome</b></td>
+												<td><b>Qnt. Disponível</b></td>
+												<td><b>Qnt. Medicada</b></td>
+												<td><b>Descrição</b></td>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${produtos}" var="produto">
 												<tr>
-													<td><b>Código</b></td>
-													<td><b>Nome Medicamento</b></td>
-													<td><b>Descrição  do Medicamento</b></td>
+													<td><input type="checkbox" name="produtosGrupo"
+														value="${produto.codigo}" id="${produto.codigo}">
+														<label for="${produto.codigo}">${produto.codigo}</label></td>
+														
+													<td>${produto.nome}</td>
+													
+													<td>${produto.quantidade}</td>
+													
+													<td><input type="text" class="validate"
+														name="medicamentos_quantidade" /></td>
+														
+													<td><input type="text" class="validate"
+														name="medicamentos_descricao" /></td>
 												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${produtos}" var="produto">
-													<tr>
-														<td>
-															<input type="checkbox" name="produtosGrupo" value="${produto.codigo}" id="${produto.codigo}">
-															<label for="${produto.codigo}">${produto.codigo}</label>
-														</td>
-														<td>${produto.nome}</td>
-														<td>
-															<input type="text" class="validate" name="medicamentos_descricao" />
-														</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-								    </div>
-								    <div class="modal-footer">
-								    
-								      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat "><b>Pronto!</b></a>
-								    </div>
-								  </div>
-								
-								
-						</div>  
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<div class="modal-footer">
+
+									<a href="#!"
+										class="modal-action modal-close waves-effect waves-green btn-flat "><b>Pronto!</b></a>
+								</div>
+							</div>
+
+
+						</div>
 						<div class="col s12 m12">
-								
-							<br><br>Pessoal:
+
+							<br> <br>Pessoal:
 							<p>
-								<input name="pessoal" type="checkbox" id="alergia" value="alergia" />
-								<label for="alergia">Alergia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-								
+								<input name="pessoal" type="checkbox" id="alergia"
+									value="alergia" /> <label for="alergia">Alergia&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+
 								<input name="pessoal" type="checkbox" id="febre" value="febre" />
 								<label for="febre">Febre</label>
 							</p>
 						</div>
-								<br><br><br><br><br><br><br><br><br><br><br>
+						<br> <br> <br> <br> <br> <br> <br>
+						<br> <br> <br> <br>
 						<div class="input-field s12 m12">
 							<i class="material-icons prefix">account_circle</i>
-							<textarea id="anotacoes" name="anotacoesFinais" class="materialize-textarea">${consulta.anotacoesFinais }</textarea>
+							<textarea id="anotacoes" name="anotacoesFinais"
+								class="materialize-textarea">${consulta.anotacoesFinais }</textarea>
 							<label for="anotacoes">Anotações Finais</label>
 						</div>
 					</div>
-			
 
-				</div>  
-							<br><br>
+
+				</div>
+				<br> <br>
 
 				<div class="left">
 
-					<button class="btn waves-effect waves-light" type="submit" name="acao" value="atestado">Atestado Médico
-						<i class="material-icons right">book</i>
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="atestado">
+						Atestado Médico <i class="material-icons right">book</i>
 					</button>
 
-					<button class="btn waves-effect waves-light" type="submit" name="acao" value="receituario">Receituário Médico
-						<i class="material-icons right">library_books</i>
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="receituario">
+						Receituário Médico <i class="material-icons right">library_books</i>
 					</button>
 
 				</div>
 				<div class="right">
 
-					<button class="btn waves-effect waves-light" type="submit" name="acao" value="enviar">Enviar
-						<i class="material-icons right">send</i>
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="enviar">
+						Enviar <i class="material-icons right">send</i>
 					</button>
 
-					<button class="btn waves-effect waves-light" type="submit" name="acao" value="cancelar">Cancelar
-						<i class="material-icons right">cancel</i>
+					<button class="btn waves-effect waves-light" type="submit"
+						name="acao" value="cancelar">
+						Cancelar <i class="material-icons right">cancel</i>
 					</button>
 
-				</div>  
+				</div>
 			</form>
 		</div>
 	</div>
-	
-				<br><br>
+
+	<br>
+	<br>
 
 	<footer class="page-footer orange">
 		<div class="container">
 			<div class="row">
 				<div class="col s12 m6">
 					<h5 class="white-text">
-						<a href="index.jsp" class="white-text"><b>Associação Mão Amiga</b></a>
+						<a href="index.jsp" class="white-text"><b>Associação Mão
+								Amiga</b></a>
 					</h5>
 					<p class="grey-text text-lighten-4">
 						Associação no combate ao câncer em Formiga.<br /> Rua Lassance
@@ -197,20 +220,21 @@
 
 
 				</div>
-				
+
 				<div class="col s12 m6">
 					<div align="right">
-						
-						<a class="white-text" href="index.jsp"><b>Home</b></a><br/><br/>
-						<a class="white-text" href="login.jsp"><b>Logout</b></a><br/>
+
+						<a class="white-text" href="index.jsp"><b>Home</b></a><br /> <br />
+						<a class="white-text" href="login.jsp"><b>Logout</b></a><br />
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer-copyright">
 			<div class="container">
-			Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+				Made by <a class="orange-text text-lighten-3"
+					href="http://materializecss.com">Materialize</a>
 			</div>
 		</div>
 	</footer>
@@ -220,12 +244,12 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
-	<script> 
-	 $(document).ready(function(){
-		    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-		    $('.modal-trigger').leanModal();
-		  });
-	</script> 
+	<script>
+		$(document).ready(function() {
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('.modal-trigger').leanModal();
+		});
+	</script>
 
-	</body>
+</body>
 </html>

@@ -26,8 +26,6 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>filtro_autenticacao_medico</filter-name>
-		<url-pattern>/procurarMedicamento.jsp</url-pattern>
-		<url-pattern>/consultarMedicamentoServlet</url-pattern>
 		<url-pattern>/listaPacientes</url-pattern>
 		<url-pattern>/listaEspera.jsp</url-pattern>
 		<url-pattern>/procurarConsulta.jsp</url-pattern>
@@ -58,6 +56,15 @@
 		<url-pattern>/procurarPaciente.jsp</url-pattern>
 		<url-pattern>/agendarConsulta</url-pattern>
 		<url-pattern>/procurarMedico.jsp</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>filtro_autenticacao_todosUsuarios</filter-name>
+		<filter-class>filtros.TodosUsuariosFiltro</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filtro_autenticacao_todosUsuarios</filter-name>
+		<url-pattern>/procurarMedicamento.jsp</url-pattern>
+		<url-pattern>/consultarMedicamentoServlet</url-pattern>
 	</filter-mapping>
 
 

@@ -30,6 +30,7 @@
 		<thead>
 			<tr>
 				<td><b>Nome do Medicamento</b></td>
+				<td><b>Quantidade de Medicamento</b></td>
 				<td><b>Forma de uso</b></td>
 			</tr>
 		</thead>
@@ -37,6 +38,7 @@
 			<c:forEach items="${medicamentos}" var="medicamento">
 				<tr>
 					<td>${medicamento.produtos.nome}</td>
+					<td>${medicamento.quantidade}</td>
 					<td>${medicamento.medicamentos}</td>
 				</tr>
 			</c:forEach>
